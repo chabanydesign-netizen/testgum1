@@ -9,16 +9,16 @@
         
         /* --- СТИЛІ БАНЕРА (HERO) --- */
         header { 
-            /* Шлях до картинки */
+            /* Переконайтесь, що у вас є файл img/banner.jpg або змініть назву */
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('img/banner.jpg');
-            background-size: cover;       /* Розтягує картинку */
-            background-position: center;  /* Центрує картинку */
-            height: 400px;                /* Висота банера */
+            background-size: cover;
+            background-position: center;
+            height: 400px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: white;                 /* Білий текст */
+            color: white;
             text-align: center;
         }
 
@@ -38,9 +38,14 @@
 
         /* --- СІТКА ПРОЕКТІВ --- */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; max-width: 1000px; margin: 40px auto; padding: 0 20px; }
-        .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: 0.3s; text-decoration: none; color: inherit; }
+        
+        /* Стилі картки */
+        .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: 0.3s; text-decoration: none; color: inherit; display: block; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        
+        /* Стиль картинки (прев'ю) */
         .thumb { height: 200px; background: #ddd; display: flex; align-items: center; justify-content: center; color: #777; background-size: cover; background-position: center; }
+        
         .info { padding: 20px; }
         .title { font-weight: bold; font-size: 1.2em; display: block; margin-bottom: 5px; }
     </style>
@@ -56,30 +61,28 @@
     <div class="grid">
         
         <a href="project-gum/index.html" class="card">
-            <div class="thumb" style="background-image: url('img/01.jpg');">
-                </div> 
+            <div class="thumb" style="background-image: url('img/01.jpg');"></div> 
             <div class="info">
-                <span class="title">Рованці Гум"</span>
+                <span class="title">Рованці Гум</span>
                 <span>Сучасний стиль, 200 м²</span>
             </div>
         </a>
 
         <a href="#" class="card">
-            <div class="thumb">ФОТО</div>
+            <div class="thumb">СКОРО ФОТО</div>
             <div class="info">
                 <span class="title">ЖК Амстердам</span>
                 <span>В розробці...</span>
             </div>
         </a>
 
-    </div>
-<div class="project-card">
-    <a href="./dream-town/"> <img src="./dream-town/preview.jpg" alt="ЖК Dream Town"> <div class="project-info">
-            <h3>Рестпарк</h3>
-            <p>White Box • 85 м²</p>
-        </div>
-    </a>
-</div>
+        <a href="./dream-town/" class="card">
+            <div class="thumb" style="background-image: url('./dream-town/preview.jpg');"></div>
+            <div class="info">
+                <span class="title">Рестпарк</span>
+                <span>Дитяча кімната</span>
+            </div>
+        </a>
 
-</body>
+    </div> </body>
 </html>
