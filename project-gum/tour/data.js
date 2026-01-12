@@ -41,7 +41,7 @@ var APP_DATA = {
           "yaw": -1.5474305738498337,
           "pitch": 0.07035835752329511,
           "title": "Відео презентація",
-          "text": "<br><a href='https://https://youtu.be/vPVFAOmrO4Q' target='_blank' style='display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: bold; font-family: sans-serif;'>▶ Дивитися відео</a>"
+          "text": "<br><a href='https://www.youtube.com/watch?v=vPVFAOmrO4Q' target='_blank' style='display: inline-block; background-color: #FF0000; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: bold; font-family: sans-serif;'>▶ Дивитися відео</a>"
         }
       ]
     },
