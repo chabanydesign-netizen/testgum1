@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
-      <loc>https://твоє-ім'я.github.io/</loc>
-      <lastmod>2024-01-30</lastmod>
+      <loc>https://chabany.com.ua/</loc>
       <priority>1.0</priority>
+      <changefreq>monthly</changefreq>
    </url>
    <url>
-      <loc>https://chabany.github.io/project-gum/</loc>
+      <loc>https://chabany.com.ua/project-gum/</loc>
       <priority>0.8</priority>
    </url>
    <url>
-      <loc>https://chabany.github.io/restpark/</loc>
+      <loc>https://chabany.com.ua/restpark/</loc>
       <priority>0.8</priority>
    </url>
    <url>
-      <loc>https://chabany.github.io/Apart Leleky/</loc>
+      <loc>https://chabany.com.ua/Apart Leleky/</loc>
       <priority>0.8</priority>
    </url>
 </urlset>
