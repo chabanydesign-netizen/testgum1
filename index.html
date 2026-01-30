@@ -3,158 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Рованці Гум | Chabany Design</title>
+    <title>Chabany Design | Архітектура та Інтер'єр</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- НАЛАШТУВАННЯ ФОНУ ТА СТИЛЮ --- */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* ФОН: Переконайся, що картинка лежить за цією адресою */
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('../img/01.jpg');
+        /* --- ЗАГАЛЬНІ НАЛАШТУВАННЯ --- */
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            background-color: #0f0f0f; /* Глибокий чорний */
+            color: #e0e0e0; 
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; }
+
+        /* --- ШАПКА (HERO) --- */
+        header { 
+            /* ФОН ГОЛОВНОЇ: Заміни 'img/banner.jpg' на своє найкраще фото */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('img/banner.jpg');
             background-size: cover;
             background-position: center;
-            color: white;
-            overflow: hidden; 
-        }
-
-        /* --- СКЛЯНА КАРТКА --- */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05); 
-            backdrop-filter: blur(15px); 
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            animation: fadeIn 1s ease;
-        }
-
-        h1 {
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            font-size: 2em;
-        }
-
-        p.subtitle {
-            color: #aaa;
-            margin-bottom: 40px;
-            font-size: 1.1em;
-        }
-
-        /* --- КНОПКИ --- */
-        .btn-group {
+            height: 100vh; /* На весь екран */
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .btn {
-            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px;
-            text-decoration: none;
-            color: white;
-            border-radius: 50px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
+            text-align: center;
+            padding: 20px;
         }
 
-        /* Головна кнопка (3D Тур) */
-        .btn-primary {
-            background: linear-gradient(45deg, #d4a373, #b07d4b);
-            box-shadow: 0 5px 20px rgba(212, 163, 115, 0.4);
-            border: none;
-        }
-        .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(212, 163, 115, 0.6);
+        h1 { 
+            font-size: 3.5rem; 
+            font-weight: 700;
+            text-transform: uppercase; 
+            letter-spacing: 5px; 
+            margin: 0;
+            color: #fff;
         }
 
-        /* Другорядна кнопка (PDF) */
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: white;
-        }
-
-        .btn i { margin-right: 10px; }
-
-        /* --- БЛОК КОНТАКТІВ --- */
-        .contact-mini {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
-        }
-        .contact-mini p {
-            font-size: 0.8em;
-            color: #888;
-            margin-bottom: 10px;
-            text-transform: uppercase;
+        .subtitle { 
+            font-size: 1.2rem; 
+            margin-top: 15px; 
+            color: #d4a373; /* Золотий акцент */
+            font-weight: 400;
             letter-spacing: 2px;
-        }
-        .phone-link {
-            display: block;
-            font-size: 1.4em;
-            color: white;
-            margin-bottom: 20px;
-            font-weight: bold;
-            text-decoration: none;
-        }
-        .phone-link:hover { color: #d4a373; }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-        }
-        .social-icons a {
-            color: #aaa;
-            font-size: 1.8em;
-            transition: 0.3s;
-        }
-        .social-icons a:hover {
-            color: #d4a373; /* Золотий колір при наведенні */
-            transform: translateY(-3px);
+            text-transform: uppercase;
         }
 
-        .back-link {
+        .cta-btn {
+            margin-top: 40px;
+            padding: 15px 40px;
+            border: 1px solid #d4a373;
+            color: #d4a373;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+        .cta-btn:hover { 
+            background: #d4a373; 
+            color: #000; 
+            box-shadow: 0 0 20px rgba(212, 163, 115, 0.4);
+        }
+
+        /* --- ПРО СТУДІЮ --- */
+        .about-section {
+            max-width: 900px;
+            margin: 80px auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .section-title {
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            color: #fff;
+            position: relative;
             display: inline-block;
-            margin-top: 30px;
-            color: #666;
-            font-size: 0.9em;
         }
-        .back-link:hover { color: white; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #d4a373;
+            margin: 10px auto 0;
         }
-    </style>
-</head>
-<body>
+        .about-text {
+            color: #aaa;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+        .about-text strong { color: #fff; font-weight: 500; }
 
-    <div class="glass-card">
-        <h1>Будинок 200м²</h1>
-        <p class="
+        /* --- ПОРТФОЛІО (СІТКА) --- */
+        .portfolio-container {
+            max-width: 1200px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+
+        .grid { 
+            display: grid; 
+            grid-template-columns:
