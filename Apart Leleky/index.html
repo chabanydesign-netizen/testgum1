@@ -3,29 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Проект Рованці_Гум</title>
+    <title>Апарт готель №204 | Chabany Design</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        body { font-family: sans-serif; text-align: center; background: #f4f4f4; padding: 20px; }
-        .box { max-width: 500px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .btn { display: block; width: 100%; padding: 15px; margin: 10px 0; text-decoration: none; color: white; border-radius: 5px; box-sizing: border-box; }
-        .btn-3d { background: #007bff; font-weight: bold; }
-        .btn-doc { background: #28a745; }
-        .back { margin-top: 20px; display: block; color: #777; }
+        /* --- ОСНОВНИЙ ФОН (Dark Premium) --- */
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* ВАЖЛИВО: Фон сторінки. 
+               Я припускаю, що картинка '01.jpg' лежить у ТІЙ САМІЙ папці, що й цей файл index.html.
+               Якщо вона в загальній папці img, зміни на url('../img/nazva_foto.jpg')
+            */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('01.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            background-color: #111; /* Запасний чорний колір */
+        }
+
+        /* --- СКЛЯНА КАРТКА --- */
+        .glass-card { 
+            max-width: 450px; 
+            width: 90%;
+            background: rgba(255, 255, 255, 0.05); /* Напівпрозорий фон */
+            backdrop-filter: blur(15px); /* Ефект розмиття матового скла */
+            -webkit-backdrop-filter: blur(15px);
+            padding: 40px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            margin: 20px 0;
+        }
+
+        h1 { margin: 0 0 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 1.8rem; }
+        p.subtitle { color: #ccc; margin-bottom: 30px; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        hr { border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 25px 0; }
+        h3 { font-size: 0.9rem; text-transform: uppercase; color: #888; letter-spacing: 2px; margin-bottom: 15px; }
+
+        /* --- КНОПКИ --- */
+        .btn { 
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; padding: 16px; margin: 12px 0; 
+            text-decoration: none; color: white; border-radius: 50px; 
+            box-sizing: border-box; font-weight: 600; letter-spacing: 1px;
+            transition: 0.3s; text-transform: uppercase; font-size: 0.9rem;
+        }
+        
+        /* Золота кнопка для 3D туру */
+        .btn-3d { 
+            background: linear-gradient(45deg, #d4a373, #b07d4b); 
+            box-shadow: 0 5px 15px rgba(212, 163, 115, 0.2);
+            border: none;
+        }
+        .btn-3d:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(212, 163, 115, 0.4); }
+
+        /* Прозора кнопка для документів */
+        .btn-doc { 
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);
+        }
+        .btn-doc:hover { background: rgba(255,255,255,0.15); border-color: white; }
+
+        .btn i { margin-right: 12px; font-size: 1.1rem; }
+
+        /* --- БЛОК КОНТАКТІВ --- */
+        .contact-block { margin-top: 35px; }
+        .phone-link { display: block; color: white; font-size: 1.3rem; font-weight: bold; margin-bottom: 20px; text-decoration: none; }
+        .phone-link:hover { color: #d4a373; }
+        
+        .social-icons { display: flex; justify-content: center; gap: 20px; }
+        .social-icons a { color: #aaa; font-size: 1.6rem; transition: 0.3s; }
+        .social-icons a:hover { color: #d4a373; transform: scale(1.1); }
+
+        .back { margin-top: 35px; display: inline-block; color: #888; font-size: 0.9rem; text-decoration: none; transition: 0.3s; }
+        .back:hover { color: white; }
     </style>
 </head>
 <body>
-    <div class="box">
+
+    <div class="glass-card">
         <h1>Апарт готель №204</h1>
-        <p>Замовник:Лелеки</p>
-        <hr>
-        
-        <a href="tour/index.html" class="btn btn-3d" target="_blank">🔄 Відкрити 3D Тур</a>
+        <p class="subtitle">Замовник: Лелеки</p>
         
         <hr>
+        
+        <a href="tour/index.html" class="btn btn-3d" target="_blank">
+            <i class="fas fa-cube"></i> Відкрити 3D Тур
+        </a>
+        
+        <hr>
+        
         <h3>Документи</h3>
-        <a href="docs/plan.pdf" class="btn btn-doc" download>📄 Завантажити План</a>
+        <a href="docs/plan.pdf" class="btn btn-doc" target="_blank">
+            <i class="far fa-file-pdf"></i> Переглянути План
+        </a>
+
+        <div class="contact-block">
+            <a href="tel:+380770133119" class="phone-link">+38 (077) 013-31-19</a>
+            <div class="social-icons">
+                <a href="https://www.tiktok.com/@chabanydesign" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.youtube.com/@Chabany-k5y" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
 
         <a href="../index.html" class="back">← На головну</a>
     </div>
+
 </body>
 </html>
