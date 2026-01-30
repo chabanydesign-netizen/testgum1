@@ -53,4 +53,70 @@
             display: flex; align-items: center; justify-content: center;
             width: 100%; padding: 16px; margin: 12px 0; 
             text-decoration: none; color: white; border-radius: 50px; 
-            box-sizing: border-box; font-weight: 600; letter-spacing
+            box-sizing: border-box; font-weight: 600; letter-spacing: 1px;
+            transition: 0.3s; text-transform: uppercase; font-size: 0.9rem;
+        }
+        
+        /* Золота кнопка для 3D туру */
+        .btn-3d { 
+            background: linear-gradient(45deg, #d4a373, #b07d4b); 
+            box-shadow: 0 5px 15px rgba(212, 163, 115, 0.2);
+            border: none;
+        }
+        .btn-3d:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(212, 163, 115, 0.4); }
+
+        /* Прозора кнопка для документів */
+        .btn-doc { 
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);
+        }
+        .btn-doc:hover { background: rgba(255,255,255,0.15); border-color: white; }
+
+        .btn i { margin-right: 12px; font-size: 1.1rem; }
+
+        /* --- БЛОК КОНТАКТІВ --- */
+        .contact-block { margin-top: 35px; }
+        .phone-link { display: block; color: white; font-size: 1.3rem; font-weight: bold; margin-bottom: 20px; text-decoration: none; }
+        .phone-link:hover { color: #d4a373; }
+        
+        .social-icons { display: flex; justify-content: center; gap: 20px; }
+        .social-icons a { color: #aaa; font-size: 1.6rem; transition: 0.3s; }
+        .social-icons a:hover { color: #d4a373; transform: scale(1.1); }
+
+        .back { margin-top: 35px; display: inline-block; color: #888; font-size: 0.9rem; text-decoration: none; transition: 0.3s; }
+        .back:hover { color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card">
+        <h1>Дитяча кімната</h1>
+        <p class="subtitle">Замовник: Рестпарк</p>
+        
+        <hr>
+        
+        <a href="tour/index.html" class="btn btn-3d" target="_blank">
+            <i class="fas fa-cube"></i> Відкрити 3D Тур
+        </a>
+        
+        <hr>
+        
+        <h3>Документи</h3>
+        <a href="docs/plan.pdf" class="btn btn-doc" target="_blank">
+            <i class="far fa-file-pdf"></i> Переглянути План
+        </a>
+
+        <div class="contact-block">
+            <a href="tel:+380770133119" class="phone-link">+38 (077) 013-31-19</a>
+            <div class="social-icons">
+                <a href="https://www.tiktok.com/@chabanydesign" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.youtube.com/@Chabany-k5y" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
+
+        <a href="../index.html" class="back">← На головну</a>
+    </div>
+
+</body>
+</html>
