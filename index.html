@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chabany Design | Архітектура та Дизайн інтер'єру</title>
+    <title>Chabany Design | Архітектура та Дизайн</title>
     
     <link rel="icon" type="image/png" href="img/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* СКИДАННЯ СТИЛІВ */
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body { 
@@ -18,12 +17,11 @@
             background-color: #0a0a0a; 
             color: #ffffff; 
             overflow-x: hidden; 
-            line-height: 1.6;
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 
-        /* --- ГОЛОВНИЙ ЕКРАН (HEADER) --- */
+        /* --- ГОЛОВНИЙ ЕКРАН --- */
         header { 
             min-height: 100vh;
             display: flex;
@@ -32,24 +30,20 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            /* Чіткий фон без зайвого розмиття */
             background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('img/banner.jpg');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            padding: 40px 20px;
+            padding: 20px;
         }
 
-        @media (min-width: 1024px) {
-            header { background-attachment: fixed; }
-        }
+        @media (min-width: 1024px) { header { background-attachment: fixed; } }
 
-        /* ЛОГОТИП (ВЕЛИКИЙ ТА АДАПТИВНИЙ) */
+        /* ЛОГОТИП */
         .logo-wrapper {
             width: 100%;
-            max-width: 760px; /* Ваш розмір (в 2 рази більше) */
+            max-width: 760px; 
             z-index: 10;
-            margin-bottom: 0; /* Прибираємо стандартний відступ */
+            margin-bottom: 0;
         }
 
         .main-logo {
@@ -60,25 +54,28 @@
             filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5));
         }
 
-        /* КОНТЕНТ (ПІДНЯТИЙ ВИЩЕ) */
+        /* КОНТЕНТ (ПІДНЯТО ЩЕ ВИЩЕ) */
         .header-content {
             z-index: 11;
-            /* ПІДНІМАЄМО НАПИС ТА КНОПКУ ВИЩЕ ДО ЛОГО */
-            margin-top: -80px; 
+            /* Збільшив підйом до -120px, щоб блок був ближче до центру лого */
+            margin-top: -120px; 
             position: relative;
+            width: 100%;
         }
 
         .subtitle { 
             font-size: 1.1rem; 
-            color: #d4a373; /* Золотий колір */
+            color: #d4a373; 
             text-transform: uppercase;
             letter-spacing: 5px;
-            margin-bottom: 30px;
-            font-weight: 300;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            margin-bottom: 25px;
+            font-weight: 400; /* Трохи жирніший для чіткості */
+            text-shadow: 0 2px 15px rgba(0,0,0,0.8);
+            display: block;
         }
 
         .cta-btn {
+            display: inline-block;
             padding: 16px 45px;
             border: 1px solid rgba(212, 163, 115, 0.6);
             border-radius: 50px;
@@ -87,44 +84,21 @@
             letter-spacing: 2px;
             font-size: 0.8rem;
             color: #fff;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.3);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            transition: 0.4s;
         }
 
-        .cta-btn:hover { 
-            background: #d4a373; 
-            color: #000; 
-            box-shadow: 0 10px 25px rgba(212, 163, 115, 0.4);
-        }
-
-        /* --- МОБІЛЬНА ВЕРСІЯ --- */
+        /* МОБІЛЬНА КОРЕКЦІЯ */
         @media (max-width: 768px) {
-            .logo-wrapper {
-                max-width: 300px; /* Робимо логотип адекватним на телефоні */
-            }
-            .header-content {
-                margin-top: -30px; /* Менший підйом для мобілок, щоб не налізало */
-            }
-            .subtitle {
-                font-size: 0.85rem;
-                letter-spacing: 3px;
-            }
+            .logo-wrapper { max-width: 320px; }
+            .header-content { margin-top: -40px; }
+            .subtitle { font-size: 0.8rem; letter-spacing: 2px; }
         }
 
-        /* --- СІТКА ПРОЄКТІВ --- */
-        .projects {
-            padding: 80px 20px;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
-            gap: 40px; 
-        }
+        /* СІТКА ПРОЄКТІВ */
+        .projects { padding: 80px 20px; max-width: 1300px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; }
         
         .card { 
             background: #111; 
@@ -134,25 +108,20 @@
             border: 1px solid #1a1a1a;
             transition: 0.4s;
         }
-
         .card:hover { border-color: #d4a373; transform: translateY(-10px); }
 
         .thumb { 
             height: 280px; 
             background-size: cover; 
             background-position: center; 
+            background-color: #1a1a1a;
         }
 
         .info { padding: 25px; }
         .project-title { font-size: 1.1rem; font-weight: 600; color: #fff; display: block; text-transform: uppercase; }
         .project-desc { font-size: 0.8rem; color: #d4a373; margin-top: 8px; display: block; text-transform: uppercase; }
 
-        footer {
-            padding: 80px 20px;
-            text-align: center;
-            border-top: 1px solid #1a1a1a;
-        }
-
+        footer { padding: 80px 20px; text-align: center; border-top: 1px solid #1a1a1a; }
         .socials a { margin: 0 20px; font-size: 1.5rem; color: #444; }
         .socials a:hover { color: #d4a373; }
     </style>
@@ -167,7 +136,7 @@
         </div>
 
         <div class="header-content">
-            <p class="subtitle">Архітектура • Інтер'єр • 360°</p>
+            <span class="subtitle">Архітектура • Інтер'єр • 360°</span>
             <a href="#projects" class="cta-btn">Дивитися портфоліо</a>
         </div>
     </header>
@@ -186,7 +155,7 @@
                 <div class="thumb" style="background-image: url('amsterdam/02.jpg');"></div>
                 <div class="info">
                     <span class="project-title">ЖК Амстердам 70</span>
-                    <span class="project-desc">70 кв.м</span>
+                    <span class="project-desc">Дизайн квартири • 70 м²</span>
                 </div>
             </a>
 
@@ -194,7 +163,7 @@
                 <div class="thumb" style="background-image: url('restpark/preview.jpg');"></div>
                 <div class="info">
                     <span class="project-title">Рестпарк</span>
-                    <span class="project-desc">Дитяча кімната</span>
+                    <span class="project-desc">Інтер'єр дитячої кімнати</span>
                 </div>
             </a>
 
@@ -202,7 +171,7 @@
                 <div class="thumb" style="background-image: url('Apart Leleky/01.jpg');"></div>
                 <div class="info">
                     <span class="project-title">Апарт-готель Leleky</span>
-                    <span class="project-desc">Номер №204</span>
+                    <span class="project-desc">Номерний фонд • №204</span>
                 </div>
             </a>
 
@@ -210,7 +179,7 @@
                 <div class="thumb" style="background-image: url('CITY PARK/01.jpg');"></div>
                 <div class="info">
                     <span class="project-title">CITY PARK</span>
-                    <span class="project-desc">ТРЦ</span>
+                    <span class="project-desc">Торгово-розважальний центр</span>
                 </div>
             </a>
 
@@ -218,7 +187,7 @@
                 <div class="thumb" style="background-image: url('amsterdam80/02.jpg');"></div>
                 <div class="info">
                     <span class="project-title">ЖК Амстердам 80</span>
-                    <span class="project-desc">80 кв.м</span>
+                    <span class="project-desc">Дизайн інтер'єру • 80 м²</span>
                 </div>
             </a>
         </div>
@@ -228,7 +197,7 @@
         <div class="socials">
             <a href="https://www.tiktok.com/@chabanydesign" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="https://www.youtube.com/@Chabany-k5y" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
     </footer>
 
