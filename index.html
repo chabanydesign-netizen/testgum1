@@ -4,20 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Дизайн інтер'єру та Архітектура Луцьк | Chabany Design</title>
+    <title>Chabany Design | Архітектура та Дизайн інтер'єру Луцьк</title>
     
-    <meta name="description" content="Студія дизайну Олега Чабана. 15 років досвіду. Архітектурне проєктування, дизайн інтер'єру, 3D візуалізація та панорами 360°. Працюємо в Луцьку та по Україні.">
-    
-    <meta name="keywords" content="дизайн інтер'єру Луцьк, архітектор Луцьк, 3D візуалізація, панорами 360, дизайн квартири, дизайн будинку, Chabany Design">
+    <meta name="description" content="Студія дизайну Олега Чабана. 15 років досвіду. Архітектурне проєктування, дизайн інтер'єру та 3D візуалізація.">
     
     <link rel="icon" type="image/png" href="img/favicon.png">
-    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* СКИДАННЯ СТИЛІВ */
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body { 
@@ -25,11 +20,29 @@
             background-color: #0a0a0a; 
             color: #ffffff; 
             overflow-x: hidden; 
+            line-height: 1.6;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 
-        /* --- ГОЛОВНИЙ ЕКРАН З БАНЕРОМ --- */
+        /* --- ЛОГОТИП --- */
+        .logo-container {
+            position: absolute;
+            top: 40px;
+            z-index: 10;
+        }
+
+        .main-logo {
+            max-width: 200px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .main-logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- ГОЛОВНИЙ ЕКРАН --- */
         header { 
             height: 100vh;
             display: flex;
@@ -38,173 +51,187 @@
             justify-content: center;
             text-align: center;
             padding: 20px;
-            
-            /* ВАЖЛИВО: Ось тут ми підключаємо твій банер */
-            /* linear-gradient робить затемнення, щоб текст читався */
-            /* url('img/banner.jpg') вказує шлях до файлу */
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('img/banner.jpg');
-            background-size: cover; /* Картинка розтягується на весь екран */
-            background-position: center; /* Центрування картинки */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('img/banner.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         h1 { 
-            font-size: 3rem; 
+            font-size: 3.5rem; 
             font-weight: 800;
             text-transform: uppercase; 
-            letter-spacing: 5px; 
+            letter-spacing: 8px; 
             margin-bottom: 10px;
-            color: #ffffff; /* Білий колір тексту */
+            margin-top: 60px;
         }
 
         .subtitle { 
             font-size: 1.1rem; 
-            color: #d4a373; /* Золотий колір */
+            color: #d4a373;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             margin-bottom: 40px;
+            font-weight: 300;
         }
 
-        /* Кнопка */
         .cta-btn {
-            padding: 15px 40px;
-            border: 1px solid rgba(255,255,255,0.5);
+            padding: 16px 45px;
+            border: 1px solid rgba(212, 163, 115, 0.5);
             border-radius: 50px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
             color: #fff;
-            backdrop-filter: blur(5px);
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
         }
+
         .cta-btn:hover { 
             background: #d4a373; 
             color: #000; 
             border-color: #d4a373;
+            box-shadow: 0 10px 20px rgba(212, 163, 115, 0.3);
         }
 
-        /* --- БЛОК "ПРО СТУДІЮ" --- */
+        /* --- ПРО СТУДІЮ --- */
         .about {
-            padding: 80px 20px;
-            max-width: 800px;
+            padding: 100px 20px;
+            max-width: 900px;
             margin: 0 auto;
             text-align: center;
         }
+
         .about h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
             font-weight: 300;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 5px;
+            color: #d4a373;
         }
+
         .about p {
-            color: #aaa;
-            line-height: 1.8;
-            font-size: 1.1rem;
+            color: #bcbcbc;
+            font-size: 1.15rem;
+            font-weight: 300;
         }
+
         .about strong { color: #fff; font-weight: 600; }
 
         /* --- СІТКА ПРОЄКТІВ --- */
         .projects {
             padding: 0 20px 100px;
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
         }
+
         .section-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #555;
-            font-size: 0.9rem;
+            letter-spacing: 4px;
+            color: #444;
+            font-size: 0.8rem;
+            font-weight: 800;
         }
 
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-            gap: 30px; 
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
+            gap: 40px; 
         }
         
         .card { 
-            background: #161616; 
-            border-radius: 8px; 
+            background: #111; 
+            border-radius: 4px; 
             overflow: hidden; 
             display: block;
-            border: 1px solid #222;
+            border: 1px solid #1a1a1a;
+            position: relative;
         }
+
         .card:hover { 
             border-color: #d4a373; 
-            transform: translateY(-5px); 
+            transform: translateY(-10px); 
         }
 
         .thumb { 
-            height: 250px; 
-            background-color: #222; 
+            height: 300px; 
             background-size: cover; 
             background-position: center; 
-            position: relative;
-        }
-        
-        .thumb::after {
-            content: '\f1b2'; 
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 30px;
-            color: #4f5936;
-            z-index: 0;
+            transition: transform 0.5s ease;
         }
 
-        .info { padding: 20px; }
-        .project-title { font-size: 1.2rem; font-weight: 600; color: #fff; display: block; }
-        .project-desc { font-size: 0.9rem; color: #777; margin-top: 5px; display: block; }
+        .card:hover .thumb {
+            transform: scale(1.05);
+        }
+
+        .info { 
+            padding: 25px; 
+            background: #111;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-title { font-size: 1.1rem; font-weight: 600; color: #fff; display: block; text-transform: uppercase; letter-spacing: 1px; }
+        .project-desc { font-size: 0.8rem; color: #d4a373; margin-top: 8px; display: block; text-transform: uppercase; }
 
         /* --- ФУТЕР --- */
         footer {
-            border-top: 1px solid #222;
-            padding: 50px 20px;
+            border-top: 1px solid #1a1a1a;
+            padding: 80px 20px;
             text-align: center;
         }
+
         .phone {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: #fff;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             display: block;
-            font-weight: bold;
+            font-weight: 300;
+            letter-spacing: 2px;
         }
+
         .socials a {
-            font-size: 1.5rem;
-            margin: 0 15px;
-            color: #777;
+            font-size: 1.4rem;
+            margin: 0 20px;
+            color: #555;
         }
-        .socials a:hover { color: #d4a373; }
+
+        .socials a:hover { color: #d4a373; transform: translateY(-3px); }
         
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            header { height: 80vh; }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; letter-spacing: 4px; }
+            .grid { grid-template-columns: 1fr; }
+            .main-logo { max-width: 160px; }
         }
     </style>
 </head>
 <body>
 
     <header>
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Chabany Design Logo" class="main-logo">
+        </div>
         <h1>Chabany Design</h1>
         <p class="subtitle">Архітектура • Інтер'єр • 360°</p>
-        <a href="#projects" class="cta-btn">Дивитися роботи</a>
+        <a href="#projects" class="cta-btn">Дивитися портфоліо</a>
     </header>
 
     <section class="about">
-        <h2>Про Студію</h2>
+        <h2>Естетика та Технології</h2>
         <p>
-            Більше 10 років досвіду. МИ створюємо не просто візуалізації, а простір для життя.
-            Використовуючи <strong>сучасні технології та інтерактивні рішення</strong>, 
-            ми даємо можливість побачити та відчути ваш майбутній дім ще до першої цеглини.
+            Понад <strong>15 років</strong> ми трансформуємо ідеї у фізичний простір. 
+            Ми спеціалізуємось на преміальній архітектурі та інтер'єрах, використовуючи 
+            <strong>інтерактивні 3D-технології</strong>, щоб ви могли здійснити прогулянку 
+            своїм майбутнім домом ще на етапі ескізів.
         </p>
     </section>
 
     <div id="projects" class="projects">
-        <div class="section-header">Наші роботи</div>
+        <div class="section-header">// Вибрані проєкти</div>
 
         <div class="grid">
             
@@ -212,15 +239,15 @@
                 <div class="thumb" style="background-image: url('img/01.jpg');"></div>
                 <div class="info">
                     <span class="project-title">Рованці Гум</span>
-                    <span class="project-desc">Будинок 200 м²</span>
+                    <span class="project-desc">Приватна резиденція</span>
                 </div>
             </a>
 
-            <a href="#" class="card">
+            <a href="amsterdam/index.html" class="card">
                 <div class="thumb" style="background-image: url('amsterdam/02.jpg');"></div>
                 <div class="info">
-                    <span class="project-title">ЖК Амстердам 70</span>
-                    <span class="project-desc">70 кв.м</span>
+                    <span class="project-title">ЖК Амстердам</span>
+                    <span class="project-desc">Квартира 70 кв.м</span>
                 </div>
             </a>
 
@@ -228,15 +255,15 @@
                 <div class="thumb" style="background-image: url('restpark/preview.jpg');"></div>
                 <div class="info">
                     <span class="project-title">Рестпарк</span>
-                    <span class="project-desc">Дитяча кімната</span>
+                    <span class="project-desc">Громадський простір</span>
                 </div>
             </a>
 
              <a href="Apart Leleky/index.html" class="card">
                 <div class="thumb" style="background-image: url('Apart Leleky/01.jpg');"></div>
                 <div class="info">
-                    <span class="project-title">Апарт-готель</span>
-                    <span class="project-desc">Номер №204</span>
+                    <span class="project-title">Апарт-готель Leleky</span>
+                    <span class="project-desc">Номерний фонд</span>
                 </div>
             </a>
              
@@ -244,18 +271,17 @@
                 <div class="thumb" style="background-image: url('CITY PARK/01.jpg');"></div>
                 <div class="info">
                     <span class="project-title">CITY PARK</span>
-                    <span class="project-desc">ТРЦ</span>
+                    <span class="project-desc">Торгово-розважальний центр</span>
                 </div>
             </a>
              
-             <a href="Amsterdam 80/index.html" class="card">
-                <div class="thumb" style="background-image: url('Amsterdam%2080/02.jpg');"></div>
+             <a href="amsterdam80/index.html" class="card">
+                <div class="thumb" style="background-image: url('amsterdam80/02.jpg');"></div>
                 <div class="info">
                     <span class="project-title">ЖК Амстердам 80</span>
-                    <span class="project-desc">80 кв.м</span>
+                    <span class="project-desc">Дизайн інтер'єру</span>
                 </div>
             </a>
-
 
         </div>
     </div>
@@ -270,7 +296,7 @@
             <a href="#" target="_blank"><i class="fab fa-telegram-plane"></i></a>
         </div>
         <br>
-        <p style="color: #444; font-size: 0.8rem">© 2026 Chabany Design</p>
+        <p style="color: #222; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;">© 2026 Chabany Design Studio</p>
     </footer>
 
 </body>
