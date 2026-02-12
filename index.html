@@ -26,8 +26,7 @@
             background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('img/banner.jpg');
             background-size: cover;
             background-position: center;
-            /* Відступ для ПК - регулюйте це число, щоб опустити/підняти всю групу */
-            padding-top: 120px; 
+            padding-top: 120px; /* Висота на ПК */
             padding-left: 20px;
             padding-right: 20px;
         }
@@ -52,7 +51,7 @@
         /* КОНТЕНТ (ТЕКСТ + КНОПКА) */
         .header-content {
             z-index: 11;
-            margin-top: -160px; /* Відстань між лого та текстом */
+            margin-top: -160px; 
             position: relative;
         }
 
@@ -82,22 +81,19 @@
             -webkit-backdrop-filter: blur(10px);
         }
 
-        /* --- МОБІЛЬНА АДАПТАЦІЯ (ОНОВЛЕНО) --- */
+        /* --- МОБІЛЬНА АДАПТАЦІЯ --- */
         @media (max-width: 768px) {
-            header { 
-                padding-top: 100px; /* Висота всієї групи на мобілці */
-            }
-            .logo-wrapper { 
-                max-width: 360px; /* ЗБІЛЬШЕНО ЛОГО НА МОБІЛЬНОМУ */
-            }
-            .header-content { 
-                margin-top: -50px; /* Підйом тексту на мобілці */
-            }
-            .subtitle { 
-                font-size: 0.85rem; 
-                letter-spacing: 3px; 
-            }
+            header { padding-top: 100px; }
+            .logo-wrapper { max-width: 360px; }
+            .header-content { margin-top: -50px; }
+            .subtitle { font-size: 0.85rem; letter-spacing: 3px; }
         }
+
+        /* --- ПРО СТУДІЮ --- */
+        .about { padding: 100px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
+        .about h2 { font-size: 1.8rem; margin-bottom: 30px; font-weight: 300; text-transform: uppercase; letter-spacing: 5px; color: #d4a373; }
+        .about p { color: #bcbcbc; font-size: 1.15rem; font-weight: 300; }
+        .about strong { color: #fff; font-weight: 600; }
 
         /* --- СІТКА ПРОЄКТІВ --- */
         .projects { padding: 40px 20px 100px; max-width: 1300px; margin: 0 auto; }
@@ -109,13 +105,24 @@
         .project-title { font-size: 1.1rem; font-weight: 600; color: #fff; display: block; text-transform: uppercase; }
         .project-desc { font-size: 0.8rem; color: #d4a373; margin-top: 8px; display: block; text-transform: uppercase; }
 
-        .about { padding: 100px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
-        .about h2 { font-size: 1.8rem; margin-bottom: 30px; font-weight: 300; text-transform: uppercase; letter-spacing: 5px; color: #d4a373; }
-        .about p { color: #bcbcbc; font-size: 1.15rem; font-weight: 300; }
-        .about strong { color: #fff; font-weight: 600; }
-
-        footer { padding: 60px 20px; text-align: center; border-top: 1px solid #1a1a1a; }
+        /* --- ФУТЕР --- */
+        footer { 
+            padding: 80px 20px; 
+            text-align: center; 
+            border-top: 1px solid #1a1a1a; 
+        }
+        .footer-phone {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+        .footer-phone:hover { color: #d4a373; }
+        
         .socials a { margin: 0 15px; font-size: 1.5rem; color: #444; }
+        .socials a:hover { color: #d4a373; }
     </style>
 </head>
 <body>
@@ -136,7 +143,7 @@
     <section class="about">
         <h2>Естетика та Технології</h2>
         <p>
-            Понад <strong>10 років</strong> ми створюємо простір для життя. 
+            Понад <strong>15 років</strong> ми створюємо простір для життя. 
             Використовуючи <strong>сучасні 3D-технології</strong>, ми даємо вам 
             можливість побачити та відчути ваш майбутній дім ще до початку будівництва.
         </p>
@@ -195,6 +202,8 @@
     </div>
 
     <footer>
+        <a href="tel:+380770133119" class="footer-phone">+38 (077) 013-31-19</a>
+
         <div class="socials">
             <a href="https://www.tiktok.com/@chabanydesign" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="https://www.youtube.com/@Chabany-k5y" target="_blank"><i class="fab fa-youtube"></i></a>
