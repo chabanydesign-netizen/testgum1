@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apart Leleky | Дизайн та 3D візуалізація | Chabany Design</title>
+    <title>Apart Leleky | Portfolio | Chabany Design</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,7 +18,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Фон з затемненням для читабельності тексту */
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('01.jpg');
             background-size: cover;
             background-position: center;
@@ -34,7 +33,7 @@
             background: rgba(255, 255, 255, 0.05); 
             backdrop-filter: blur(15px); 
             -webkit-backdrop-filter: blur(15px);
-            padding: 35px; 
+            padding: 40px; 
             border-radius: 20px; 
             border: 1px solid rgba(255,255,255,0.1);
             text-align: center;
@@ -43,40 +42,36 @@
         }
 
         h1 { margin: 0 0 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 1.6rem; }
-        p.subtitle { color: #ccc; margin-bottom: 25px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        p.subtitle { color: #ccc; margin-bottom: 30px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
         hr { border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 25px 0; }
         h3 { font-size: 0.8rem; text-transform: uppercase; color: #888; letter-spacing: 2px; margin-bottom: 15px; }
 
-        /* --- БАЗОВИЙ СТИЛЬ КНОПОК --- */
+        /* --- КНОПКИ --- */
         .btn { 
             display: flex; align-items: center; justify-content: center;
-            width: 100%; padding: 15px; margin: 12px 0; 
+            width: 100%; padding: 16px; margin: 12px 0; 
             text-decoration: none; color: white; border-radius: 50px; 
             box-sizing: border-box; font-weight: 600; letter-spacing: 1px;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             text-transform: uppercase; font-size: 0.85rem;
             border: none;
-            cursor: pointer;
         }
         
         .btn:active { transform: scale(0.96); }
         .btn i { margin-right: 12px; font-size: 1.1rem; }
 
-        /* 1. Золота кнопка (3D ТУР) */
-        .btn-3d { 
+        /* Золотий стиль (для 3D туру та Відео) */
+        .btn-gold { 
             background: linear-gradient(45deg, #d4a373, #b07d4b); 
             box-shadow: 0 5px 15px rgba(212, 163, 115, 0.2);
         }
-        .btn-3d:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(212, 163, 115, 0.4); }
-
-        /* 2. Червона кнопка (YOUTUBE) */
-        .btn-yt { 
-            background: linear-gradient(45deg, #e63946, #b91d1d); 
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.2);
+        .btn-gold:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 25px rgba(212, 163, 115, 0.4); 
+            background: linear-gradient(45deg, #e4b383, #c08d5b);
         }
-        .btn-yt:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(230, 57, 70, 0.4); }
 
-        /* 3. Прозора кнопка (ДОКУМЕНТИ) */
+        /* Прозорий стиль для другорядних дій */
         .btn-doc { 
             background: rgba(255,255,255,0.05); 
             border: 1px solid rgba(255,255,255,0.2);
@@ -84,15 +79,15 @@
         .btn-doc:hover { background: rgba(255,255,255,0.15); border-color: white; }
 
         /* --- КОНТАКТИ --- */
-        .contact-block { margin-top: 30px; }
-        .phone-link { display: block; color: white; font-size: 1.3rem; font-weight: bold; margin-bottom: 20px; text-decoration: none; transition: 0.3s; }
+        .contact-block { margin-top: 35px; }
+        .phone-link { display: block; color: white; font-size: 1.4rem; font-weight: bold; margin-bottom: 20px; text-decoration: none; transition: 0.3s; }
         .phone-link:hover { color: #d4a373; }
         
         .social-icons { display: flex; justify-content: center; gap: 20px; }
         .social-icons a { color: #aaa; font-size: 1.6rem; transition: 0.3s; }
-        .social-icons a:hover { color: white; transform: scale(1.1); }
+        .social-icons a:hover { color: #d4a373; transform: scale(1.1); }
 
-        .back { margin-top: 30px; display: inline-block; color: #666; font-size: 0.8rem; text-decoration: none; transition: 0.3s; text-transform: uppercase; }
+        .back { margin-top: 35px; display: inline-block; color: #666; font-size: 0.8rem; text-decoration: none; transition: 0.3s; text-transform: uppercase; }
         .back:hover { color: white; }
     </style>
 </head>
@@ -102,19 +97,19 @@
         <h1>Apart Leleky</h1>
         <p class="subtitle">Замовник: Leleky</p>
         
-        <a href="tour/index.html" class="btn btn-3d" target="_blank">
+        <a href="tour/index.html" class="btn btn-gold" target="_blank">
             <i class="fas fa-cube"></i> Відкрити 3D Тур
         </a>
 
-        <a href="https://www.youtube.com/watch?v=ВАШЕ_ID_ВІДЕО" class="https://www.youtube.com/watch?v=soW--WTk77o" target="_blank">
+        <a href="https://www.youtube.com/watch?v=soW--WTk77o" class="btn btn-gold" target="_blank">
             <i class="fab fa-youtube"></i> Відеопрезентація
         </a>
         
         <hr>
         
-        <h3>Документація проєкту</h3>
+        <h3>Документація</h3>
         <a href="docs/204.pdf" class="btn btn-doc" target="_blank">
-            <i class="far fa-file-pdf"></i> Переглянути План
+            <i class="far fa-file-pdf"></i> План приміщення
         </a>
 
         <div class="contact-block">
@@ -123,11 +118,11 @@
                 <a href="https://www.tiktok.com/@chabanydesign" target="_blank"><i class="fab fa-tiktok"></i></a>
                 <a href="https://www.youtube.com/@Chabany-k5y" target="_blank"><i class="fab fa-youtube"></i></a>
                 <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://t.me/ВАШ_НІК" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-telegram-plane"></i></a>
             </div>
         </div>
 
-        <a href="../index.html" class="back">← Повернутися на головну</a>
+        <a href="../index.html" class="back">← На головну</a>
     </div>
 
 </body>
