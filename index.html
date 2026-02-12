@@ -14,21 +14,20 @@
         body { font-family: 'Montserrat', sans-serif; background-color: #0a0a0a; color: #ffffff; overflow-x: hidden; line-height: 1.6; }
         a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 
-        /* --- ГОЛОВНИЙ ЕКРАН (ОНОВЛЕНО) --- */
+        /* --- ГОЛОВНИЙ ЕКРАН --- */
         header { 
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Змінюємо центрування: тепер воно притиснуте до верху */
             justify-content: flex-start; 
             text-align: center;
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('img/banner.jpg');
             background-size: cover;
             background-position: center;
-            /* Відступ зверху для всієї групи елементів. Зменшуйте число, щоб підняти ще вище */
-            padding-top: 80px; 
+            /* Відступ для ПК - регулюйте це число, щоб опустити/підняти всю групу */
+            padding-top: 120px; 
             padding-left: 20px;
             padding-right: 20px;
         }
@@ -50,16 +49,16 @@
             filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5));
         }
 
-        /* КОНТЕНТ (ПІДНЯТО ДО ЛОГОТИПУ) */
+        /* КОНТЕНТ (ТЕКСТ + КНОПКА) */
         .header-content {
             z-index: 11;
-            margin-top: -180px; /* Відстань між лого та текстом */
+            margin-top: -160px; /* Відстань між лого та текстом */
             position: relative;
         }
 
         .subtitle { 
             display: block;
-            font-size: 1.2rem; 
+            font-size: 1.1rem; 
             color: #d4a373; 
             text-transform: uppercase;
             letter-spacing: 5px;
@@ -83,25 +82,22 @@
             -webkit-backdrop-filter: blur(10px);
         }
 
-        /* --- БЛОК ПРО СТУДІЮ --- */
-        .about {
-            padding: 100px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
+        /* --- МОБІЛЬНА АДАПТАЦІЯ (ОНОВЛЕНО) --- */
+        @media (max-width: 768px) {
+            header { 
+                padding-top: 100px; /* Висота всієї групи на мобілці */
+            }
+            .logo-wrapper { 
+                max-width: 360px; /* ЗБІЛЬШЕНО ЛОГО НА МОБІЛЬНОМУ */
+            }
+            .header-content { 
+                margin-top: -50px; /* Підйом тексту на мобілці */
+            }
+            .subtitle { 
+                font-size: 0.85rem; 
+                letter-spacing: 3px; 
+            }
         }
-
-        .about h2 {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            font-weight: 300;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            color: #d4a373;
-        }
-
-        .about p { color: #bcbcbc; font-size: 1.15rem; font-weight: 300; }
-        .about strong { color: #fff; font-weight: 600; }
 
         /* --- СІТКА ПРОЄКТІВ --- */
         .projects { padding: 40px 20px 100px; max-width: 1300px; margin: 0 auto; }
@@ -113,12 +109,10 @@
         .project-title { font-size: 1.1rem; font-weight: 600; color: #fff; display: block; text-transform: uppercase; }
         .project-desc { font-size: 0.8rem; color: #d4a373; margin-top: 8px; display: block; text-transform: uppercase; }
 
-        @media (max-width: 768px) {
-            header { padding-top: 40px; }
-            .logo-wrapper { max-width: 320px; }
-            .header-content { margin-top: -60px; }
-            .subtitle { font-size: 0.8rem; letter-spacing: 2px; }
-        }
+        .about { padding: 100px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
+        .about h2 { font-size: 1.8rem; margin-bottom: 30px; font-weight: 300; text-transform: uppercase; letter-spacing: 5px; color: #d4a373; }
+        .about p { color: #bcbcbc; font-size: 1.15rem; font-weight: 300; }
+        .about strong { color: #fff; font-weight: 600; }
 
         footer { padding: 60px 20px; text-align: center; border-top: 1px solid #1a1a1a; }
         .socials a { margin: 0 15px; font-size: 1.5rem; color: #444; }
