@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Chabany Design | Архітектура та Дизайн інтер'єру</title>
     
     <link rel="icon" type="image/png" href="img/favicon.png">
@@ -11,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* СКИДАННЯ СТИЛІВ */
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body { 
@@ -18,10 +18,12 @@
             background-color: #0a0a0a; 
             color: #ffffff; 
             overflow-x: hidden; 
+            line-height: 1.6;
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 
+        /* --- ГОЛОВНИЙ ЕКРАН (HEADER) --- */
         header { 
             min-height: 100vh;
             display: flex;
@@ -30,21 +32,24 @@
             justify-content: center;
             text-align: center;
             position: relative;
+            /* Чіткий фон без зайвого розмиття */
             background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('img/banner.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
-        @media (min-width: 1024px) { header { background-attachment: fixed; } }
+        @media (min-width: 1024px) {
+            header { background-attachment: fixed; }
+        }
 
-        /* ЛОГОТИП */
+        /* ЛОГОТИП (ВЕЛИКИЙ ТА АДАПТИВНИЙ) */
         .logo-wrapper {
             width: 100%;
-            max-width: 760px; 
-            margin-bottom: 10px; /* Зменшив відступ знизу */
+            max-width: 760px; /* Ваш розмір (в 2 рази більше) */
             z-index: 10;
+            margin-bottom: 0; /* Прибираємо стандартний відступ */
         }
 
         .main-logo {
@@ -55,19 +60,22 @@
             filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5));
         }
 
-        /* КОНТЕНТ (ТЕКСТ ТА КНОПКА) */
+        /* КОНТЕНТ (ПІДНЯТИЙ ВИЩЕ) */
         .header-content {
             z-index: 11;
-            margin-top: -60px; /* ПІДНІМАЄ ТЕКСТ ТА КНОПКУ ВИЩЕ ДО ЛОГО */
+            /* ПІДНІМАЄМО НАПИС ТА КНОПКУ ВИЩЕ ДО ЛОГО */
+            margin-top: -80px; 
+            position: relative;
         }
 
         .subtitle { 
-            font-size: 1.2rem; 
-            color: #d4a373; 
+            font-size: 1.1rem; 
+            color: #d4a373; /* Золотий колір */
             text-transform: uppercase;
             letter-spacing: 5px;
             margin-bottom: 30px;
             font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .cta-btn {
@@ -82,28 +90,71 @@
             background: rgba(0,0,0,0.2);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            transition: 0.4s;
         }
 
-        .cta-btn:hover { background: #d4a373; color: #000; border-color: #d4a373; }
+        .cta-btn:hover { 
+            background: #d4a373; 
+            color: #000; 
+            box-shadow: 0 10px 25px rgba(212, 163, 115, 0.4);
+        }
 
-        /* СІТКА ПРОЄКТІВ */
-        .projects { padding: 100px 20px; max-width: 1300px; margin: 0 auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; }
-        .card { background: #111; border-radius: 8px; overflow: hidden; border: 1px solid #1a1a1a; transition: 0.4s; }
-        .card:hover { border-color: #d4a373; transform: translateY(-10px); }
-        .thumb { height: 280px; background-size: cover; background-position: center; }
-        .info { padding: 25px; }
-        .project-title { font-size: 1.1rem; font-weight: 600; text-transform: uppercase; }
-        .project-desc { font-size: 0.8rem; color: #d4a373; margin-top: 8px; text-transform: uppercase; }
-
+        /* --- МОБІЛЬНА ВЕРСІЯ --- */
         @media (max-width: 768px) {
-            .logo-wrapper { max-width: 280px; }
-            .header-content { margin-top: -20px; }
-            .subtitle { font-size: 0.9rem; letter-spacing: 3px; }
+            .logo-wrapper {
+                max-width: 300px; /* Робимо логотип адекватним на телефоні */
+            }
+            .header-content {
+                margin-top: -30px; /* Менший підйом для мобілок, щоб не налізало */
+            }
+            .subtitle {
+                font-size: 0.85rem;
+                letter-spacing: 3px;
+            }
         }
 
-        footer { padding: 60px 20px; text-align: center; border-top: 1px solid #1a1a1a; }
-        .socials a { margin: 0 15px; font-size: 1.5rem; color: #444; }
+        /* --- СІТКА ПРОЄКТІВ --- */
+        .projects {
+            padding: 80px 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
+            gap: 40px; 
+        }
+        
+        .card { 
+            background: #111; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            display: block;
+            border: 1px solid #1a1a1a;
+            transition: 0.4s;
+        }
+
+        .card:hover { border-color: #d4a373; transform: translateY(-10px); }
+
+        .thumb { 
+            height: 280px; 
+            background-size: cover; 
+            background-position: center; 
+        }
+
+        .info { padding: 25px; }
+        .project-title { font-size: 1.1rem; font-weight: 600; color: #fff; display: block; text-transform: uppercase; }
+        .project-desc { font-size: 0.8rem; color: #d4a373; margin-top: 8px; display: block; text-transform: uppercase; }
+
+        footer {
+            padding: 80px 20px;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .socials a { margin: 0 20px; font-size: 1.5rem; color: #444; }
+        .socials a:hover { color: #d4a373; }
     </style>
 </head>
 <body>
