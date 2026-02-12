@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* СКИДАННЯ СТИЛІВ */
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body { 
@@ -25,57 +26,49 @@
 
         a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 
-        /* --- ЛОГОТИП --- */
-        .logo-container {
-            position: relative;
-            padding-top: 120px; 
-            margin-bottom: -60px;
-            z-index: 10;
-            display: flex;
-            justify-content: center;
-        }
-
-        .main-logo {
-            width: 760px;
-            max-width: 95%;
-            height: auto;
-            display: block;
-            transition: all 0.4s ease;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
-        }
-
-        .main-logo:hover {
-            transform: scale(1.03);
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.6));
-        }
-
-        /* --- ГОЛОВНИЙ ЕКРАН --- */
+        /* --- ГОЛОВНИЙ ЕКРАН (HEADER) --- */
         header { 
             height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* Тримає контент по центру */
             text-align: center;
-            padding: 20px;
+            position: relative; /* Контейнер для абсолютного логотипу */
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('img/banner.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
 
-        h1 { 
-            font-size: 3.5rem; 
-            font-weight: 800;
-            text-transform: uppercase; 
-            letter-spacing: 8px; 
-            margin-bottom: 10px;
-            margin-top: 60px;
+        /* КОНТЕЙНЕР ДЛЯ ВЕЛИКОГО ЛОГОТИПУ */
+        .logo-wrapper {
+            position: absolute;
+            top: 150px; /* ОПУСКАЄМО ЛОГОТИП НА ~3 СМ ВНИЗ */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            width: 100%;
+        }
+
+        .main-logo {
+            width: 760px; /* ВАШ РОЗМІР (ЗБІЛЬШЕНО ВДВІЧІ) */
+            max-width: 90%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.6));
+            transition: 0.4s ease;
+        }
+
+        /* БЛОК З ТЕКСТОМ ТА КНОПКОЮ */
+        .header-content {
+            margin-top: 220px; /* ВІДСТУП ВІД ВЕРХУ, ЩОБ ТЕКСТ БУВ ПІД ЛОГОТИПОМ */
+            position: relative;
+            z-index: 11;
         }
 
         .subtitle { 
-            position: relative;
-            z-index: 11;
             font-size: 1.1rem; 
             color: #d4a373;
             text-transform: uppercase;
@@ -95,16 +88,17 @@
             color: #fff;
             background: rgba(255,255,255,0.05);
             backdrop-filter: blur(10px);
+            transition: 0.3s;
         }
 
         .cta-btn:hover { 
             background: #d4a373; 
             color: #000; 
             border-color: #d4a373;
-            box-shadow: 0 10px 20px rgba(212, 163, 115, 0.3);
+            box-shadow: 0 10px 25px rgba(212, 163, 115, 0.4);
         }
 
-        /* --- ПРО СТУДІЮ --- */
+        /* --- БЛОК ПРО СТУДІЮ --- */
         .about {
             padding: 100px 20px;
             max-width: 900px;
@@ -121,12 +115,7 @@
             color: #d4a373;
         }
 
-        .about p {
-            color: #bcbcbc;
-            font-size: 1.15rem;
-            font-weight: 300;
-        }
-
+        .about p { color: #bcbcbc; font-size: 1.15rem; font-weight: 300; }
         .about strong { color: #fff; font-weight: 600; }
 
         /* --- СІТКА ПРОЄКТІВ --- */
@@ -158,7 +147,7 @@
             overflow: hidden; 
             display: block;
             border: 1px solid #1a1a1a;
-            position: relative;
+            transition: 0.4s;
         }
 
         .card:hover { 
@@ -170,145 +159,17 @@
             height: 300px; 
             background-size: cover; 
             background-position: center; 
-            transition: transform 0.5s ease;
-        }
-
-        .card:hover .thumb {
-            transform: scale(1.05);
-        }
-
-        .info { 
-            padding: 25px; 
-            background: #111;
+            background-repeat: no-repeat;
             position: relative;
-            z-index: 2;
         }
 
-        .project-title { font-size: 1.1rem; font-weight: 600; color: #fff; display: block; text-transform: uppercase; letter-spacing: 1px; }
-        .project-desc { font-size: 0.8rem; color: #d4a373; margin-top: 8px; display: block; text-transform: uppercase; }
-
-        /* --- ФУТЕР --- */
-        footer {
-            border-top: 1px solid #1a1a1a;
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .phone {
-            font-size: 1.8rem;
-            color: #fff;
-            margin-bottom: 30px;
-            display: block;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        .socials a {
-            font-size: 1.4rem;
-            margin: 0 20px;
-            color: #555;
-        }
-
-        .socials a:hover { color: #d4a373; transform: translateY(-3px); }
-        
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; letter-spacing: 4px; }
-            .grid { grid-template-columns: 1fr; }
-            .main-logo { max-width: 160px; }
-        }
-    </style>
-</head>
-<body>
-
-   <header>
-        <div class="logo-container">
-            <a href="index.html">
-                <img src="img/logo.png" alt="Chabany Design Logo" class="main-logo">
-            </a>
-        </div>
-        
-        <p class="subtitle">Архітектура • Інтер'єр • 360°</p>
-        <a href="#projects" class="cta-btn">Дивитися портфоліо</a>
-    </header>
-
-    <section class="about">
-        <h2>Естетика та Технології</h2>
-        <p>
-            Понад <strong>15 років</strong> ми трансформуємо ідеї у фізичний простір. 
-            Ми спеціалізуємось на преміальній архітектурі та інтер'єрах, використовуючи 
-            <strong>інтерактивні 3D-технології</strong>, щоб ви могли здійснити прогулянку 
-            своїм майбутнім домом ще на етапі ескізів.
-        </p>
-    </section>
-
-    <div id="projects" class="projects">
-        <div class="section-header">// Вибрані проєкти</div>
-
-        <div class="grid">
-            
-            <a href="project-gum/index.html" class="card">
-                <div class="thumb" style="background-image: url('img/01.jpg');"></div>
-                <div class="info">
-                    <span class="project-title">Рованці Гум</span>
-                    <span class="project-desc">Приватна резиденція</span>
-                </div>
-            </a>
-
-            <a href="amsterdam/index.html" class="card">
-                <div class="thumb" style="background-image: url('amsterdam/02.jpg');"></div>
-                <div class="info">
-                    <span class="project-title">ЖК Амстердам</span>
-                    <span class="project-desc">Квартира 70 кв.м</span>
-                </div>
-            </a>
-
-            <a href="restpark/index.html" class="card">
-                <div class="thumb" style="background-image: url('restpark/preview.jpg');"></div>
-                <div class="info">
-                    <span class="project-title">Рестпарк</span>
-                    <span class="project-desc">Громадський простір</span>
-                </div>
-            </a>
-
-             <a href="Apart Leleky/index.html" class="card">
-                <div class="thumb" style="background-image: url('Apart Leleky/01.jpg');"></div>
-                <div class="info">
-                    <span class="project-title">Апарт-готель Leleky</span>
-                    <span class="project-desc">Номерний фонд</span>
-                </div>
-            </a>
-             
-             <a href="CITY PARK/index.html" class="card">
-                <div class="thumb" style="background-image: url('CITY PARK/01.jpg');"></div>
-                <div class="info">
-                    <span class="project-title">CITY PARK</span>
-                    <span class="project-desc">Торгово-розважальний центр</span>
-                </div>
-            </a>
-             
-             <a href="amsterdam80/index.html" class="card">
-                <div class="thumb" style="background-image: url('amsterdam80/02.jpg');"></div>
-                <div class="info">
-                    <span class="project-title">ЖК Амстердам 80</span>
-                    <span class="project-desc">Дизайн інтер'єру</span>
-                </div>
-            </a>
-
-        </div>
-    </div>
-
-    <footer>
-        <a href="tel:+380770133119" class="phone">+38 (077) 013-31-19</a>
-        
-        <div class="socials">
-            <a href="https://www.tiktok.com/@chabanydesign" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.youtube.com/@Chabany-k5y" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-        </div>
-        <br>
-        <p style="color: #222; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;">© 2026 Chabany Design Studio</p>
-    </footer>
-
-</body>
-</html>
+        /* Іконка куба для фону, поки вантажиться фото */
+        .thumb::after {
+            content: '\f1b2'; 
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            color: #222;
