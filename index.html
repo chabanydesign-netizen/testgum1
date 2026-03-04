@@ -8,13 +8,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* БАЗОВІ НАЛАШТУВАННЯ */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         :root { --accent: #d4a373; --dark-bg: #0a0a0a; --card-bg: #111; }
         
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-bg); color: #ffffff; line-height: 1.6; }
-        a { text-decoration: none; color: inherit; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: #0a0a0a; /* Темний фон */
+            color: #ffffff; 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-        /* --- HEADER --- */
+        /* ШАПКА САЙТУ */
         header { 
             min-height: 100vh;
             display: flex;
@@ -22,28 +28,213 @@
             align-items: center;
             justify-content: center; 
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('img/banner.jpg') #111; /* Додано колір на випадок відсутності фото */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/banner.jpg');
             background-size: cover;
             background-position: center;
-            padding: 20px;
+            background-color: #000; /* Резервний колір */
+            padding: 40px 20px;
         }
 
-        .logo-wrapper { width: 100%; max-width: 600px; margin-bottom: 40px; }
-        .main-logo { width: 100%; height: auto; min-height: 100px; background: rgba(255,255,255,0.05); /* Видно блок, якщо немає картинки */ }
+        .logo-placeholder {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 10px;
+            color: #fff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
 
-        .subtitle { display: block; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 5px; margin-bottom: 25px; }
+        .logo-wrapper img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .subtitle { 
+            display: block; 
+            font-size: 1.1rem; 
+            color: var(--accent); 
+            text-transform: uppercase; 
+            letter-spacing: 5px; 
+            margin-bottom: 35px; 
+        }
 
         .cta-btn {
             display: inline-block;
-            padding: 16px 45px;
-            border: 1px solid var(--accent);
+            padding: 18px 50px;
+            border: 2px solid var(--accent);
             border-radius: 50px;
             font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 2px;
             color: #fff;
+            text-decoration: none;
             transition: 0.3s;
         }
         .cta-btn:hover { background: var(--accent); color: #000; }
 
-        /* --- СЕКЦІЇ --- */
-        .section-title { font-size: 1.8rem; margin: 60px 0 40px; font-weight: 300; text-transform: uppercase; letter-spacing: 5px;
+        /* СЕКЦІЯ ПОСЛУГ */
+        .services { 
+            padding: 100px 20px; 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            text-align: center;
+        }
+        
+        .section-title { 
+            font-size: 2rem; 
+            margin-bottom: 60px; 
+            font-weight: 300; 
+            text-transform: uppercase; 
+            letter-spacing: 5px; 
+            color: var(--accent); 
+        }
+
+        .services-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+        }
+        
+        .service-card { 
+            background: #161616; 
+            border: 1px solid #222; 
+            padding: 30px; 
+            border-radius: 20px; 
+            display: flex;
+            flex-direction: column;
+            transition: 0.4s;
+        }
+        .service-card:hover { border-color: var(--accent); transform: translateY(-10px); }
+
+        .service-img {
+            width: 100%;
+            height: 200px;
+            background-color: #333; /* Сірий бокс, якщо немає картинки */
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .service-name { 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            margin-bottom: 20px; 
+            text-transform: uppercase; 
+            color: #fff;
+        }
+
+        .service-features { 
+            list-style: none; 
+            margin-bottom: 30px; 
+            flex-grow: 1; 
+            text-align: left;
+        }
+        .service-features li { 
+            font-size: 0.9rem; 
+            color: #999; 
+            margin-bottom: 12px; 
+            padding-left: 20px; 
+            position: relative; 
+        }
+        .service-features li::before { 
+            content: "•"; 
+            position: absolute; 
+            left: 0; 
+            color: var(--accent); 
+        }
+        
+        .btn-action { 
+            display: block; 
+            padding: 15px; 
+            border: 1px solid #444; 
+            border-radius: 30px; 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            font-weight: 600; 
+            color: #fff;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .btn-action:hover { border-color: var(--accent); color: var(--accent); }
+
+        footer { 
+            padding: 80px 20px; 
+            text-align: center; 
+            border-top: 1px solid #1a1a1a; 
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-wrapper">
+            <img src="img/logo.png" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="logo-placeholder" style="display:none;">CHABANY</div>
+        </div>
+        <div class="header-content">
+            <span class="subtitle">Архітектура • Інтер'єр • 360°</span>
+            <a href="#services" class="cta-btn">Наші послуги</a>
+        </div>
+    </header>
+
+    <section class="services" id="services">
+        <h2 class="section-title">Пакетні рішення</h2>
+        <div class="services-grid">
+            
+            <div class="service-card">
+                <div class="service-img" style="background-image: url('img/service-1.jpg');"></div>
+                <div class="service-name">3D-Колаж</div>
+                <ul class="service-features">
+                    <li>Обмірний план та перепланування</li>
+                    <li>3D-зонування простору (White Box)</li>
+                    <li>Стилістичні колажі та AI-концепт</li>
+                </ul>
+                <a href="tel:+380770133119" class="btn-action">Обрати</a>
+            </div>
+
+            <div class="service-card" style="border-color: #333;">
+                <div class="service-img" style="background-image: url('img/service-2.jpg');"></div>
+                <div class="service-name">Concept Presentation</div>
+                <ul class="service-features">
+                    <li>Інтерактивні панорами 360°</li>
+                    <li>Cinematic Video (Video-обліт)</li>
+                    <li>Детальна концепція меблів та світла</li>
+                </ul>
+                <a href="tel:+380770133119" class="btn-action">Обрати</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-img" style="background-image: url('img/service-3.jpg');"></div>
+                <div class="service-name">Оптимальний</div>
+                <ul class="service-features">
+                    <li>Фотореалістична візуалізація</li>
+                    <li>Повний пакет робочих креслень</li>
+                    <li>Технічні розгортки та відомості</li>
+                </ul>
+                <a href="tel:+380770133119" class="btn-action">Обрати</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-img" style="background-image: url('img/service-4.jpg');"></div>
+                <div class="service-name">All Inclusive</div>
+                <ul class="service-features">
+                    <li>Пакет "Оптимальний" + супровід</li>
+                    <li>Комплектація об'єкта під ключ</li>
+                    <li>Авторський нагляд та виїзди</li>
+                </ul>
+                <a href="tel:+380770133119" class="btn-action">Обрати</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <a href="tel:+380770133119" style="color: #fff; font-size: 1.5rem; text-decoration: none;">+38 (077) 013-31-19</a>
+        <p style="margin-top: 20px; color: #555; font-size: 0.8rem;">© CHABANY DESIGN 2026</p>
+    </footer>
+
+</body>
