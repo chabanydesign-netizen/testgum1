@@ -15,25 +15,29 @@
         body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-bg); color: #ffffff; overflow-x: hidden; line-height: 1.6; scroll-behavior: smooth; }
         a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 
-        /* --- ГОЛОВНИЙ ЕКРАН (Адаптація під мобільне фото) --- */
+        /* --- ГОЛОВНИЙ ЕКРАН --- */
         header { 
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; 
+            justify-content: flex-start; 
             text-align: center;
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('img/banner.jpg');
             background-size: cover;
             background-position: center;
-            padding: 20px;
+            padding-top: 120px; 
+            padding-left: 20px;
+            padding-right: 20px;
         }
 
-        .logo-wrapper { width: 100%; max-width: 760px; z-index: 10; margin-bottom: 30px; }
+        @media (min-width: 1024px) { header { background-attachment: fixed; } }
+
+        .logo-wrapper { width: 100%; max-width: 760px; z-index: 10; }
         .main-logo { width: 100%; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5)); }
 
-        .header-content { z-index: 11; position: relative; width: 100%; }
+        .header-content { z-index: 11; margin-top: -160px; position: relative; }
         .subtitle { display: block; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 5px; margin-bottom: 25px; font-weight: 400; text-shadow: 0 2px 15px rgba(0,0,0,1); }
 
         .cta-btn {
@@ -50,104 +54,86 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
-
-        /* Мобільні правки для Header */
-        @media (max-width: 768px) {
-            header { padding-top: 60px; justify-content: center; }
-            .logo-wrapper { max-width: 90%; margin-bottom: 20px; }
-            .subtitle { font-size: 0.85rem; letter-spacing: 3px; }
-            .cta-btn { padding: 14px 30px; width: 85%; }
-        }
+        .cta-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
 
         /* --- ПРО СТУДІЮ --- */
         .section-title { font-size: 1.8rem; margin: 60px 0 40px; font-weight: 300; text-transform: uppercase; letter-spacing: 5px; color: var(--accent); text-align: center; }
-        .about { padding: 80px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
+        .about { padding: 100px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
         .about p { color: #bcbcbc; font-size: 1.15rem; font-weight: 300; }
-
-        @media (max-width: 768px) {
-            .section-title { font-size: 1.4rem; letter-spacing: 3px; }
-            .about { padding: 40px 20px; }
-            .about p { font-size: 1rem; }
-        }
 
         /* --- ПОСЛУГИ --- */
         .services { padding: 80px 20px; max-width: 1400px; margin: 0 auto; background: #070707; border-radius: 30px; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        
-        .service-card { 
-            background: var(--card-bg); 
-            border: 1px solid #1a1a1a; 
-            padding: 25px; 
-            border-radius: 20px; 
-            transition: 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
+        .service-card { background: var(--card-bg); border: 1px solid #1a1a1a; padding: 25px; border-radius: 20px; transition: 0.4s ease; display: flex; flex-direction: column; position: relative; }
         .service-card:hover { border-color: var(--accent); transform: translateY(-8px); }
-        
-        .service-img {
-            width: 100%;
-            height: 180px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            filter: grayscale(30%);
-            transition: 0.5s;
-        }
-        .service-card:hover .service-img { filter: grayscale(0%); }
-
+        .service-img { width: 100%; height: 180px; background-size: cover; background-position: center; border-radius: 12px; margin-bottom: 25px; }
         .service-name { font-size: 1rem; font-weight: 600; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1.5px; color: #fff; }
         .service-features { list-style: none; margin-bottom: 30px; flex-grow: 1; }
-        .service-features li { font-size: 0.85rem; color: #888; margin-bottom: 12px; padding-left: 15px; position: relative; line-height: 1.5; text-align: left;}
+        .service-features li { font-size: 0.85rem; color: #888; margin-bottom: 12px; padding-left: 15px; position: relative; line-height: 1.5; text-align: left; }
         .service-features li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
+        .btn-action { display: block; width: 100%; text-align: center; padding: 14px; border: 1px solid #2a2a2a; border-radius: 30px; font-size: 0.75rem; text-transform: uppercase; font-weight: 600; letter-spacing: 2px; margin-top: auto; }
+        .btn-action:hover { border-color: var(--accent); color: var(--accent); }
+
+        .price-disclaimer { text-align: center; margin-top: 50px; padding: 20px; border-top: 1px solid #1a1a1a; color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 400; }
+
+        /* --- СІТКА ПРОЄКТІВ (ВИПРАВЛЕНО) --- */
+        .projects { padding: 100px 20px; max-width: 1300px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; }
         
-        .btn-action { 
-            display: block; width: 100%; text-align: center; padding: 14px; 
-            border: 1px solid #2a2a2a; border-radius: 30px; font-size: 0.75rem; 
-            text-transform: uppercase; font-weight: 600; letter-spacing: 2px;
-            transition: 0.3s;
+        .card { 
+            background: var(--card-bg); 
+            border-radius: 8px; 
+            overflow: hidden; 
+            border: 1px solid #1a1a1a; 
+            transition: 0.4s; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100%;
         }
-        .btn-action:hover { border-color: var(--accent); color: var(--accent); background: rgba(212, 163, 115, 0.05); }
-
-        /* ФРАЗА ПРО РОЗРАХУНОК (ВИДИМА НА МОБІЛЬНОМУ) */
-        .price-disclaimer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 25px 15px;
-            border-top: 1px solid #1a1a1a;
-            color: var(--accent);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 400;
-            line-height: 1.6;
+        .card:hover { border-color: var(--accent); transform: translateY(-10px); }
+        
+        .thumb { height: 280px; background-size: cover; background-position: center; flex-shrink: 0; }
+        
+        .info { 
+            padding: 25px; 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-start; 
+        }
+        
+        .project-title { 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            color: #fff; 
+            text-transform: uppercase; 
+            margin-bottom: 8px;
+            min-height: 1.4em; /* Запобігає зсуву, якщо назва в 1 рядок */
+        }
+        
+        .project-desc { 
+            font-size: 0.8rem; 
+            color: var(--accent); 
+            text-transform: uppercase; 
+            margin-top: auto; /* Опис завжди внизу блоку info */
         }
 
+        /* --- АДАПТАЦІЯ ДЛЯ МОБІЛЬНИХ --- */
         @media (max-width: 768px) {
+            .logo-wrapper { max-width: 320px; }
+            .header-content { margin-top: -50px; }
+            .section-title { font-size: 1.4rem; letter-spacing: 3px; }
+            .grid { grid-template-columns: 1fr; gap: 25px; }
+            .project-title { font-size: 1rem; min-height: auto; }
             .services { border-radius: 0; padding: 40px 15px; }
-            .price-disclaimer { font-size: 0.75rem; letter-spacing: 1px; }
-        }
-
-        /* --- ПРОЄКТИ --- */
-        .projects { padding: 80px 20px; max-width: 1300px; margin: 0 auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
-        .card { background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid #1a1a1a; transition: 0.4s; }
-        .thumb { height: 250px; background-size: cover; background-position: center; }
-        .info { padding: 20px; }
-        .project-title { font-size: 1rem; font-weight: 600; color: #fff; text-transform: uppercase; }
-        .project-desc { font-size: 0.75rem; color: var(--accent); margin-top: 8px; text-transform: uppercase; }
-
-        @media (max-width: 768px) {
-            .grid { gap: 20px; }
-            .projects { padding: 40px 15px; }
+            .service-img { height: 150px; }
         }
 
         /* --- ФУТЕР --- */
-        footer { padding: 60px 20px; text-align: center; border-top: 1px solid #1a1a1a; }
-        .footer-phone { display: block; font-size: 1.5rem; font-weight: 300; color: #fff; margin-bottom: 25px; letter-spacing: 1px; }
+        footer { padding: 80px 20px; text-align: center; border-top: 1px solid #1a1a1a; }
+        .footer-phone { display: block; font-size: 1.8rem; font-weight: 300; color: #fff; margin-bottom: 30px; letter-spacing: 2px; }
         .socials a { margin: 0 15px; font-size: 1.5rem; color: #444; }
+        .socials a:hover { color: var(--accent); }
     </style>
 </head>
 <body>
@@ -166,17 +152,12 @@
 
     <section class="about">
         <h2 class="section-title">Естетика та Технології</h2>
-        <p>
-            Понад <strong>10 років</strong> ми створюємо простір для життя. 
-            Використовуючи <strong>сучасні 3D-технології</strong>, ми даємо вам 
-            можливість побачити та відчути ваш майбутній дім ще до початку будівництва.
-        </p>
+        <p>Понад <strong>10 років</strong> створення простору для життя. Побачте ваш дім ще до початку будівництва через сучасні 3D-технології.</p>
     </section>
 
     <section class="services" id="services">
         <h2 class="section-title">Пакети послуг</h2>
         <div class="services-grid">
-            
             <div class="service-card">
                 <div class="service-img" style="background-image: url('img/service-1.jpg');"></div>
                 <div class="service-name">3D-Колаж</div>
@@ -187,7 +168,6 @@
                 </ul>
                 <a href="tel:+380770133119" class="btn-action">Обрати</a>
             </div>
-
             <div class="service-card">
                 <div class="service-img" style="background-image: url('img/service-2.jpg');"></div>
                 <div class="service-name">Концепт презентація</div>
@@ -195,11 +175,9 @@
                     <li><strong>Інтерактивні панорами 360°</strong></li>
                     <li><strong>Відео презентація (Анімація)</strong></li>
                     <li>Концепція меблів та світла</li>
-                    <li>Web-хостинг вашого проєкту</li>
                 </ul>
                 <a href="tel:+380770133119" class="btn-action">Обрати</a>
             </div>
-
             <div class="service-card">
                 <div class="service-img" style="background-image: url('img/service-3.jpg');"></div>
                 <div class="service-name">Оптимальний</div>
@@ -210,20 +188,17 @@
                 </ul>
                 <a href="tel:+380770133119" class="btn-action">Обрати</a>
             </div>
-
             <div class="service-card">
                 <div class="service-img" style="background-image: url('img/service-4.jpg');"></div>
                 <div class="service-name">Все включено</div>
                 <ul class="service-features">
-                    <li>Пакет Оптимальний</li>
-                    <li>Супровід та комплектація матеріалів</li>
+                    <li>Пакет Оптимальний + Комплектація</li>
                     <li><strong>Авторський нагляд</strong></li>
-                    <li>Бонуси та знижки від партнерів Луцька</li>
+                    <li>Знижки від партнерів Луцька</li>
                 </ul>
                 <a href="tel:+380770133119" class="btn-action">Обрати</a>
             </div>
         </div>
-
         <div class="price-disclaimer">
             * Вартість проєкту розраховується індивідуально залежно від площі та складності вашого об'єкта
         </div>
@@ -232,15 +207,13 @@
     <div id="projects" class="projects">
         <h2 class="section-title">Проєкти</h2>
         <div class="grid">
-            
             <a href="project-gum/index.html" class="card">
                 <div class="thumb" style="background-image: url('img/01.jpg');"></div>
                 <div class="info">
                     <span class="project-title">Рованці Гум</span>
-                    <span class="project-desc">Дизайн Будиноку • 200 м²</span>
+                    <span class="project-desc">Дизайн Будинку • 200 м²</span>
                 </div>
             </a>
-
             <a href="amsterdam70/index.html" class="card">
                 <div class="thumb" style="background-image: url('amsterdam70/02.jpg');"></div>
                 <div class="info">
@@ -248,7 +221,6 @@
                     <span class="project-desc">Дизайн квартири • 70 м²</span>
                 </div>
             </a>
-
             <a href="restpark/index.html" class="card">
                 <div class="thumb" style="background-image: url('restpark/preview.jpg');"></div>
                 <div class="info">
@@ -256,7 +228,6 @@
                     <span class="project-desc">Дизайн дитячої кімнати</span>
                 </div>
             </a>
-
             <a href="Apart Leleky/index.html" class="card">
                 <div class="thumb" style="background-image: url('Apart Leleky/01.jpg');"></div>
                 <div class="info">
@@ -264,7 +235,6 @@
                     <span class="project-desc">Дизайн апартаментів • №204</span>
                 </div>
             </a>
-
             <a href="CITY PARK/index.html" class="card">
                 <div class="thumb" style="background-image: url('CITY PARK/01.jpg');"></div>
                 <div class="info">
@@ -272,7 +242,6 @@
                     <span class="project-desc">Презентація ТРЦ</span>
                 </div>
             </a>
-
             <a href="amsterdam80/index.html" class="card">
                 <div class="thumb" style="background-image: url('amsterdam80/02.jpg');"></div>
                 <div class="info">
@@ -280,31 +249,6 @@
                     <span class="project-desc">Дизайн квартири • 80 м²</span>
                 </div>
             </a>
-
-            <a href="restpark_event_hall/index.html" class="card">
-                <div class="thumb" style="background-image: url('restpark_event_hall/02.jpg');"></div>
-                <div class="info">
-                    <span class="project-title">Restpark</span>
-                    <span class="project-desc">Евент Хол</span>
-                </div>
-            </a>
-
-            <a href="Efekt/index.html" class="card">
-                <div class="thumb" style="background-image: url('Efekt/02.jpg');"></div>
-                <div class="info">
-                    <span class="project-title">Efekt</span>
-                    <span class="project-desc">Дизайн квартири • 33 кв.м.</span>
-                </div>
-            </a>
-
-            <a href="Apart Leleky 203/index.html" class="card">
-                <div class="thumb" style="background-image: url('Apart Leleky 203/01.jpg');"></div>
-                <div class="info">
-                    <span class="project-title">Апарт-готель Leleky 203</span>
-                    <span class="project-desc">Дизайн апартаментів • №203</span>
-                </div>
-            </a>
-
         </div> 
     </div> 
 
@@ -316,5 +260,4 @@
             <a href="https://www.instagram.com/chabany.design/" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
     </footer>
-
 </body>
