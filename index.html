@@ -72,14 +72,12 @@
         .service-features li { font-size: 0.85rem; color: #888; margin-bottom: 12px; padding-left: 15px; position: relative; line-height: 1.5; text-align: left; }
         .service-features li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
         .btn-action { display: block; width: 100%; text-align: center; padding: 14px; border: 1px solid #2a2a2a; border-radius: 30px; font-size: 0.75rem; text-transform: uppercase; font-weight: 600; letter-spacing: 2px; margin-top: auto; }
-        .btn-action:hover { border-color: var(--accent); color: var(--accent); }
 
         .price-disclaimer { text-align: center; margin-top: 50px; padding: 20px; border-top: 1px solid #1a1a1a; color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 400; }
 
-        /* --- СІТКА ПРОЄКТІВ (ВИПРАВЛЕНО) --- */
+        /* --- СІТКА ПРОЄКТІВ (ФІКСАЦІЯ НАЗВ) --- */
         .projects { padding: 100px 20px; max-width: 1300px; margin: 0 auto; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; }
-        
         .card { 
             background: var(--card-bg); 
             border-radius: 8px; 
@@ -88,10 +86,9 @@
             transition: 0.4s; 
             display: flex; 
             flex-direction: column; 
-            height: 100%;
+            height: 100%; 
         }
         .card:hover { border-color: var(--accent); transform: translateY(-10px); }
-        
         .thumb { height: 280px; background-size: cover; background-position: center; flex-shrink: 0; }
         
         .info { 
@@ -99,7 +96,7 @@
             flex-grow: 1; 
             display: flex; 
             flex-direction: column; 
-            justify-content: flex-start; 
+            justify-content: space-between; /* Опис завжди внизу, назва вгорі */
         }
         
         .project-title { 
@@ -107,18 +104,21 @@
             font-weight: 600; 
             color: #fff; 
             text-transform: uppercase; 
-            margin-bottom: 8px;
-            min-height: 1.4em; /* Запобігає зсуву, якщо назва в 1 рядок */
+            margin-bottom: 10px;
+            min-height: 2.8em; /* Фіксоване місце під 2 рядки тексту */
+            display: flex;
+            align-items: flex-start;
         }
         
         .project-desc { 
             font-size: 0.8rem; 
             color: var(--accent); 
             text-transform: uppercase; 
-            margin-top: auto; /* Опис завжди внизу блоку info */
+            letter-spacing: 1px;
+            margin-top: 10px;
         }
 
-        /* --- АДАПТАЦІЯ ДЛЯ МОБІЛЬНИХ --- */
+        /* --- АДАПТАЦІЯ --- */
         @media (max-width: 768px) {
             .logo-wrapper { max-width: 320px; }
             .header-content { margin-top: -50px; }
@@ -126,10 +126,8 @@
             .grid { grid-template-columns: 1fr; gap: 25px; }
             .project-title { font-size: 1rem; min-height: auto; }
             .services { border-radius: 0; padding: 40px 15px; }
-            .service-img { height: 150px; }
         }
 
-        /* --- ФУТЕР --- */
         footer { padding: 80px 20px; text-align: center; border-top: 1px solid #1a1a1a; }
         .footer-phone { display: block; font-size: 1.8rem; font-weight: 300; color: #fff; margin-bottom: 30px; letter-spacing: 2px; }
         .socials a { margin: 0 15px; font-size: 1.5rem; color: #444; }
@@ -152,7 +150,7 @@
 
     <section class="about">
         <h2 class="section-title">Естетика та Технології</h2>
-        <p>Понад <strong>10 років</strong> створення простору для життя. Побачте ваш дім ще до початку будівництва через сучасні 3D-технології.</p>
+        <p>Понад <strong>10 років</strong> створення простору для життя. Побачте ваш дім ще до початку будівництва.</p>
     </section>
 
     <section class="services" id="services">
@@ -163,7 +161,7 @@
                 <div class="service-name">3D-Колаж</div>
                 <ul class="service-features">
                     <li>Обмірний план та перепланування</li>
-                    <li>3D-зонування простору (White Box)</li>
+                    <li>3D-зонування простору</li>
                     <li>Стилістичні колажі та AI-концепт</li>
                 </ul>
                 <a href="tel:+380770133119" class="btn-action">Обрати</a>
@@ -199,9 +197,7 @@
                 <a href="tel:+380770133119" class="btn-action">Обрати</a>
             </div>
         </div>
-        <div class="price-disclaimer">
-            * Вартість проєкту розраховується індивідуально залежно від площі та складності вашого об'єкта
-        </div>
+        <div class="price-disclaimer">* Вартість проєкту розраховується індивідуально</div>
     </section>
 
     <div id="projects" class="projects">
@@ -247,6 +243,27 @@
                 <div class="info">
                     <span class="project-title">ЖК Амстердам 80</span>
                     <span class="project-desc">Дизайн квартири • 80 м²</span>
+                </div>
+            </a>
+            <a href="restpark_event_hall/index.html" class="card">
+                <div class="thumb" style="background-image: url('restpark_event_hall/02.jpg');"></div>
+                <div class="info">
+                    <span class="project-title">Restpark Event Hall</span>
+                    <span class="project-desc">Евент Хол</span>
+                </div>
+            </a>
+            <a href="Efekt/index.html" class="card">
+                <div class="thumb" style="background-image: url('Efekt/02.jpg');"></div>
+                <div class="info">
+                    <span class="project-title">Efekt</span>
+                    <span class="project-desc">Дизайн квартири • 33 кв.м.</span>
+                </div>
+            </a>
+            <a href="Apart Leleky 203/index.html" class="card">
+                <div class="thumb" style="background-image: url('Apart Leleky 203/01.jpg');"></div>
+                <div class="info">
+                    <span class="project-title">Апарт-готель Leleky 203</span>
+                    <span class="project-desc">Дизайн апартаментів • №203</span>
                 </div>
             </a>
         </div> 
