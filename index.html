@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chabany Design | Архітектура та Дизайн інтер'єру</title>
+    <title>Chabany Design | Архітектура та Дизайн</title>
     
-    <link rel="icon" type="image/png" href="img/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -13,53 +12,39 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         :root { --accent: #d4a373; --dark-bg: #0a0a0a; --card-bg: #111; }
         
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-bg); color: #ffffff; overflow-x: hidden; line-height: 1.6; scroll-behavior: smooth; }
-        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-bg); color: #ffffff; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
 
-        /* --- ГОЛОВНИЙ ЕКРАН --- */
+        /* --- HEADER --- */
         header { 
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; 
+            justify-content: center; 
             text-align: center;
-            position: relative;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('img/banner.jpg');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('img/banner.jpg') #111; /* Додано колір на випадок відсутності фото */
             background-size: cover;
             background-position: center;
-            padding-top: 120px; 
-            padding-left: 20px;
-            padding-right: 20px;
+            padding: 20px;
         }
 
-        @media (min-width: 1024px) { header { background-attachment: fixed; } }
+        .logo-wrapper { width: 100%; max-width: 600px; margin-bottom: 40px; }
+        .main-logo { width: 100%; height: auto; min-height: 100px; background: rgba(255,255,255,0.05); /* Видно блок, якщо немає картинки */ }
 
-        .logo-wrapper { width: 100%; max-width: 760px; z-index: 10; }
-        .main-logo { width: 100%; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5)); }
-
-        .header-content { z-index: 11; margin-top: -160px; position: relative; }
-        .subtitle { display: block; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 5px; margin-bottom: 25px; font-weight: 400; text-shadow: 0 2px 15px rgba(0,0,0,1); }
+        .subtitle { display: block; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 5px; margin-bottom: 25px; }
 
         .cta-btn {
             display: inline-block;
             padding: 16px 45px;
-            border: 1px solid rgba(212, 163, 115, 0.6);
+            border: 1px solid var(--accent);
             border-radius: 50px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
             color: #fff;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            cursor: pointer;
+            transition: 0.3s;
         }
-        .cta-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+        .cta-btn:hover { background: var(--accent); color: #000; }
 
-        @media (max-width: 768px) {
-            header { padding-top: 100px; }
-            .logo-wrapper { max-width: 360px; }
-            .header-content { margin-top: -50px; }
-            .subtitle { font-size: 0.85rem; letter-
+        /* --- СЕКЦІЇ --- */
+        .section-title { font-size: 1.8rem; margin: 60px 0 40px; font-weight: 300; text-transform: uppercase; letter-spacing: 5px;
