@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chabany Design | Архітектура та Дизайн</title>
+    <title>Chabany Design | Архітектура та Дизайн інтер'єру</title>
     
     <link rel="icon" type="image/png" href="img/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
         body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-bg); color: #ffffff; overflow-x: hidden; line-height: 1.6; scroll-behavior: smooth; }
         a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 
-        /* --- HEADER --- */
+        /* --- ГОЛОВНИЙ ЕКРАН --- */
         header { 
             min-height: 100vh;
             display: flex;
@@ -24,7 +24,7 @@
             justify-content: flex-start; 
             text-align: center;
             position: relative;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('img/banner.jpg') #000;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('img/banner.jpg');
             background-size: cover;
             background-position: center;
             padding-top: 120px; 
@@ -32,69 +32,105 @@
             padding-right: 20px;
         }
 
-        .logo-wrapper { width: 100%; max-width: 760px; z-index: 10; margin-bottom: 20px; }
+        @media (min-width: 1024px) { header { background-attachment: fixed; } }
+
+        .logo-wrapper { width: 100%; max-width: 760px; z-index: 10; }
         .main-logo { width: 100%; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5)); }
 
-        .header-content { z-index: 11; margin-top: -140px; position: relative; }
-        .subtitle { display: block; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 5px; margin-bottom: 25px; font-weight: 400; }
+        .header-content { z-index: 11; margin-top: -160px; position: relative; }
+        .subtitle { display: block; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 5px; margin-bottom: 25px; font-weight: 400; text-shadow: 0 2px 15px rgba(0,0,0,1); }
 
         .cta-btn {
             display: inline-block;
             padding: 16px 45px;
-            border: 1px solid var(--accent);
+            border: 1px solid rgba(212, 163, 115, 0.6);
             border-radius: 50px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-size: 0.8rem;
+            color: #fff;
             background: rgba(0,0,0,0.4);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
-        .cta-btn:hover { background: var(--accent); color: #000; }
+        .cta-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
 
-        /* --- ABOUT --- */
-        .section-title { font-size: 1.8rem; margin: 80px 0 40px; font-weight: 300; text-transform: uppercase; letter-spacing: 5px; color: var(--accent); text-align: center; }
-        .about { padding: 60px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
-        .about p { color: #bcbcbc; font-size: 1.1rem; }
+        /* --- ПРО СТУДІЮ --- */
+        .section-title { font-size: 1.8rem; margin: 60px 0 40px; font-weight: 300; text-transform: uppercase; letter-spacing: 5px; color: var(--accent); text-align: center; }
+        
+        .about { padding: 100px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
+        .about p { color: #bcbcbc; font-size: 1.15rem; font-weight: 300; }
+        .about strong { color: #fff; font-weight: 600; }
 
-        /* --- SERVICES --- */
-        .services { padding: 60px 20px; max-width: 1400px; margin: 0 auto; }
+        /* --- ПОСЛУГИ --- */
+        .services { padding: 80px 20px; max-width: 1400px; margin: 0 auto; background: #070707; border-radius: 30px; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .service-card { background: var(--card-bg); border: 1px solid #1a1a1a; padding: 25px; border-radius: 20px; transition: 0.4s; display: flex; flex-direction: column; }
-        .service-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .service-img { width: 100%; height: 180px; background-size: cover; background-position: center; background-color: #222; border-radius: 12px; margin-bottom: 20px; }
-        .service-name { font-size: 1rem; font-weight: 600; margin-bottom: 15px; text-transform: uppercase; color: #fff; }
-        .service-features { list-style: none; margin-bottom: 25px; flex-grow: 1; text-align: left; }
-        .service-features li { font-size: 0.8rem; color: #888; margin-bottom: 10px; padding-left: 15px; position: relative; }
-        .service-features li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
-        .btn-action { display: block; width: 100%; text-align: center; padding: 12px; border: 1px solid #333; border-radius: 30px; font-size: 0.75rem; text-transform: uppercase; font-weight: 600; }
-        .btn-action:hover { border-color: var(--accent); color: var(--accent); }
+        
+        .service-card { 
+            background: var(--card-bg); 
+            border: 1px solid #1a1a1a; 
+            padding: 25px; 
+            border-radius: 20px; 
+            transition: 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .service-card:hover { border-color: var(--accent); transform: translateY(-8px); }
+        
+        .service-img {
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            filter: grayscale(30%);
+            transition: 0.5s;
+        }
+        .service-card:hover .service-img { filter: grayscale(0%); }
 
-        /* НОВИЙ СТИЛЬ ДЛЯ ПРИМІТКИ */
-        .service-note {
+        .service-name { font-size: 1rem; font-weight: 600; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1.5px; color: #fff; }
+        .service-features { list-style: none; margin-bottom: 30px; flex-grow: 1; }
+        .service-features li { font-size: 0.85rem; color: #888; margin-bottom: 12px; padding-left: 15px; position: relative; line-height: 1.5; }
+        .service-features li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
+        
+        .btn-action { 
+            display: block; width: 100%; text-align: center; padding: 14px; 
+            border: 1px solid #2a2a2a; border-radius: 30px; font-size: 0.75rem; 
+            text-transform: uppercase; font-weight: 600; letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .btn-action:hover { border-color: var(--accent); color: var(--accent); background: rgba(212, 163, 115, 0.05); }
+
+        /* СТИЛЬ ДЛЯ ФРАЗИ ПРО РОЗРАХУНОК */
+        .price-disclaimer {
             text-align: center;
-            color: #555;
-            font-size: 0.85rem;
-            margin-top: 40px;
-            font-weight: 300;
-            letter-spacing: 1px;
+            margin-top: 50px;
+            padding: 20px;
+            border-top: 1px solid #1a1a1a;
+            color: var(--accent);
+            font-size: 0.95rem;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
         }
 
-        /* --- PROJECTS GRID --- */
-        .projects { padding: 40px 20px 100px; max-width: 1300px; margin: 0 auto; }
+        /* --- СІТКА ПРОЄКТІВ --- */
+        .projects { padding: 100px 20px; max-width: 1300px; margin: 0 auto; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; }
-        .card { background: #111; border-radius: 8px; overflow: hidden; border: 1px solid #1a1a1a; transition: 0.4s; display: block; }
+        .card { background: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid #1a1a1a; transition: 0.4s; }
         .card:hover { border-color: var(--accent); transform: translateY(-10px); }
         .thumb { height: 280px; background-size: cover; background-position: center; }
         .info { padding: 25px; }
         .project-title { font-size: 1.1rem; font-weight: 600; color: #fff; display: block; text-transform: uppercase; }
         .project-desc { font-size: 0.8rem; color: var(--accent); margin-top: 8px; display: block; text-transform: uppercase; }
 
-        /* --- FOOTER --- */
+        /* --- ФУТЕР --- */
         footer { padding: 80px 20px; text-align: center; border-top: 1px solid #1a1a1a; }
         .footer-phone { display: block; font-size: 1.8rem; font-weight: 300; color: #fff; margin-bottom: 30px; letter-spacing: 2px; }
+        .footer-phone:hover { color: var(--accent); }
         .socials a { margin: 0 15px; font-size: 1.5rem; color: #444; }
         .socials a:hover { color: var(--accent); }
     </style>
@@ -104,7 +140,7 @@
     <header>
         <div class="logo-wrapper">
             <a href="index.html">
-                <img src="img/logo.png" alt="Chabany Design" class="main-logo" onerror="this.style.display='none';">
+                <img src="img/logo.png" alt="Chabany Design Logo" class="main-logo">
             </a>
         </div>
         <div class="header-content">
@@ -115,69 +151,81 @@
 
     <section class="about">
         <h2 class="section-title">Естетика та Технології</h2>
-        <p>Понад <strong>15 років</strong> досвіду. Створюємо інтерактивні 3D-проєкти, що дозволяють відчути простір ще до початку будівництва.</p>
+        <p>
+            Понад <strong>10 років</strong> ми створюємо простір для життя. 
+            Використовуючи <strong>сучасні 3D-технології</strong>, ми даємо вам 
+            можливість побачити та відчути ваш майбутній дім ще до початку будівництва.
+        </p>
     </section>
 
     <section class="services" id="services">
-        <h2 class="section-title">Пакетні рішення</h2>
+        <h2 class="section-title">Пакети послуг</h2>
         <div class="services-grid">
+            
             <div class="service-card">
                 <div class="service-img" style="background-image: url('img/service-1.jpg');"></div>
                 <div class="service-name">3D-Колаж</div>
                 <ul class="service-features">
                     <li>Обмірний план та перепланування</li>
-                    <li>3D-зонування простору</li>
-                    <li>Стилістичні колажі</li>
+                    <li>3D-зонування простору (White Box)</li>
+                    <li>Стилістичні колажі та AI-концепт</li>
                 </ul>
                 <a href="tel:+380770133119" class="btn-action">Обрати</a>
             </div>
+
             <div class="service-card">
                 <div class="service-img" style="background-image: url('img/service-2.jpg');"></div>
-                <div class="service-name">Concept Presentation</div>
+                <div class="service-name">Концепт презентація</div>
                 <ul class="service-features">
-                    <li>Інтерактивні панорами 360°</li>
-                    <li>Cinematic Video обліт</li>
+                    <li><strong>Інтерактивні панорами 360°</strong></li>
+                    <li><strong>Відео презентація (Анімація)</strong></li>
                     <li>Концепція меблів та світла</li>
+                    <li>Web-хостинг вашого проєкту</li>
                 </ul>
                 <a href="tel:+380770133119" class="btn-action">Обрати</a>
             </div>
+
             <div class="service-card">
                 <div class="service-img" style="background-image: url('img/service-3.jpg');"></div>
                 <div class="service-name">Оптимальний</div>
                 <ul class="service-features">
                     <li>Фотореалістична візуалізація</li>
-                    <li>Повний пакет креслень</li>
-                    <li>Технічні відомості</li>
+                    <li>Повний пакет робочих креслень</li>
+                    <li>Технічні розгортки та відомості</li>
                 </ul>
                 <a href="tel:+380770133119" class="btn-action">Обрати</a>
             </div>
+
             <div class="service-card">
                 <div class="service-img" style="background-image: url('img/service-4.jpg');"></div>
-                <div class="service-name">All Inclusive</div>
+                <div class="service-name">Все включено</div>
                 <ul class="service-features">
-                    <li>Супровід та комплектація</li>
-                    <li>Авторський нагляд</li>
-                    <li>Бонуси від партнерів</li>
+                    <li>Пакет Оптимальний</li>
+                    <li>Супровід та комплектація матеріалів</li>
+                    <li><strong>Авторський нагляд</strong></li>
+                    <li>Бонуси та знижки від партнерів Луцька</li>
                 </ul>
                 <a href="tel:+380770133119" class="btn-action">Обрати</a>
             </div>
         </div>
 
-        <p class="service-note">
+        <div class="price-disclaimer">
             * Вартість проєкту розраховується індивідуально залежно від площі та складності вашого об'єкта
-        </p>
+        </div>
     </section>
 
     <div id="projects" class="projects">
-        <h2 class="section-title">Вибрані проєкти</h2>
+        <h2 class="section-title">Проєкти</h2>
         <div class="grid">
+            
             <a href="project-gum/index.html" class="card">
                 <div class="thumb" style="background-image: url('img/01.jpg');"></div>
                 <div class="info">
                     <span class="project-title">Рованці Гум</span>
-                    <span class="project-desc">Будинок 200 м²</span>
+                    <span class="project-desc">Дизайн Будиноку • 200 м²</span>
                 </div>
             </a>
+
             <a href="amsterdam70/index.html" class="card">
                 <div class="thumb" style="background-image: url('amsterdam70/02.jpg');"></div>
                 <div class="info">
@@ -185,34 +233,63 @@
                     <span class="project-desc">Дизайн квартири • 70 м²</span>
                 </div>
             </a>
+
             <a href="restpark/index.html" class="card">
                 <div class="thumb" style="background-image: url('restpark/preview.jpg');"></div>
                 <div class="info">
                     <span class="project-title">Рестпарк</span>
-                    <span class="project-desc">Інтер'єр дитячої кімнати</span>
+                    <span class="project-desc">Дизайн дитячої кімнати</span>
                 </div>
             </a>
+
             <a href="Apart Leleky/index.html" class="card">
                 <div class="thumb" style="background-image: url('Apart Leleky/01.jpg');"></div>
                 <div class="info">
                     <span class="project-title">Апарт-готель Leleky</span>
-                    <span class="project-desc">Номерний фонд • №204</span>
+                    <span class="project-desc">Дизайн апартаментів • №204</span>
                 </div>
             </a>
+
             <a href="CITY PARK/index.html" class="card">
                 <div class="thumb" style="background-image: url('CITY PARK/01.jpg');"></div>
                 <div class="info">
                     <span class="project-title">CITY PARK</span>
-                    <span class="project-desc">ТРЦ Луцьк</span>
+                    <span class="project-desc">Презентація ТРЦ</span>
                 </div>
             </a>
+
+            <a href="amsterdam80/index.html" class="card">
+                <div class="thumb" style="background-image: url('amsterdam80/02.jpg');"></div>
+                <div class="info">
+                    <span class="project-title">ЖК Амстердам 80</span>
+                    <span class="project-desc">Дизайн квартири • 80 м²</span>
+                </div>
+            </a>
+
+            <a href="restpark_event_hall/index.html" class="card">
+                <div class="thumb" style="background-image: url('restpark_event_hall/02.jpg');"></div>
+                <div class="info">
+                    <span class="project-title">Restpark</span>
+                    <span class="project-desc">Евент Хол</span>
+                </div>
+            </a>
+
             <a href="Efekt/index.html" class="card">
                 <div class="thumb" style="background-image: url('Efekt/02.jpg');"></div>
                 <div class="info">
                     <span class="project-title">Efekt</span>
-                    <span class="project-desc">Квартира 33 кв.м.</span>
+                    <span class="project-desc">Дизайн квартири • 33 кв.м.</span>
                 </div>
             </a>
+
+            <a href="Apart Leleky 203/index.html" class="card">
+                <div class="thumb" style="background-image: url('Apart Leleky 203/01.jpg');"></div>
+                <div class="info">
+                    <span class="project-title">Апарт-готель Leleky 203</span>
+                    <span class="project-desc">Дизайн апартаментів • №203</span>
+                </div>
+            </a>
+
         </div> 
     </div> 
 
@@ -221,7 +298,7 @@
         <div class="socials">
             <a href="https://www.tiktok.com/@chabanydesign" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="https://www.youtube.com/@Chabany-k5y" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.instagram.com/chabany.design/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
     </footer>
 
