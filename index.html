@@ -15,29 +15,25 @@
         body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-bg); color: #ffffff; overflow-x: hidden; line-height: 1.6; scroll-behavior: smooth; }
         a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 
-        /* --- ГОЛОВНИЙ ЕКРАН --- */
+        /* --- ГОЛОВНИЙ ЕКРАН (Адаптація під мобільне фото) --- */
         header { 
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; 
+            justify-content: center; 
             text-align: center;
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('img/banner.jpg');
             background-size: cover;
             background-position: center;
-            padding-top: 120px; 
-            padding-left: 20px;
-            padding-right: 20px;
+            padding: 20px;
         }
 
-        @media (min-width: 1024px) { header { background-attachment: fixed; } }
-
-        .logo-wrapper { width: 100%; max-width: 760px; z-index: 10; }
+        .logo-wrapper { width: 100%; max-width: 760px; z-index: 10; margin-bottom: 30px; }
         .main-logo { width: 100%; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5)); }
 
-        .header-content { z-index: 11; margin-top: -160px; position: relative; }
+        .header-content { z-index: 11; position: relative; width: 100%; }
         .subtitle { display: block; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 5px; margin-bottom: 25px; font-weight: 400; text-shadow: 0 2px 15px rgba(0,0,0,1); }
 
         .cta-btn {
@@ -54,14 +50,25 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
-        .cta-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+
+        /* Мобільні правки для Header */
+        @media (max-width: 768px) {
+            header { padding-top: 60px; justify-content: center; }
+            .logo-wrapper { max-width: 90%; margin-bottom: 20px; }
+            .subtitle { font-size: 0.85rem; letter-spacing: 3px; }
+            .cta-btn { padding: 14px 30px; width: 85%; }
+        }
 
         /* --- ПРО СТУДІЮ --- */
         .section-title { font-size: 1.8rem; margin: 60px 0 40px; font-weight: 300; text-transform: uppercase; letter-spacing: 5px; color: var(--accent); text-align: center; }
-        
-        .about { padding: 100px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
+        .about { padding: 80px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
         .about p { color: #bcbcbc; font-size: 1.15rem; font-weight: 300; }
-        .about strong { color: #fff; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            .section-title { font-size: 1.4rem; letter-spacing: 3px; }
+            .about { padding: 40px 20px; }
+            .about p { font-size: 1rem; }
+        }
 
         /* --- ПОСЛУГИ --- */
         .services { padding: 80px 20px; max-width: 1400px; margin: 0 auto; background: #070707; border-radius: 30px; }
@@ -93,7 +100,7 @@
 
         .service-name { font-size: 1rem; font-weight: 600; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1.5px; color: #fff; }
         .service-features { list-style: none; margin-bottom: 30px; flex-grow: 1; }
-        .service-features li { font-size: 0.85rem; color: #888; margin-bottom: 12px; padding-left: 15px; position: relative; line-height: 1.5; }
+        .service-features li { font-size: 0.85rem; color: #888; margin-bottom: 12px; padding-left: 15px; position: relative; line-height: 1.5; text-align: left;}
         .service-features li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
         
         .btn-action { 
@@ -104,35 +111,43 @@
         }
         .btn-action:hover { border-color: var(--accent); color: var(--accent); background: rgba(212, 163, 115, 0.05); }
 
-        /* СТИЛЬ ДЛЯ ФРАЗИ ПРО РОЗРАХУНОК */
+        /* ФРАЗА ПРО РОЗРАХУНОК (ВИДИМА НА МОБІЛЬНОМУ) */
         .price-disclaimer {
             text-align: center;
             margin-top: 50px;
-            padding: 20px;
+            padding: 25px 15px;
             border-top: 1px solid #1a1a1a;
             color: var(--accent);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 400;
+            line-height: 1.6;
         }
 
-        /* --- СІТКА ПРОЄКТІВ --- */
-        .projects { padding: 100px 20px; max-width: 1300px; margin: 0 auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; }
-        .card { background: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid #1a1a1a; transition: 0.4s; }
-        .card:hover { border-color: var(--accent); transform: translateY(-10px); }
-        .thumb { height: 280px; background-size: cover; background-position: center; }
-        .info { padding: 25px; }
-        .project-title { font-size: 1.1rem; font-weight: 600; color: #fff; display: block; text-transform: uppercase; }
-        .project-desc { font-size: 0.8rem; color: var(--accent); margin-top: 8px; display: block; text-transform: uppercase; }
+        @media (max-width: 768px) {
+            .services { border-radius: 0; padding: 40px 15px; }
+            .price-disclaimer { font-size: 0.75rem; letter-spacing: 1px; }
+        }
+
+        /* --- ПРОЄКТИ --- */
+        .projects { padding: 80px 20px; max-width: 1300px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+        .card { background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid #1a1a1a; transition: 0.4s; }
+        .thumb { height: 250px; background-size: cover; background-position: center; }
+        .info { padding: 20px; }
+        .project-title { font-size: 1rem; font-weight: 600; color: #fff; text-transform: uppercase; }
+        .project-desc { font-size: 0.75rem; color: var(--accent); margin-top: 8px; text-transform: uppercase; }
+
+        @media (max-width: 768px) {
+            .grid { gap: 20px; }
+            .projects { padding: 40px 15px; }
+        }
 
         /* --- ФУТЕР --- */
-        footer { padding: 80px 20px; text-align: center; border-top: 1px solid #1a1a1a; }
-        .footer-phone { display: block; font-size: 1.8rem; font-weight: 300; color: #fff; margin-bottom: 30px; letter-spacing: 2px; }
-        .footer-phone:hover { color: var(--accent); }
+        footer { padding: 60px 20px; text-align: center; border-top: 1px solid #1a1a1a; }
+        .footer-phone { display: block; font-size: 1.5rem; font-weight: 300; color: #fff; margin-bottom: 25px; letter-spacing: 1px; }
         .socials a { margin: 0 15px; font-size: 1.5rem; color: #444; }
-        .socials a:hover { color: var(--accent); }
     </style>
 </head>
 <body>
@@ -298,7 +313,7 @@
         <div class="socials">
             <a href="https://www.tiktok.com/@chabanydesign" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="https://www.youtube.com/@Chabany-k5y" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com/chabany.design/" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
     </footer>
 
