@@ -7,6 +7,8 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
     <style>
         /* --- ОСНОВНИЙ ФОН --- */
@@ -54,13 +56,12 @@
             box-sizing: border-box; font-weight: 600; letter-spacing: 1px;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             text-transform: uppercase; font-size: 0.85rem;
-            border: none;
+            border: none; cursor: pointer; font-family: 'Montserrat', sans-serif;
         }
         
         .btn:active { transform: scale(0.96); }
         .btn i { margin-right: 12px; font-size: 1.1rem; }
 
-        /* Золотий стиль (для 3D туру та Відео) */
         .btn-gold { 
             background: linear-gradient(45deg, #d4a373, #b07d4b); 
             box-shadow: 0 5px 15px rgba(212, 163, 115, 0.2);
@@ -71,7 +72,6 @@
             background: linear-gradient(45deg, #e4b383, #c08d5b);
         }
 
-        /* Прозорий стиль для другорядних дій */
         .btn-doc { 
             background: rgba(255,255,255,0.05); 
             border: 1px solid rgba(255,255,255,0.2);
@@ -89,6 +89,52 @@
 
         .back { margin-top: 35px; display: inline-block; color: #666; font-size: 0.8rem; text-decoration: none; transition: 0.3s; text-transform: uppercase; }
         .back:hover { color: white; }
+
+        /* ========================================= */
+        /* --- ПОВНОЕКРАННЕ МОДАЛЬНЕ ВІКНО ДЛЯ 3D --- */
+        /* ========================================= */
+        .modal-overlay {
+            display: none; /* Приховано за замовчуванням */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95); z-index: 999; 
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            flex-direction: column; align-items: center; justify-content: center;
+        }
+        .modal-overlay.active { display: flex; } /* Клас для показу вікна */
+        
+        .close-modal {
+            position: absolute; top: 20px; right: 25px; background: none; border: none;
+            color: white; font-size: 2.5rem; cursor: pointer; transition: 0.3s; z-index: 1000;
+        }
+        .close-modal:hover { color: #d4a373; transform: scale(1.1); }
+        
+        .tech-viewer-container {
+            width: 95%; max-width: 1200px; height: 80vh; background: #0a0a0a;
+            border: 1px solid #333; border-radius: 15px; position: relative; overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+        
+        model-viewer { width: 100%; height: 100%; outline: none; background-color: #111; cursor: grab; }
+        model-viewer:active { cursor: grabbing; }
+        
+        /* Панель шарів поверх 3D моделі (знизу) */
+        .layer-controls {
+            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; width: 100%; padding: 0 10px;
+        }
+        .layer-btn {
+            background: rgba(0,0,0,0.6); color: white; border: 1px solid rgba(212, 163, 115, 0.5);
+            padding: 12px 24px; border-radius: 30px; cursor: pointer; font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem; font-weight: 600; text-transform: uppercase; transition: 0.3s; backdrop-filter: blur(5px);
+        }
+        .layer-btn:hover { background: rgba(212, 163, 115, 0.2); }
+        .layer-btn.active { background: #d4a373; color: black; border-color: #d4a373; }
+        
+        .hotspot {
+            background: rgba(255, 255, 255, 0.9); color: black; border-radius: 6px;
+            padding: 8px 12px; font-size: 0.75rem; font-weight: 600; border: none; cursor: pointer;
+            font-family: 'Montserrat', sans-serif; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
     </style>
 </head>
 <body>
@@ -112,6 +158,10 @@
             <i class="far fa-file-pdf"></i> План приміщення
         </a>
 
+        <button class="btn btn-doc" id="open-tech-btn">
+            <i class="fas fa-layer-group"></i> 3D Технагляд (BIM)
+        </button>
+
         <div class="contact-block">
             <a href="tel:+380770133119" class="phone-link">+38 (077) 013-31-19</a>
             <div class="social-icons">
@@ -124,6 +174,64 @@
 
         <a href="../index.html" class="back">← На головну</a>
     </div>
+
+    <div class="modal-overlay" id="tech-modal">
+        <button class="close-modal" id="close-tech-btn"><i class="fas fa-times"></i></button>
+        
+        <div class="tech-viewer-container">
+            <model-viewer 
+                id="tech-viewer" 
+                src="models/base-room.glb" 
+                camera-controls 
+                min-camera-orbit="auto auto 0m">
+                
+                <button class="hotspot" slot="hotspot-1" data-position="1m 2m -1m" data-normal="0m 0m 1m">
+                    Вивід кондиціонера
+                </button>
+            </model-viewer>
+            
+            <div class="layer-controls">
+                <button class="layer-btn active" onclick="switchLayer('models/base-room.glb', this)">Каркас</button>
+                <button class="layer-btn" onclick="switchLayer('models/electro.glb', this)">Електрика</button>
+                <button class="layer-btn" onclick="switchLayer('models/plumbing.glb', this)">Сантехніка</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Відкриття та закриття модального вікна
+        const modal = document.getElementById('tech-modal');
+        const openBtn = document.getElementById('open-tech-btn');
+        const closeBtn = document.getElementById('close-tech-btn');
+
+        openBtn.addEventListener('click', () => { 
+            modal.classList.add('active'); 
+        });
+        
+        closeBtn.addEventListener('click', () => { 
+            modal.classList.remove('active'); 
+        });
+
+        // Закриття вікна при кліку на темний фон (поза моделлю)
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // 2. Логіка перемикання шарів
+        function switchLayer(newModelSrc, clickedButton) {
+            // Змінюємо файл
+            document.getElementById('tech-viewer').src = newModelSrc;
+            
+            // Знімаємо підсвітку з усіх кнопок
+            let buttons = document.querySelectorAll('.layer-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Підсвічуємо золотим натиснуту кнопку
+            clickedButton.classList.add('active');
+        }
+    </script>
 
 </body>
 </html>
