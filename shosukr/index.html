@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apart Leleky | Portfolio | Chabany Design</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+    <style>
+        /* --- ОСНОВНИЙ ФОН --- */
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('01.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            background-color: #111;
+        }
+
+        /* --- СКЛЯНА КАРТКА --- */
+        .glass-card { 
+            max-width: 450px; 
+            width: 90%;
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            padding: 40px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            margin: 20px 0;
+        }
+
+        h1 { margin: 0 0 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 1.6rem; }
+        p.subtitle { color: #ccc; margin-bottom: 30px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        hr { border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 25px 0; }
+        h3 { font-size: 0.8rem; text-transform: uppercase; color: #888; letter-spacing: 2px; margin-bottom: 15px; }
+
+        /* --- КНОПКИ --- */
+        .btn { 
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; padding: 16px; margin: 12px 0; 
+            text-decoration: none; color: white; border-radius: 50px; 
+            box-sizing: border-box; font-weight: 600; letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            text-transform: uppercase; font-size: 0.85rem;
+            border: none; cursor: pointer; font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn:active { transform: scale(0.96); }
+        .btn i { margin-right: 12px; font-size: 1.1rem; }
+
+        .btn-gold { 
+            background: linear-gradient(45deg, #d4a373, #b07d4b); 
+            box-shadow: 0 5px 15px rgba(212, 163, 115, 0.2);
+        }
+        .btn-gold:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 25px rgba(212, 163, 115, 0.4); 
+            background: linear-gradient(45deg, #e4b383, #c08d5b);
+        }
+
+        .btn-doc { 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .btn-doc:hover { background: rgba(255,255,255,0.15); border-color: white; }
+
+        /* --- КОНТАКТИ --- */
+        .contact-block { margin-top: 35px; }
+        .phone-link { display: block; color: white; font-size: 1.4rem; font-weight: bold; margin-bottom: 20px; text-decoration: none; transition: 0.3s; }
+        .phone-link:hover { color: #d4a373; }
+        
+        .social-icons { display: flex; justify-content: center; gap: 20px; }
+        .social-icons a { color: #aaa; font-size: 1.6rem; transition: 0.3s; }
+        .social-icons a:hover { color: #d4a373; transform: scale(1.1); }
+
+        .back { margin-top: 35px; display: inline-block; color: #666; font-size: 0.8rem; text-decoration: none; transition: 0.3s; text-transform: uppercase; }
+        .back:hover { color: white; }
+
+        /* ========================================= */
+        /* --- ПОВНОЕКРАННЕ МОДАЛЬНЕ ВІКНО ДЛЯ 3D --- */
+        /* ========================================= */
+        .modal-overlay {
+            display: none; 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95); z-index: 999; 
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            flex-direction: column; align-items: center; justify-content: center;
+        }
+        .modal-overlay.active { display: flex; } 
+        
+        .close-modal {
+            position: absolute; top: 20px; right: 25px; background: none; border: none;
+            color: white; font-size: 2.5rem; cursor: pointer; transition: 0.3s; z-index: 1000;
+        }
+        .close-modal:hover { color: #d4a373; transform: scale(1.1); }
+        
+        .tech-viewer-container {
+            width: 95%; max-width: 1200px; height: 80vh; background: #0a0a0a;
+            border: 1px solid #333; border-radius: 15px; position: relative; overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+        
+        model-viewer { width: 100%; height: 100%; outline: none; background-color: #111; cursor: grab; }
+        model-viewer:active { cursor: grabbing; }
+        
+        /* Панель шарів поверх 3D моделі */
+        .layer-controls {
+            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; width: 100%; padding: 0 10px;
+        }
+        .layer-btn {
+            background: rgba(0,0,0,0.6); color: white; border: 1px solid rgba(212, 163, 115, 0.5);
+            padding: 12px 24px; border-radius: 30px; cursor: pointer; font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem; font-weight: 600; text-transform: uppercase; transition: 0.3s; backdrop-filter: blur(5px);
+        }
+        .layer-btn:hover { background: rgba(212, 163, 115, 0.2); }
+        .layer-btn.active { background: #d4a373; color: black; border-color: #d4a373; }
+        
+        /* Дизайн анотацій (Хотспотів) */
+        .hotspot {
+            background: rgba(255, 255, 255, 0.9); color: black; border-radius: 6px;
+            padding: 8px 12px; font-size: 0.75rem; font-weight: 600; border: none; cursor: pointer;
+            font-family: 'Montserrat', sans-serif; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.2s;
+        }
+        .hotspot:hover { transform: scale(1.05); background: #d4a373; color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card">
+        <h1>Shchos’ Ukrains’ke</h1>
+        <p class="subtitle">Замовник: ЦУМ</p>
+        
+        <a href="tour/index.html" class="btn btn-gold" target="_blank">
+            <i class="fas fa-cube"></i> Відкрити 3D Тур
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=soW--WTk77o" class="btn btn-gold" target="_blank">
+            <i class="fab fa-youtube"></i> Відеопрезентація
+        </a>
+        
+        <hr>
+        
+        <h3>Документація</h3>
+        <a href="docs/204.pdf" class="btn btn-doc" target="_blank">
+            <i class="far fa-file-pdf"></i> План приміщення
+        </a>
+
+        <button class="btn btn-doc" id="open-tech-btn">
+            <i class="fas fa-layer-group"></i> 3D Технагляд
+        </button>
+
+        <div class="contact-block">
+            <a href="tel:+380770133119" class="phone-link">+38 (077) 013-31-19</a>
+            <div class="social-icons">
+                <a href="https://www.tiktok.com/@chabanydesign" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.youtube.com/@Chabany-k5y" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
+
+        <a href="../index.html" class="back">← На головну</a>
+    </div>
+
+    <div class="modal-overlay" id="tech-modal">
+        <button class="close-modal" id="close-tech-btn"><i class="fas fa-times"></i></button>
+        
+        <div class="tech-viewer-container">
+            <model-viewer 
+                id="tech-viewer" 
+                src="models/base-room.glb" 
+                camera-controls 
+                min-camera-orbit="auto auto 0m"
+                environment-image="neutral"
+                shadow-intensity="1">
+                
+                <button class="hotspot layer-base" slot="hotspot-1" data-position="-0.5m 1.2m 0.8m" data-normal="1m 0m 0m">
+                    Профіль тіньового шва
+                </button>
+
+                <button class="hotspot layer-electro" slot="hotspot-2" data-position="1.2m 0.3m -1m" data-normal="0m 0m 1m" style="display: none;">
+                    Блок розеток h=300
+                </button>
+                <button class="hotspot layer-electro" slot="hotspot-3" data-position="-1m 1.5m 1m" data-normal="1m 0m 0m" style="display: none;">
+                    Вивід під бра
+                </button>
+
+                <button class="hotspot layer-plumbing" slot="hotspot-4" data-position="0.5m 0.1m 1m" data-normal="0m 1m 0m" style="display: none;">
+                    Трап душової
+                </button>
+
+            </model-viewer>
+            
+            <div class="layer-controls">
+                <button class="layer-btn active" onclick="switchLayer('models/base-room.glb', this, 'layer-base')">Каркас</button>
+                <button class="layer-btn" onclick="switchLayer('models/electro.glb', this, 'layer-electro')">Електрика</button>
+                <button class="layer-btn" onclick="switchLayer('models/plumbing.glb', this, 'layer-plumbing')">Сантехніка</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Робота з модальним вікном
+        const modal = document.getElementById('tech-modal');
+        const openBtn = document.getElementById('open-tech-btn');
+        const closeBtn = document.getElementById('close-tech-btn');
+
+        openBtn.addEventListener('click', () => { modal.classList.add('active'); });
+        closeBtn.addEventListener('click', () => { modal.classList.remove('active'); });
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) { modal.classList.remove('active'); }
+        });
+
+        // Робота з шарами та анотаціями
+        function switchLayer(newModelSrc, clickedButton, activeLayerClass) {
+            
+            // 1. Міняємо файл 3D моделі
+            document.getElementById('tech-viewer').src = newModelSrc;
+            
+            // 2. Перемикаємо стиль активної кнопки
+            let buttons = document.querySelectorAll('.layer-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            clickedButton.classList.add('active');
+            
+            // 3. Ховаємо зайві точки, показуємо потрібні
+            let allHotspots = document.querySelectorAll('.hotspot');
+            allHotspots.forEach(spot => {
+                if (spot.classList.contains(activeLayerClass)) {
+                    spot.style.display = 'block';
+                } else {
+                    spot.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
