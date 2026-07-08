@@ -1,8 +1,8 @@
 var APP_DATA = {
   "scenes": [
     {
-      "id": "0-kor",
-      "name": "kor",
+      "id": "0-panorama-coridor",
+      "name": "Panorama coridor",
       "levels": [
         {
           "tileSize": 256,
@@ -30,35 +30,29 @@ var APP_DATA = {
       },
       "linkHotspots": [
         {
-          "yaw": 1.4660811756402898,
-          "pitch": -0.16846252331201939,
+          "yaw": -1.478161606639956,
+          "pitch": 0.04967575590808693,
           "rotation": 0,
-          "target": "7-vit1_d"
+          "target": "7-panorama-bedroom-day"
         },
         {
-          "yaw": -1.4507672084402898,
-          "pitch": 0.0246544454822768,
+          "yaw": -1.8084415376608192,
+          "pitch": 0.04785414799797394,
           "rotation": 0,
-          "target": "6-spald"
+          "target": "1-kid-bedroom-day2"
         },
         {
-          "yaw": -1.7803134850407876,
-          "pitch": 0.0360022875447612,
+          "yaw": 1.589634591241647,
+          "pitch": 0.10202651320617839,
           "rotation": 0,
-          "target": "1-dd"
-        },
-        {
-          "yaw": 2.640667580359394,
-          "pitch": 0.10805074255328506,
-          "rotation": 0,
-          "target": "3-sv1"
+          "target": "3-panorama-living-room-day1"
         }
       ],
       "infoHotspots": []
     },
     {
-      "id": "1-dd",
-      "name": "Dd",
+      "id": "1-kid-bedroom-day2",
+      "name": "Kid bedroom day2",
       "levels": [
         {
           "tileSize": 256,
@@ -86,23 +80,23 @@ var APP_DATA = {
       },
       "linkHotspots": [
         {
-          "yaw": -1.2447131382094554,
-          "pitch": -0.1002067666825841,
+          "yaw": 1.000236432136262,
+          "pitch": 0.05855986919522849,
           "rotation": 0,
-          "target": "2-dn"
+          "target": "0-panorama-coridor"
         },
         {
-          "yaw": 1.1125152806938772,
-          "pitch": -0.009656817186957767,
+          "yaw": -1.4931282367826721,
+          "pitch": -0.015210290871765508,
           "rotation": 0,
-          "target": "0-kor"
+          "target": "6-kid-bedroom-night"
         }
       ],
       "infoHotspots": []
     },
     {
-      "id": "2-dn",
-      "name": "Dn",
+      "id": "2-panorama-living-room-day-2",
+      "name": "Panorama Living Room day 2",
       "levels": [
         {
           "tileSize": 256,
@@ -130,23 +124,29 @@ var APP_DATA = {
       },
       "linkHotspots": [
         {
-          "yaw": -1.2835742444120655,
-          "pitch": -0.13638570734792488,
+          "yaw": 2.1574400642030946,
+          "pitch": 0.07532696249110238,
           "rotation": 0,
-          "target": "1-dd"
+          "target": "0-panorama-coridor"
         },
         {
-          "yaw": 1.097601681748685,
-          "pitch": -0.028322597468665833,
+          "yaw": -1.520075091180992,
+          "pitch": 0.04596510084555305,
           "rotation": 0,
-          "target": "0-kor"
+          "target": "5-panorama-living-room-night-2"
+        },
+        {
+          "yaw": 3.135038324026251,
+          "pitch": 0.10037884021165588,
+          "rotation": 0,
+          "target": "3-panorama-living-room-day1"
         }
       ],
       "infoHotspots": []
     },
     {
-      "id": "3-sv1",
-      "name": "SV1",
+      "id": "3-panorama-living-room-day1",
+      "name": "Panorama Living Room day1",
       "levels": [
         {
           "tileSize": 256,
@@ -174,23 +174,29 @@ var APP_DATA = {
       },
       "linkHotspots": [
         {
-          "yaw": -1.4830455509992184,
-          "pitch": 0.030280897403605067,
+          "yaw": 1.0358845545320037,
+          "pitch": 0.05372770536325788,
           "rotation": 0,
-          "target": "4-sv2"
+          "target": "0-panorama-coridor"
         },
         {
-          "yaw": -2.8057159686771946,
-          "pitch": 0.05467191308899899,
+          "yaw": -1.2806451461214596,
+          "pitch": -0.01654807767463673,
           "rotation": 0,
-          "target": "0-kor"
+          "target": "4-panorama-living-room-night-1"
+        },
+        {
+          "yaw": 0.011400975167040528,
+          "pitch": 0.0392764600568416,
+          "rotation": 0,
+          "target": "2-panorama-living-room-day-2"
         }
       ],
       "infoHotspots": []
     },
     {
-      "id": "4-sv2",
-      "name": "SV2",
+      "id": "4-panorama-living-room-night-1",
+      "name": "Panorama Living Room night 1",
       "levels": [
         {
           "tileSize": 256,
@@ -218,23 +224,29 @@ var APP_DATA = {
       },
       "linkHotspots": [
         {
-          "yaw": 1.5130406982684956,
-          "pitch": 0.1016009286782289,
+          "yaw": 1.0228876954959567,
+          "pitch": 0.04516153195874395,
           "rotation": 0,
-          "target": "3-sv1"
+          "target": "0-panorama-coridor"
         },
         {
-          "yaw": 1.960408881788264,
-          "pitch": 0.03171222670111007,
+          "yaw": -1.3245038164084342,
+          "pitch": -0.0015797305027085429,
           "rotation": 0,
-          "target": "0-kor"
+          "target": "3-panorama-living-room-day1"
+        },
+        {
+          "yaw": 0.050124802372257804,
+          "pitch": 0.044395740080602764,
+          "rotation": 0,
+          "target": "5-panorama-living-room-night-2"
         }
       ],
       "infoHotspots": []
     },
     {
-      "id": "5-spaln",
-      "name": "Spaln",
+      "id": "5-panorama-living-room-night-2",
+      "name": "Panorama Living Room night 2",
       "levels": [
         {
           "tileSize": 256,
@@ -262,23 +274,29 @@ var APP_DATA = {
       },
       "linkHotspots": [
         {
-          "yaw": -1.4091044227382952,
-          "pitch": -0.04824061239895805,
+          "yaw": 2.103051253177008,
+          "pitch": 0.0631813228058018,
           "rotation": 0,
-          "target": "6-spald"
+          "target": "0-panorama-coridor"
         },
         {
-          "yaw": 1.6671870441745744,
-          "pitch": -0.003121593986030291,
+          "yaw": -1.3745519748289485,
+          "pitch": 0.019353108813213282,
           "rotation": 0,
-          "target": "0-kor"
+          "target": "2-panorama-living-room-day-2"
+        },
+        {
+          "yaw": -3.099784280722165,
+          "pitch": 0.09373526648629849,
+          "rotation": 0,
+          "target": "4-panorama-living-room-night-1"
         }
       ],
       "infoHotspots": []
     },
     {
-      "id": "6-spald",
-      "name": "Spald",
+      "id": "6-kid-bedroom-night",
+      "name": "Kid bedroom night",
       "levels": [
         {
           "tileSize": 256,
@@ -306,23 +324,23 @@ var APP_DATA = {
       },
       "linkHotspots": [
         {
-          "yaw": -1.3241939109203962,
-          "pitch": -0.06576429202522682,
+          "yaw": 1.0827576689068135,
+          "pitch": 0.07502551444564176,
           "rotation": 0,
-          "target": "5-spaln"
+          "target": "0-panorama-coridor"
         },
         {
-          "yaw": 1.6223801246437457,
-          "pitch": 0.09365993568516373,
+          "yaw": -1.5529238479035286,
+          "pitch": -0.011506806733876829,
           "rotation": 0,
-          "target": "0-kor"
+          "target": "1-kid-bedroom-day2"
         }
       ],
       "infoHotspots": []
     },
     {
-      "id": "7-vit1_d",
-      "name": "vit1_d",
+      "id": "7-panorama-bedroom-day",
+      "name": "Panorama Bedroom day",
       "levels": [
         {
           "tileSize": 256,
@@ -350,29 +368,23 @@ var APP_DATA = {
       },
       "linkHotspots": [
         {
-          "yaw": 2.6726728295781985,
-          "pitch": 0.039523072673908644,
+          "yaw": 1.5866330271250249,
+          "pitch": 0.04134819899506148,
           "rotation": 0,
-          "target": "0-kor"
+          "target": "0-panorama-coridor"
         },
         {
-          "yaw": 1.581806223674409,
-          "pitch": 0.03377229607096055,
+          "yaw": -1.1570883126810756,
+          "pitch": -0.046266871497845585,
           "rotation": 0,
-          "target": "8-vit2_d"
-        },
-        {
-          "yaw": -0.06360834818065442,
-          "pitch": -0.01472787694282296,
-          "rotation": 0,
-          "target": "9-vit1_n"
+          "target": "8-panorama-bedroom-night"
         }
       ],
       "infoHotspots": []
     },
     {
-      "id": "8-vit2_d",
-      "name": "vit2_d",
+      "id": "8-panorama-bedroom-night",
+      "name": "Panorama Bedroom night",
       "levels": [
         {
           "tileSize": 256,
@@ -398,134 +410,15 @@ var APP_DATA = {
         "yaw": 0,
         "fov": 1.5707963267948966
       },
-      "linkHotspots": [
-        {
-          "yaw": -1.582597521141043,
-          "pitch": 0.087081737965784,
-          "rotation": 0,
-          "target": "7-vit1_d"
-        },
-        {
-          "yaw": -0.2408264427909632,
-          "pitch": 0.022991493370506433,
-          "rotation": 0,
-          "target": "10-vit2_n"
-        },
-        {
-          "yaw": -2.413741111990971,
-          "pitch": 0.03488910681747193,
-          "rotation": 0,
-          "target": "0-kor"
-        }
-      ],
-      "infoHotspots": []
-    },
-    {
-      "id": "9-vit1_n",
-      "name": "vit1_n",
-      "levels": [
-        {
-          "tileSize": 256,
-          "size": 256,
-          "fallbackOnly": true
-        },
-        {
-          "tileSize": 512,
-          "size": 512
-        },
-        {
-          "tileSize": 512,
-          "size": 1024
-        },
-        {
-          "tileSize": 512,
-          "size": 2048
-        }
-      ],
-      "faceSize": 2048,
-      "initialViewParameters": {
-        "pitch": 0,
-        "yaw": 0,
-        "fov": 1.5707963267948966
-      },
-      "linkHotspots": [
-        {
-          "yaw": -0.07578434407436418,
-          "pitch": 0.03744250837067398,
-          "rotation": 0,
-          "target": "7-vit1_d"
-        },
-        {
-          "yaw": 1.628814007375592,
-          "pitch": 0.06693797752560826,
-          "rotation": 0,
-          "target": "10-vit2_n"
-        },
-        {
-          "yaw": 2.6692922766820324,
-          "pitch": 0.0063572612319688915,
-          "rotation": 0,
-          "target": "0-kor"
-        }
-      ],
-      "infoHotspots": []
-    },
-    {
-      "id": "10-vit2_n",
-      "name": "vit2_n",
-      "levels": [
-        {
-          "tileSize": 256,
-          "size": 256,
-          "fallbackOnly": true
-        },
-        {
-          "tileSize": 512,
-          "size": 512
-        },
-        {
-          "tileSize": 512,
-          "size": 1024
-        },
-        {
-          "tileSize": 512,
-          "size": 2048
-        }
-      ],
-      "faceSize": 2048,
-      "initialViewParameters": {
-        "pitch": 0,
-        "yaw": 0,
-        "fov": 1.5707963267948966
-      },
-      "linkHotspots": [
-        {
-          "yaw": -0.10779166931187945,
-          "pitch": 0.007464277905283367,
-          "rotation": 0,
-          "target": "8-vit2_d"
-        },
-        {
-          "yaw": -1.5744320035018209,
-          "pitch": 0.07991462307729691,
-          "rotation": 0,
-          "target": "9-vit1_n"
-        },
-        {
-          "yaw": -2.4480931910556656,
-          "pitch": 0.03380881224400056,
-          "rotation": 0,
-          "target": "0-kor"
-        }
-      ],
+      "linkHotspots": [],
       "infoHotspots": []
     }
   ],
-  "name": "Project Title",
+  "name": "Amsterdam 100",
   "settings": {
     "mouseViewMode": "drag",
     "autorotateEnabled": true,
     "fullscreenButton": false,
-    "viewControlButtons": false
+    "viewControlButtons": true
   }
 };
