@@ -494,6 +494,12 @@ var APP_DATA = {
           "pitch": 0.42815767530801097,
           "rotation": 0,
           "target": "10-5"
+        },
+        {
+          "yaw": -0.4188327771434519,
+          "pitch": 0.18739555129907437,
+          "rotation": 0,
+          "target": "24-_3"
         }
       ],
       "infoHotspots": []
@@ -556,6 +562,12 @@ var APP_DATA = {
           "pitch": -0.000031638179310178316,
           "rotation": 0,
           "target": "14-1"
+        },
+        {
+          "yaw": 0.9132617211651599,
+          "pitch": 0.34999123824195877,
+          "rotation": 0,
+          "target": "24-_3"
         }
       ],
       "infoHotspots": []
@@ -600,6 +612,18 @@ var APP_DATA = {
           "pitch": 0.5625056354630331,
           "rotation": 0,
           "target": "11-6"
+        },
+        {
+          "yaw": -1.6907026278593609,
+          "pitch": 0.19512440119543584,
+          "rotation": 0,
+          "target": "3-2"
+        },
+        {
+          "yaw": -2.430491031170124,
+          "pitch": 0.26691538971206974,
+          "rotation": 0,
+          "target": "24-_3"
         }
       ],
       "infoHotspots": []
@@ -684,8 +708,8 @@ var APP_DATA = {
           "target": "6-1"
         },
         {
-          "yaw": 2.026515932081618,
-          "pitch": 0.3997123748577813,
+          "yaw": 2.0282607448940064,
+          "pitch": 0.4111307668209587,
           "rotation": 0,
           "target": "9-4"
         },
@@ -1135,6 +1159,44 @@ var APP_DATA = {
           "pitch": 0.6303458792875194,
           "rotation": 0,
           "target": "22-3"
+        }
+      ],
+      "infoHotspots": []
+    },
+    {
+      "id": "24-_3",
+      "name": "Тераса_СВ3",
+      "levels": [
+        {
+          "tileSize": 256,
+          "size": 256,
+          "fallbackOnly": true
+        },
+        {
+          "tileSize": 512,
+          "size": 512
+        },
+        {
+          "tileSize": 512,
+          "size": 1024
+        },
+        {
+          "tileSize": 512,
+          "size": 2048
+        }
+      ],
+      "faceSize": 2048,
+      "initialViewParameters": {
+        "pitch": 0,
+        "yaw": 0,
+        "fov": 1.5707963267948966
+      },
+      "linkHotspots": [
+        {
+          "yaw": 0.6298102217060055,
+          "pitch": 0.3979286334298511,
+          "rotation": 0,
+          "target": "9-4"
         }
       ],
       "infoHotspots": []
