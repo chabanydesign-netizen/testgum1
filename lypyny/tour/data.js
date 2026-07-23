@@ -1,8 +1,8 @@
 var APP_DATA = {
   "scenes": [
     {
-      "id": "0-panorama3-",
-      "name": "Panorama(3) копія",
+      "id": "0-03",
+      "name": "03",
       "levels": [
         {
           "tileSize": 256,
