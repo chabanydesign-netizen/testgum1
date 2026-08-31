@@ -46,6 +46,12 @@ var APP_DATA = {
           "pitch": 0.02412745967318486,
           "rotation": 0,
           "target": "2-"
+        },
+        {
+          "yaw": -0.665711657590073,
+          "pitch": 0.02176214610690863,
+          "rotation": 0,
+          "target": "6-3-"
         }
       ],
       "infoHotspots": []
@@ -232,6 +238,40 @@ var APP_DATA = {
         {
           "yaw": -1.9255980948352267,
           "pitch": 0.06409919037065137,
+          "rotation": 0,
+          "target": "0-"
+        }
+      ],
+      "infoHotspots": []
+    },
+    {
+      "id": "6-3-",
+      "name": "Дитяча3 ",
+      "levels": [
+        {
+          "tileSize": 256,
+          "size": 256,
+          "fallbackOnly": true
+        },
+        {
+          "tileSize": 512,
+          "size": 512
+        },
+        {
+          "tileSize": 512,
+          "size": 1024
+        }
+      ],
+      "faceSize": 1024,
+      "initialViewParameters": {
+        "pitch": 0,
+        "yaw": 0,
+        "fov": 1.5707963267948966
+      },
+      "linkHotspots": [
+        {
+          "yaw": 2.863868331932178,
+          "pitch": 0.07583192494075419,
           "rotation": 0,
           "target": "0-"
         }
