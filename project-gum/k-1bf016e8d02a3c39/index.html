@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Дизайн будинку 200м², Рованці | Портфоліо Chabany Design</title>
+    <meta name="description" content="Огляд проєкту дизайну інтер'єру приватного будинку в с. Рованці. Сучасний стиль, 3D тур та планування.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- ОСНОВНИЙ ФОН --- */
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Картинка на фоні. Перевір шлях: ../img/01.jpg */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('../../img/01.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        /* --- СКЛЯНА КАРТКА (BOX) --- */
+        .glass-card { 
+            max-width: 450px; 
+            width: 90%;
+            background: rgba(255, 255, 255, 0.05); /* Прозорий фон */
+            backdrop-filter: blur(15px); /* Розмиття заднього плану */
+            -webkit-backdrop-filter: blur(15px);
+            padding: 40px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            animation: fadeIn 1s ease;
+        }
+
+        h1 { 
+            margin: 0 0 10px; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            font-size: 1.8rem;
+        }
+
+        p.subtitle { 
+            color: #ccc; 
+            margin-bottom: 25px; 
+            font-size: 1rem;
+        }
+
+        hr { border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 20px 0; }
+        
+        h3 { 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            color: #888; 
+            letter-spacing: 2px; 
+            margin-bottom: 15px; 
+        }
+
+        /* --- КНОПКИ --- */
+        .btn { 
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            width: 100%; 
+            padding: 16px; 
+            margin: 10px 0; 
+            text-decoration: none; 
+            color: white; 
+            border-radius: 50px; 
+            box-sizing: border-box; 
+            font-weight: 600; 
+            letter-spacing: 1px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+        
+        /* Кнопка 3D (Золотиста) */
+        .btn-3d { 
+            background: linear-gradient(45deg, #d4a373, #b07d4b); 
+            box-shadow: 0 5px 15px rgba(212, 163, 115, 0.3);
+        }
+        .btn-3d:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(212, 163, 115, 0.5); }
+
+        /* Кнопка Технічна (Стримана темно-сіра) */
+        .btn-tech { 
+            background: linear-gradient(45deg, #5a6268, #343a40); 
+            border: 1px solid rgba(255,255,255,0.1); 
+        }
+        .btn-tech:hover { background: linear-gradient(45deg, #6c757d, #495057); transform: translateY(-3px); }
+
+        /* Кнопка Документи (Прозора) */
+        .btn-doc { 
+            background: rgba(255,255,255,0.1); 
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .btn-doc:hover { background: rgba(255,255,255,0.2); }
+
+        .btn i { margin-right: 10px; font-size: 1.1rem; }
+
+        /* --- КОНТАКТИ --- */
+        .contact-block { margin-top: 30px; }
+        
+        .phone-link {
+            display: block;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-decoration: none;
+        }
+        
+        .social-icons a {
+            color: #aaa;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+        .social-icons a:hover { color: #d4a373; transform: scale(1.1); }
+
+        .back { 
+            margin-top: 25px; 
+            display: inline-block; 
+            color: #777; 
+            font-size: 0.8rem; 
+            text-decoration: none;
+        }
+        .back:hover { color: white; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card">
+        <h1>Будинок у Рованцях</h1>
+        <p class="subtitle">Дизайн будинку • 200 м²</p>
+        
+        <hr>
+        
+        <a href="../tour/index.html" class="btn btn-3d" target="_blank">
+            <i class="fas fa-cube"></i> Візуальний 3D Тур
+        </a>
+
+        <a href="tour_tech/index.html" class="btn btn-tech" target="_blank">
+            <i class="fas fa-ruler-combined"></i> Технічний 3D Тур
+        </a>
+        
+        <hr>
+        
+        <h3>Документація</h3>
+        <a href="docs/plan.pdf" class="btn btn-doc" target="_blank">
+            <i class="far fa-file-pdf"></i> Тех.Проект (PDF)
+        </a>
+
+        <div class="contact-block">
+            <a href="tel:+380770133119" class="phone-link">+38 (077) 013-31-19</a>
+            <div class="social-icons">
+                <a href="https://www.tiktok.com/@chabanydesign" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.youtube.com/@Chabany-k5y" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/chabany.design/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/+380770133119" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
+
+        <a href="../../index.html" class="back">← Повернутися до портфоліо</a>
+    </div>
+
+</body>
+</html>
