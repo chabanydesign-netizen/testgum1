@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Будинок у Липинах | Chabany Design">
+    <meta property="og:description" content="Дизайн івент-холу">
+    <meta property="og:image" content="https://chabany.com.ua/2-leleky/01.jpg">
+    <meta property="og:url" content="https://chabany.com.ua/2-leleky/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документація · Будинок у Липинах | Chabany Design</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- ОСНОВНИЙ ФОН --- */
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('../01.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            background-color: #111;
+        }
+
+        /* --- СКЛЯНА КАРТКА --- */
+        .glass-card { 
+            max-width: 450px; 
+            width: 90%;
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            padding: 40px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            margin: 20px 0;
+        }
+
+        h1 { margin: 0 0 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 1.6rem; }
+        p.subtitle { color: #ccc; margin-bottom: 30px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        hr { border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 25px 0; }
+        h3 { font-size: 0.8rem; text-transform: uppercase; color: #888; letter-spacing: 2px; margin-bottom: 15px; }
+
+        /* --- КНОПКИ --- */
+        .btn { 
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; padding: 16px; margin: 12px 0; 
+            text-decoration: none; color: white; border-radius: 50px; 
+            box-sizing: border-box; font-weight: 600; letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            text-transform: uppercase; font-size: 0.85rem;
+            border: none;
+        }
+        
+        .btn:active { transform: scale(0.96); }
+        .btn i { margin-right: 12px; font-size: 1.1rem; }
+
+        /* Золотий стиль (для 3D туру та Відео) */
+        .btn-gold { 
+            background: linear-gradient(45deg, #d4a373, #b07d4b); 
+            box-shadow: 0 5px 15px rgba(212, 163, 115, 0.2);
+        }
+        .btn-gold:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 25px rgba(212, 163, 115, 0.4); 
+            background: linear-gradient(45deg, #e4b383, #c08d5b);
+        }
+
+        /* Прозорий стиль для другорядних дій */
+        .btn-doc { 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .btn-doc:hover { background: rgba(255,255,255,0.15); border-color: white; }
+
+        /* --- КОНТАКТИ --- */
+        .contact-block { margin-top: 35px; }
+        .phone-link { display: block; color: white; font-size: 1.4rem; font-weight: bold; margin-bottom: 20px; text-decoration: none; transition: 0.3s; }
+        .phone-link:hover { color: #d4a373; }
+        
+        .social-icons { display: flex; justify-content: center; gap: 20px; }
+        .social-icons a { color: #aaa; font-size: 1.6rem; transition: 0.3s; }
+        .social-icons a:hover { color: #d4a373; transform: scale(1.1); }
+
+        .back { margin-top: 35px; display: inline-block; color: #666; font-size: 0.8rem; text-decoration: none; transition: 0.3s; text-transform: uppercase; }
+        .back:hover { color: white; }
+
+        .code-input { width:100%; box-sizing:border-box; padding:16px; border-radius:50px; border:1px solid rgba(255,255,255,0.25); background:rgba(0,0,0,0.35); color:white; font:600 1.1rem 'Montserrat',sans-serif; letter-spacing:6px; text-align:center; text-transform:uppercase; outline:none; }
+        .code-input:focus { border-color:#d4a373; }
+        .msg { min-height:1.2em; font-size:0.8rem; color:#e9a; margin:10px 0 0; }
+        .hidden { display:none !important; }
+        button.btn { cursor:pointer; font-family:'Montserrat',sans-serif; }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card">
+        <h1>Будинок у Липинах</h1>
+        <p class="subtitle">Документація</p>
+
+        <form id="f">
+            <h3>Введіть код доступу</h3>
+            <input id="code" class="code-input" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="20" aria-label="Код доступу">
+            <button class="btn btn-gold" type="submit" id="go"><i class="fas fa-lock-open"></i> Відкрити</button>
+            <p class="msg" id="msg"></p>
+        </form>
+
+        <div id="ok" class="hidden">
+            <h3>План приміщення</h3>
+            <a id="view" class="btn btn-gold" target="_blank"><i class="far fa-file-pdf"></i> Переглянути PDF</a>
+            <a id="dl" class="btn btn-doc" download="lypyny_plan.pdf"><i class="fas fa-download"></i> Завантажити PDF</a>
+        </div>
+
+        <div class="contact-block">
+            <a href="tel:+380770133119" class="phone-link">+38 (077) 013-31-19</a>
+        </div>
+
+        <a href="../index.html" class="back">← До проєкту</a>
+    </div>
+
+<script>
+const f = document.getElementById('f'), msg = document.getElementById('msg'), go = document.getElementById('go');
+f.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const pass = document.getElementById('code').value.trim().toUpperCase();
+  if (!pass) return;
+  go.disabled = true; msg.style.color = '#ccc'; msg.textContent = 'Перевіряю…';
+  try {
+    const buf = new Uint8Array(await (await fetch('plan.bin')).arrayBuffer());
+    const salt = buf.slice(1, 17), iv = buf.slice(17, 29), ct = buf.slice(29);
+    const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']);
+    const key = await crypto.subtle.deriveKey({name:'PBKDF2', salt, iterations:600000, hash:'SHA-256'}, base, {name:'AES-GCM', length:256}, false, ['decrypt']);
+    const pdf = await crypto.subtle.decrypt({name:'AES-GCM', iv}, key, ct);
+    const url = URL.createObjectURL(new Blob([pdf], {type:'application/pdf'}));
+    document.getElementById('view').href = url; document.getElementById('dl').href = url;
+    f.classList.add('hidden'); document.getElementById('ok').classList.remove('hidden');
+  } catch (err) {
+    msg.style.color = '#e9a'; msg.textContent = 'Невірний код. Спробуйте ще раз.';
+  } finally { go.disabled = false; }
+});
+</script>
+</body>
+</html>

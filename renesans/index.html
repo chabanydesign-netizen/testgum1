@@ -144,6 +144,13 @@
             font-family: 'Montserrat', sans-serif; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.2s;
         }
         .hotspot:hover { transform: scale(1.05); background: #d4a373; color: white; }
+    
+        /* --- ЗАКЛИК: Telegram --- */
+        .btn-cta { background: #fff; color: #1a1a1a; box-shadow: 0 5px 20px rgba(255,255,255,0.15); margin-top: 28px; }
+        .btn-cta i { color: #229ED9; }
+        .btn-cta:hover { transform: translateY(-3px); background: #d4a373; color: #fff; }
+        .btn-cta:hover i { color: #fff; }
+        .cta-note { color: #aaa; font-size: 0.78rem; margin: 4px 0 0; letter-spacing: 0.5px; }
     </style>
 </head>
 <body>
@@ -159,6 +166,15 @@
         <button class="btn btn-doc" id="open-tech-btn">
             <i class="fas fa-layer-group"></i> 3D Технагляд
         </button>
+
+        <a href="docs/" class="btn btn-doc">
+            <i class="fas fa-lock"></i> Креслення (за кодом)
+        </a>
+
+        <a href="https://t.me/+380770133119" class="btn btn-cta" target="_blank" rel="noopener">
+            <i class="fab fa-telegram-plane"></i> Хочу такий дизайн
+        </a>
+        <p class="cta-note">Напишіть у Telegram — обговоримо ваш проєкт</p>
 
         <div class="contact-block">
             <a href="tel:+380770133119" class="phone-link">+38 (077) 013-31-19</a>
