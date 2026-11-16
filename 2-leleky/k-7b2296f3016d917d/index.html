@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Івент-хол 2 Лелеки · Chabany Design</title>
+<link rel="icon" href="img/mark.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark: #171412;
+  --dark2: #221E1A;
+  --light: #EFE9E0;
+  --light2: #E4DCD0;
+  --accent: #C07B5A;
+  --soft: #CFC6B8;
+  --ink: #2A2420;
+  --ink-soft: #5E544B;
+}
+body { font-family: 'Montserrat', Arial, sans-serif; font-weight: 300; }
+section { background: var(--dark); color: var(--light); padding: 128px; box-sizing: border-box; counter-increment: page; }
+section.light { background: var(--light); color: var(--ink); }
+
+h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 120px; line-height: 1.0; color: var(--light); }
+h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 72px; line-height: 1.05; color: var(--light); }
+h3 { font-family: 'Montserrat', Arial, sans-serif; font-weight: 500; font-size: 28px; line-height: 1.3; color: var(--light); }
+section.light h2 { color: var(--ink); }
+section.light h3 { color: var(--ink); }
+.eyebrow { font-size: 24px; font-weight: 500; letter-spacing: 6px; text-transform: uppercase; color: var(--accent); }
+.body { font-size: 28px; line-height: 1.55; color: var(--soft); }
+section.light .body { color: var(--ink-soft); }
+.small { font-size: 24px; line-height: 1.5; color: var(--soft); }
+section.light .small { color: var(--ink-soft); }
+.rule { width: 96px; height: 2px; background: var(--accent); }
+
+/* фото-слайди: колонка тексту + кадри на всю висоту */
+section.photo { padding: 0; display: flex; }
+.photo .txt { width: 480px; height: 1080px; padding: 128px 64px 96px 96px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; }
+.photo .txt-top { display: flex; flex-direction: column; gap: 32px; }
+.photo .pics { flex: 1; display: flex; gap: 8px; }
+.photo .ph { flex: 1; height: 1080px; overflow: hidden; }
+.photo .ph img { width: 100%; height: 1080px; object-fit: cover; animation: kb 9s ease-out both; }
+.photo .ph.second img { animation: kb 9s ease-out 0.3s both; }
+.photo .ph.third img { animation: kb 9s ease-out 0.6s both; }
+.page { font-size: 24px; letter-spacing: 4px; color: var(--accent); }
+
+@keyframes kb { from { transform: scale(1.08); } to { transform: scale(1); } }
+@keyframes up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.rise { animation: up 0.8s ease-out both; }
+.rise2 { animation: up 0.8s ease-out 0.2s both; }
+.rise3 { animation: up 0.8s ease-out 0.4s both; }
+
+/* план */
+.plan-wrap { display: flex; gap: 64px; align-items: center; margin-top: 48px; }
+.plan-img { width: 1180px; height: 594px; object-fit: contain; background: #FBF9F5; }
+.legend { display: flex; flex-direction: column; gap: 28px; width: 420px; }
+.leg { display: flex; gap: 20px; align-items: center; }
+.sw { width: 56px; height: 8px; }
+
+/* мудборд */
+.mood-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 40px 24px; margin-top: 48px; }
+.tile { display: flex; flex-direction: column; gap: 14px; }
+.tile img { width: 257px; height: 210px; object-fit: cover; }
+.cap { font-size: 24px; line-height: 1.3; color: var(--ink); }
+
+html, body { margin:0; height:100%; background:#0E0C0B; overflow:hidden; }
+* { box-sizing: border-box; }
+h1,h2,h3,p { margin:0; }
+#stage { position:fixed; left:50%; top:50%; width:1920px; height:1080px; transform-origin:0 0; }
+#stage > section { position:absolute; inset:0; width:1920px; height:1080px; overflow:hidden; }
+#stage > section:not(.active) { display:none !important; }
+.ui { position:fixed; z-index:10; font-family:'Montserrat',Arial,sans-serif; color:#EFE9E0; }
+#nav { bottom:18px; left:50%; transform:translateX(-50%); display:flex; gap:10px; align-items:center; }
+#nav button { width:10px; height:10px; border-radius:50%; border:1px solid #C07B5A; background:transparent; padding:0; cursor:pointer; }
+#nav button.on { background:#C07B5A; }
+.arrow { top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; border:none; background:rgba(23,20,18,.45); color:#EFE9E0; font-size:22px; cursor:pointer; }
+#prev { left:14px; } #next { right:14px; }
+#fs { top:14px; right:14px; background:rgba(23,20,18,.45); border:none; color:#EFE9E0; border-radius:20px; padding:8px 14px; font-size:13px; cursor:pointer; }
+@media (hover:none) { .arrow { display:none; } }
+</style>
+</head>
+<body>
+<div id="stage">
+<section id="cover" class="photo" data-transition="fade">
+<div class="txt" style="width:860px; padding:128px 64px 96px 128px;">
+<div class="txt-top">
+<p class="eyebrow rise">Дизайн інтер’єру · 2026</p>
+<h1 class="rise2" style="font-size:136px; line-height:0.95; white-space:nowrap;">Івент-хол<br>2 Лелеки</h1>
+<div class="rule rise3"></div>
+<p class="body rise3" style="width:560px;">Банкетна зала, сцена, фотозона, гардероб і санвузли</p>
+</div>
+<img class="rise3" src="img/logo-light.png" alt="CHABANY DESIGN" style="width:300px; height:73px; object-fit:contain;">
+</div>
+<div class="pics">
+<div class="ph"><img src="img/zal1.jpg" alt="Банкетна зала з чорною стелею і бежевими кріслами"></div>
+<div class="ph second"><img src="img/scena.jpg" alt="Сцена: 3D-стіна з чорних рейок із підсвіткою зсередини"></div>
+</div>
+</section>
+
+<section id="concept" class="photo light" data-transition="fade">
+<div class="txt" style="width:880px; padding:128px 96px 96px 128px;">
+<div class="txt-top">
+<p class="eyebrow rise">Ідея</p>
+<h2 class="rise2">Темний каркас, тепле дерево і світло, що йде зсередини</h2>
+<div class="rule rise3"></div>
+<p class="body rise3">Чорна стеля з балками задає глибину й ховає техніку. Дуб, бежевий камінь і м’який оксамит роблять простір теплим і камерним.</p>
+<p class="body rise3">Світло вбудоване в саму архітектуру: воно горить усередині рейкових стін, за опуклими дзеркалами й короткими лініями на трекових світильниках.</p>
+</div>
+<p class="page">02</p>
+</div>
+<div class="pics">
+<div class="ph"><img src="img/zal2.jpg" alt="Банкетна зала: трекові світильники, дубові стіни, сервіровані столи"></div>
+</div>
+</section>
+
+<section id="plan" class="light" style="background:#E9E1D4;" data-transition="fade">
+<p class="eyebrow">План</p>
+<h2 style="margin-top:16px;">Планування</h2>
+<div class="plan-wrap">
+<img class="rise" src="img/plan.png" alt="План: банкетна зала зі столами праворуч, санвузли й гардероб ліворуч" style="width:1280px; height:642px; object-fit:contain;">
+<div class="legend rise2" style="width:320px;">
+<div class="leg" style="align-items:flex-start;"><p class="eyebrow" style="font-size:24px;">01</p><p class="small">Банкетна зала, сцена і фотозона</p></div>
+<div class="leg" style="align-items:flex-start;"><p class="eyebrow" style="font-size:24px;">02</p><p class="small">Санвузли: дві кабінки, умивальники навпроти, окремий санвузол для людей з інвалідністю</p></div>
+<div class="leg" style="align-items:flex-start;"><p class="eyebrow" style="font-size:24px;">03</p><p class="small">Гардероб біля входу</p></div>
+<p class="small" style="margin-top:24px;">Розстановка столів орієнтовна.</p>
+</div>
+</div>
+</section>
+
+<section id="zal" class="photo" data-transition="fade">
+<div class="txt">
+<div class="txt-top">
+<p class="eyebrow rise">01 · Зала</p>
+<h2 class="rise2">Банкетна зала</h2>
+<div class="rule rise3"></div>
+<p class="body rise3">Стеля з чорної OSB і металевих балок. На треках чергуються короткі лінії світла й поворотні споти.</p>
+<p class="body rise3">Чорні столи, бежеві оксамитові крісла, стіни з дубових панелей.</p>
+</div>
+<p class="page">04</p>
+</div>
+<div class="pics">
+<div class="ph"><img src="img/zal1.jpg" alt="Банкетна зала, загальний вигляд"></div>
+<div class="ph second"><img src="img/zal2.jpg" alt="Банкетна зала, вигляд уздовж дубової стіни"></div>
+</div>
+</section>
+
+<section id="scena" class="photo" data-transition="fade">
+<div class="txt">
+<div class="txt-top">
+<p class="eyebrow rise">02 · Сцена</p>
+<h2 class="rise2">3D-стіна з рейок</h2>
+<div class="rule rise3"></div>
+<p class="body rise3">Фон сцени — об’ємна ґратка з чорних рейок у кілька шарів. Тепле світло горить усередині, і рейки читаються темним силуетом.</p>
+<p class="body rise3">Поруч фотозона: опуклі дзеркала різних розмірів із підсвіткою на дубовій стіні.</p>
+</div>
+<p class="page">05</p>
+</div>
+<div class="pics">
+<div class="ph"><img src="img/scena.jpg" alt="Сцена: 3D-стіна з чорних рейок і фотозона з опуклими дзеркалами"></div>
+<div class="ph second"><img src="img/zal-scena.jpg" alt="Зала з видом на сцену і фотозону"></div>
+</div>
+</section>
+
+<section id="panel" class="photo" data-transition="fade">
+<div class="pics">
+<div class="ph"><img src="img/panel.jpg" alt="Декоративна стіна: ґратка з дубових рейок і дубові панелі"></div>
+</div>
+<div class="txt" style="width:880px; padding:128px 128px 96px 96px;">
+<div class="txt-top">
+<p class="eyebrow rise">03 · Декоративна стіна</p>
+<h2 class="rise2">Дуб і рейки вздовж банкетного столу</h2>
+<div class="rule rise3"></div>
+<p class="body rise3">Ґратка з горизонтальних дубових рейок світиться зсередини. Гладкі дубові панелі чергуються з вставками з чорних рейок.</p>
+<p class="body rise3">Над панелями прихована підсвітка, яка м’яко освітлює чорну стелю.</p>
+</div>
+<p class="page">06</p>
+</div>
+</section>
+
+<section id="sanvuzly" class="photo" data-transition="fade">
+<div class="txt">
+<div class="txt-top">
+<p class="eyebrow rise">04 · Санвузли</p>
+<h2 class="rise2">Камінь двох тонів</h2>
+<div class="rule rise3"></div>
+<p class="body rise3">Світлий бежевий керамограніт на стінах, що йдуть паралельно, темно-сірий — на перпендикулярних, з чорним поясом угорі.</p>
+<p class="body rise3">Скляні двері без рамок, чорна фурнітура, підвісні унітази.</p>
+</div>
+<p class="page">07</p>
+</div>
+<div class="pics">
+<div class="ph"><img src="img/vhid.jpg" alt="Вхід у санвузли: дубова колона, рейкова стіна з підсвіткою, умивальники"></div>
+<div class="ph second"><img src="img/sanvuzol.jpg" alt="Кабіни санвузлів: світлий і темно-сірий керамограніт, скляні двері"></div>
+</div>
+</section>
+
+<section id="garderob" class="photo" data-transition="fade">
+<div class="pics">
+<div class="ph"><img src="img/garderob.jpg" alt="Гардероб: коридор між стінами з темно-сірого керамограніту, рейкова панель із підсвіткою"></div>
+</div>
+<div class="txt" style="width:880px; padding:128px 128px 96px 96px;">
+<div class="txt-top">
+<p class="eyebrow rise">05 · Гардероб</p>
+<h2 class="rise2">Гардероб на вході</h2>
+<div class="rule rise3"></div>
+<p class="body rise3">Коридор між масивними стінами з темно-сірого керамограніту. Вішаки — на бічних стінах, одразу біля входу.</p>
+<p class="body rise3">У кінці коридору рейкова панель, що світиться зсередини, веде погляд далі в залу.</p>
+</div>
+<p class="page">08</p>
+</div>
+</section>
+
+<section id="mood" class="photo light" style="background:#E8E0D6;" data-transition="fade">
+<div class="ph" style="flex:none; width:806px;"><img src="img/moodboard.jpg" alt="Мудборд матеріалів: дуб, рейки з підсвіткою, чорна OSB, темно-сіра й бежева плитка під камінь, оксамит, дзеркало, трековий спот"></div>
+<div class="txt" style="width:1114px; padding:128px 128px 96px 112px;">
+<div class="txt-top">
+<p class="eyebrow rise">Матеріали</p>
+<h2 class="rise2">Мудборд</h2>
+<div class="rule rise3"></div>
+<div class="rise3" style="display:grid; grid-template-columns:1fr 1fr; gap:22px 56px; margin-top:16px;">
+<p class="small">Стеля: OSB, чорна фарба</p>
+<p class="small">Фанера чорна, верхній пояс</p>
+<p class="small">Рейка чорна 20×20, 20×40</p>
+<p class="small">Панелі під дерево</p>
+<p class="small">Рейка під дерево з підсвіткою</p>
+<p class="small">Плитка Rako Shade slag, темно-сіра 120×60</p>
+<p class="small">Плитка Rako Shade almond, бежева 120×60</p>
+<p class="small">Крісла: бежевий оксамит</p>
+<p class="small">Опуклі дзеркала з підсвіткою</p>
+<p class="small">Трек: лінії світла і споти</p>
+<p class="small">Чорна фурнітура</p>
+<p class="small">Столи: чорне дерево</p>
+</div>
+</div>
+<p class="page">09</p>
+</div>
+</section>
+
+<section id="finish" class="photo">
+<div class="pics">
+<div class="ph"><img src="img/zal-scena.jpg" alt="Зала з видом на сцену"></div>
+</div>
+<div class="txt" style="width:880px; padding:128px 128px 96px 96px; justify-content:center; gap:48px;">
+<img class="rise" src="img/mark.png" alt="" style="width:110px; height:150px; object-fit:contain;">
+<h1 class="rise2">Дякуємо</h1>
+<div class="rule rise3"></div>
+<img class="rise3" src="img/logo-light.png" alt="CHABANY DESIGN" style="width:420px; height:102px; object-fit:contain;">
+<p class="body rise3">chabany.com.ua</p>
+</div>
+</section>
+
+</div>
+<button class="ui arrow" id="prev" aria-label="Попередній слайд">‹</button>
+<button class="ui arrow" id="next" aria-label="Наступний слайд">›</button>
+<button class="ui" id="fs">На весь екран</button>
+<div class="ui" id="nav"></div>
+<script>
+const st=document.getElementById('stage'), S=[...st.children], nav=document.getElementById('nav');
+let i=0;
+S.forEach((s,k)=>{const b=document.createElement('button');b.setAttribute('aria-label','Слайд '+(k+1));b.onclick=()=>go(k);nav.appendChild(b);});
+function fit(){const k=Math.min(innerWidth/1920,innerHeight/1080);st.style.transform=`scale(${k}) translate(-50%,-50%)`;}
+function go(k){i=Math.max(0,Math.min(S.length-1,k));S.forEach((s,n)=>s.classList.toggle('active',n===i));[...nav.children].forEach((b,n)=>b.classList.toggle('on',n===i));history.replaceState(null,'','#'+(i+1));}
+addEventListener('resize',fit);fit();
+addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key))go(i+1);if(['ArrowLeft','PageUp'].includes(e.key))go(i-1);});
+document.getElementById('next').onclick=()=>go(i+1);document.getElementById('prev').onclick=()=>go(i-1);
+document.getElementById('fs').onclick=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();};
+let x0=null;addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(x0===null)return;const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>40)go(i+(d<0?1:-1));x0=null;});
+st.addEventListener('click',e=>{go(i+(e.clientX>innerWidth/2?1:-1));});
+go((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>
