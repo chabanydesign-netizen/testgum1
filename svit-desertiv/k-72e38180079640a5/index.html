@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Світ десертів · Chabany Design</title>
+<link rel="icon" href="img/mark.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Didact+Gothic&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F4EFE8; --sand:#E6DCCF; --ink:#2A2420; --soft:#5E534B;
+  --bordo:#5A1F2A; --gold:#A9824E; --onbordo:#F1E6DC;
+}
+body{font-family:'Didact Gothic','Century Gothic',Arial,sans-serif; color:var(--ink);}
+section{padding:128px; background:var(--cream); color:var(--ink);}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif; font-weight:500; margin:0;}
+h2{font-size:88px; line-height:1.05; color:var(--ink);}
+h3{font-size:44px; line-height:1.1; color:var(--ink);}
+p{font-size:32px; line-height:1.4; margin:0; color:var(--soft);}
+.eyebrow{font-size:24px; letter-spacing:4px; text-transform:uppercase; color:var(--gold);}
+
+.cover{padding:0; background:var(--ink);}
+.cover .bg{position:absolute; left:0; top:0; width:1920px; height:1080px; object-fit:cover; animation:kb 9s ease-out both;}
+.cover .shade{position:absolute; left:0; top:520px; width:1920px; height:560px; background:linear-gradient(180deg,rgba(42,36,32,0) 0%,rgba(42,36,32,.88) 100%);}
+.cover .title{position:absolute; left:128px; top:700px; width:1300px; font-size:150px; line-height:1; color:var(--cream); animation:up .9s ease-out .2s both;}
+.cover .sub{position:absolute; left:132px; top:872px; width:1200px; font-size:32px; letter-spacing:3px; color:var(--onbordo); animation:up .9s ease-out .45s both;}
+.cover .logo{position:absolute; left:1504px; top:860px; width:300px; height:73px; object-fit:contain;}
+
+.idea{display:flex; flex-direction:row; gap:96px; align-items:stretch; padding:0 0 0 128px;}
+.idea .text{display:flex; flex-direction:column; gap:40px; justify-content:center; width:820px; padding:128px 0;}
+.idea .pillars{display:flex; flex-direction:column; gap:28px;}
+.idea .pillar{display:flex; flex-direction:column; gap:6px; border-top:1px solid var(--sand); padding-top:20px;}
+.idea .pillar p{font-size:28px;}
+.idea .photo{width:876px; height:1080px; object-fit:cover;}
+
+.view{padding:0; background:var(--ink);}
+.view .bg{position:absolute; left:0; top:0; width:1920px; height:1080px; object-fit:cover; animation:kb 9s ease-out both;}
+.view .tag{position:absolute; left:96px; bottom:80px; width:640px; background:var(--cream); padding:32px 40px; box-sizing:border-box; display:flex; flex-direction:column; gap:8px;}
+.view .tag p{font-size:26px;}
+.view .tag h3{font-size:48px;}
+
+.moodslide{padding:0; background:var(--sand);}
+.moodslide .board{position:absolute; left:64px; top:75px; width:1488px; height:930px; object-fit:contain;}
+.moodslide .side{position:absolute; left:1600px; top:75px; width:264px; display:flex; flex-direction:column; gap:16px;}
+.moodslide .side h3{font-size:44px;}
+.moodslide .side p{font-size:24px;}
+
+.mat{background:var(--sand); display:flex; flex-direction:column; gap:56px;}
+.swatches{display:grid; grid-template-columns:repeat(4,1fr); gap:40px 32px;}
+.sw{display:flex; flex-direction:column; gap:14px;}
+.sw .chip{width:120px; height:120px; border-radius:60px;}
+.sw h3{font-size:36px;}
+.sw p{font-size:24px; line-height:1.35;}
+
+.light{background:var(--bordo); display:flex; flex-direction:row; gap:96px; align-items:center;}
+.light h2{color:var(--cream);}
+.light .eyebrow{color:#D9B98A;}
+.light .left{display:flex; flex-direction:column; gap:28px; width:620px;}
+.light .left p{color:var(--onbordo);}
+.light ul{margin:0; padding-left:36px; width:948px; color:var(--onbordo); font-size:32px; line-height:1.4;}
+.light li{margin:0 0 22px 0;}
+
+.next{display:flex; flex-direction:column; gap:56px; padding:128px 128px 160px;}
+.steps{display:grid; grid-template-columns:repeat(4,1fr); gap:32px;}
+.step{display:flex; flex-direction:column; gap:12px; border-top:2px solid var(--gold); padding-top:24px;}
+.step .n{font-family:'Cormorant Garamond',Georgia,serif; font-size:72px; line-height:1; color:var(--gold);}
+.step p{font-size:28px;}
+.next .foot{position:absolute; left:128px; bottom:64px; width:1664px; display:flex; justify-content:space-between; align-items:center;}
+.next .foot p{font-size:24px;}
+.next .foot img{width:260px; height:63px; object-fit:contain;}
+
+@keyframes kb{from{transform:scale(1.06);}to{transform:scale(1);}}
+@keyframes up{from{opacity:0; transform:translateY(24px);}to{opacity:1; transform:translateY(0);}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;}}
+
+html,body{margin:0; height:100%; background:#0E0C0B; overflow:hidden;}
+*{box-sizing:border-box;}
+#stage{position:fixed; left:50%; top:50%; width:1920px; height:1080px; transform-origin:0 0;}
+#stage > section{position:absolute; inset:0; width:1920px; height:1080px; overflow:hidden;}
+#stage > section:not(.active){display:none!important;}
+.ui{position:fixed; z-index:10; font-family:'Didact Gothic',Arial,sans-serif; color:#EFE9E0;}
+#nav{bottom:18px; left:50%; transform:translateX(-50%); display:flex; gap:10px; align-items:center;}
+#nav button{width:10px; height:10px; border-radius:50%; border:1px solid #A9824E; background:transparent; padding:0; cursor:pointer;}
+#nav button.on{background:#A9824E;}
+.arrow{top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; border:none; background:rgba(23,20,18,.45); color:#EFE9E0; font-size:22px; cursor:pointer;}
+#prev{left:14px;} #next{right:14px;}
+#fs{top:14px; right:14px; background:rgba(23,20,18,.45); border:none; color:#EFE9E0; border-radius:20px; padding:8px 14px; font-size:13px; cursor:pointer;}
+@media (hover:none){.arrow{display:none;}}
+</style>
+</head>
+<body>
+<div id="stage">
+
+<section class="cover">
+<img class="bg" src="img/r01_zala.jpg" alt="Зала кав’ярні «Світ десертів»: бордові оксамитові дивани, мармурові столи, вітрини з десертами">
+<div class="shade"></div>
+<h1 class="title">Світ десертів</h1>
+<p class="sub">Кав’ярня-кондитерська · Луцьк · 42 м²</p>
+<img class="logo" src="img/logo-light.png" alt="CHABANY DESIGN">
+</section>
+
+<section class="idea">
+<div class="text">
+<p class="eyebrow">Ідея</p>
+<h2>Десерти в центрі сцени</h2>
+<div class="pillars">
+<div class="pillar"><h3>Вітрини як сцена</h3><p>Дві однакові багатоярусні вітрини з підсвіткою обрамляють бар і круглий логотип.</p></div>
+<div class="pillar"><h3>Оксамит і мармур</h3><p>Приглушений бордовий велюр, мармурові стільниці, світлий пісочний беж стін.</p></div>
+<div class="pillar"><h3>Тепле світло</h3><p>LED з-за карниза, контражур логотипів, підсвічені полиці з коробками.</p></div>
+</div>
+</div>
+<img class="photo" src="img/r02_vitryny.jpg" alt="Вітрини з десертами обабіч барної стійки, круглий логотип на стіні з рейками">
+</section>
+
+<section class="view">
+<img class="bg" src="img/r01_zala.jpg" alt="Загальний вид зали">
+<div class="tag"><p class="eyebrow">Ракурс 1</p><h3>Зала</h3><p>Диван уздовж стіни, вітрини й засклений цех у глибині.</p></div>
+</section>
+
+<section class="view">
+<img class="bg" src="img/r02_vitryny.jpg" alt="Барна стійка між двома вітринами">
+<div class="tag"><p class="eyebrow">Ракурс 2</p><h3>Вітрини й бар</h3><p>Рейки з дзеркалом на стійці, логотип з контражуром.</p></div>
+</section>
+
+<section class="view">
+<img class="bg" src="img/r10_dzerkalo.jpg" alt="Дзеркальна стіна з неоновим написом над бордовим диваном">
+<div class="tag"><p class="eyebrow">Ракурс 3</p><h3>Дзеркало з неоном</h3><p>Дзеркальна стіна подвоює вітрини й робить залу глибшою.</p></div>
+</section>
+
+<section class="moodslide">
+<img class="board" src="img/mood.jpg" alt="Мудборд матеріалів: рельєфні панелі з підсвіткою, бордовий велюр, мармур, льон, латунь">
+<div class="side"><p class="eyebrow">Мудборд</p><h3>Матеріали разом</h3><p>Рельєфні панелі, оксамит, мармур, льон і латунь.</p></div>
+</section>
+
+<section class="mat">
+<div style="display:flex; flex-direction:column; gap:16px;"><p class="eyebrow">Матеріали</p><h2>Палітра простору</h2></div>
+<div class="swatches">
+<div class="sw"><div class="chip" style="background:#EFE6D6; border:1px solid #C9BBA8;"></div><h3>Стіни</h3><p>Панелі AGT LB-3821, кремово-білий мат, рельєф з увігнутим профілем</p></div>
+<div class="sw"><div class="chip" style="background:#CFCCC6; border:1px solid #AFA9A1;"></div><h3>Цоколь вітрин</h3><p>Панелі AGT LB-2050, світло-сірий шовк, дрібний профіль</p></div>
+<div class="sw"><div class="chip" style="background:#6B2430;"></div><h3>Оксамит</h3><p>Приглушений бордовий велюр з ворсом: диван і стільці</p></div>
+<div class="sw"><div class="chip" style="background:#EDE9E3; border:1px solid #BDB5AA;"></div><h3>Стільниці</h3><p>Світлий мармур на столах</p></div>
+<div class="sw"><div class="chip" style="background:#F7F5F1; border:1px solid #C9BBA8;"></div><h3>Стеля й карниз</h3><p>Біле все вище лінії дверей, LED за карнизом</p></div>
+<div class="sw"><div class="chip" style="background:#D9CBB4;"></div><h3>Штори</h3><p>Римські штори з натурального льону, напівпрозорі</p></div>
+<div class="sw"><div class="chip" style="background:#9C9A96;"></div><h3>Підлога</h3><p>Існуюча сіра плитка 44×44, лишаємо</p></div>
+<div class="sw"><div class="chip" style="background:#B08A55;"></div><h3>Акценти</h3><p>Латунь світильників і золото логотипа</p></div>
+</div>
+</section>
+
+<section class="light">
+<div class="left"><p class="eyebrow">Світло</p><h2>Тепле, шарами</h2><p>Жодного яскравого верхнього світла: зала світиться від стін і вітрин.</p></div>
+<ul>
+<li>LED з-за декоративного карниза, світить униз на стіни</li>
+<li>Білий трек зі спотами над залою</li>
+<li>Контражур обох логотипів</li>
+<li>Підсвітка вітрин, полиць з коробками й холодильників</li>
+<li>Світло під барною стійкою</li>
+<li>Неоновий напис на дзеркальній стіні</li>
+</ul>
+</section>
+
+<section class="next">
+<div style="display:flex; flex-direction:column; gap:16px;"><p class="eyebrow">Далі</p><h2>Наступні кроки</h2></div>
+<div class="steps">
+<div class="step"><p class="n">1</p><h3>Погодження</h3><p>Ваші коментарі до концепції й ракурсів</p></div>
+<div class="step"><p class="n">2</p><h3>Креслення</h3><p>План, розгортки стін, світло й електрика</p></div>
+<div class="step"><p class="n">3</p><h3>Комплектація</h3><p>Панелі, тканини, світильники, меблі</p></div>
+<div class="step"><p class="n">4</p><h3>Супровід</h3><p>Контроль монтажу на об’єкті</p></div>
+</div>
+<div class="foot"><p>chabany.com.ua</p><img src="img/chabany_logo_dark.png" alt="CHABANY DESIGN"></div>
+</section>
+
+</div>
+<button class="ui arrow" id="prev" aria-label="Попередній слайд">‹</button>
+<button class="ui arrow" id="next" aria-label="Наступний слайд">›</button>
+<button class="ui" id="fs">На весь екран</button>
+<div class="ui" id="nav"></div>
+<script>
+const st=document.getElementById('stage'), S=[...st.children], nav=document.getElementById('nav');
+let i=0;
+S.forEach((s,k)=>{const b=document.createElement('button');b.setAttribute('aria-label','Слайд '+(k+1));b.onclick=()=>go(k);nav.appendChild(b);});
+function fit(){const k=Math.min(innerWidth/1920,innerHeight/1080);st.style.transform=`scale(${k}) translate(-50%,-50%)`;}
+function go(k){i=Math.max(0,Math.min(S.length-1,k));S.forEach((s,n)=>s.classList.toggle('active',n===i));[...nav.children].forEach((b,n)=>b.classList.toggle('on',n===i));history.replaceState(null,'','#'+(i+1));}
+addEventListener('resize',fit);fit();
+addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key))go(i+1);if(['ArrowLeft','PageUp'].includes(e.key))go(i-1);});
+document.getElementById('next').onclick=()=>go(i+1);document.getElementById('prev').onclick=()=>go(i-1);
+document.getElementById('fs').onclick=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();};
+let x0=null;addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{if(x0===null)return;const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>40)go(i+(d<0?1:-1));x0=null;});
+st.addEventListener('click',e=>{go(i+(e.clientX>innerWidth/2?1:-1));});
+go((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>
