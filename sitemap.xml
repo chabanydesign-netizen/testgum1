@@ -21,4 +21,12 @@
       <loc>https://chabany.com.ua/2-leleky/</loc>
       <priority>0.8</priority>
    </url>
+   <url>
+      <loc>https://chabany.com.ua/vidrodzhennia/</loc>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://chabany.com.ua/svit-desertiv/</loc>
+      <priority>0.8</priority>
+   </url>
 </urlset>
