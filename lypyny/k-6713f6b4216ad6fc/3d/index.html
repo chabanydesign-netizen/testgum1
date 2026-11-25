@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<title>Липини · інженерія</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap">
+<style>
+/* Layout: brand header, floor + layer chips, 3D stage (walls cut at 1.7 m), element card, schedule table. One column, phone first. */
+:root{--bg:#EFE9E1;--panel:#FBF8F4;--fg:#2B2622;--muted:#6E655D;--line:#D8CFC4;--accent:#C07B5A;--stage:#E6DED3;--warn:#B4561F;--warnbg:#F6E3D6;
+--socket:#B8781A;--switch:#7F5FD0;--light:#D4A017;--water:#2F7FD0;--sewer:#7A5A44;--san:#8A8178;--grp:#2F5FD0;--led:#E8B800;--mont:#2E9E4F;--demo:#E03C31;
+--f:'Manrope',system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1E1B18;--panel:#282420;--fg:#F1EBE3;--muted:#A99F95;--line:#3D3731;--stage:#2C2723;--warn:#F0A070;--warnbg:#3A2A20;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1E1B18;--panel:#282420;--fg:#F1EBE3;--muted:#A99F95;--line:#3D3731;--stage:#2C2723;--warn:#F0A070;--warnbg:#3A2A20;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--f);font-size:15px;margin:0}
+.wrap{max-width:1100px;margin:0 auto;padding-block:16px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:12px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.brand{font-weight:700;letter-spacing:.14em;font-size:13px;color:var(--accent)}
+h1{font-size:20px;font-weight:700;margin:2px 0 0;text-wrap:balance}
+h2{font-size:16px;font-weight:700;margin:12px 0 0}
+.meta{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;line-height:1.5}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.row .cap{font-size:12px;color:var(--muted);letter-spacing:.06em;margin-right:4px}
+button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:999px;padding:6px 12px;display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button.off{opacity:.4}
+button.sel{border-color:var(--accent);color:var(--accent)}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+#stage{position:relative;height:min(68vh,620px);min-height:380px;border-radius:14px;background:var(--stage);overflow:hidden;touch-action:none;cursor:grab}
+.lbl,.mk{position:absolute;font-size:11px;font-weight:500;padding:1px 5px;border-radius:4px;background:var(--panel);border:1px solid;white-space:nowrap;pointer-events:none;transform:translate(-50%,-50%);font-variant-numeric:tabular-nums}
+.dims{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}.dims line{stroke:var(--accent);stroke-width:1.3}.dims line.ex{stroke-width:.8;opacity:.6}.dims line.tk{stroke-width:2}.dims rect{fill:var(--panel);stroke:var(--accent);stroke-width:1}.dims text{fill:var(--accent);font:600 11px var(--f);text-anchor:middle;font-variant-numeric:tabular-nums}
+.gchip{display:inline-block;color:#fff;border-radius:8px;padding:0 5px;margin-left:4px;font-weight:700;font-size:10px;line-height:14px}.gsv{z-index:1}
+.mk{z-index:2;font-weight:700;transform:translate(-50%,-150%)}
+.hint{position:absolute;left:12px;right:12px;bottom:10px;font-size:12px;line-height:1.35;color:var(--muted);pointer-events:none}
+#card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;min-height:96px}
+#card .t{font-weight:700;display:flex;gap:8px;align-items:center;margin-bottom:6px;flex-wrap:wrap}
+#card .k{font-size:12px;color:var(--muted);font-weight:400}
+#card .r{color:var(--muted);line-height:1.6}
+.flag{margin-top:8px;padding:8px 10px;border-radius:8px;background:var(--warnbg);color:var(--warn);font-size:13px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:11px;letter-spacing:.06em;color:var(--muted);font-weight:500;position:sticky;top:0;background:var(--panel)}
+tr:last-child td{border-bottom:0}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--stage)}
+td.n{white-space:normal;min-width:200px}
+.note{font-size:12px;color:var(--muted);line-height:1.6}
+.qs{margin:0;padding-left:18px;line-height:1.6}
+</style>
+<div class="wrap">
+<header>
+ <div><div class="brand">CHABANY DESIGN</div><h1>Будинок у Липинах · інженерія</h1></div>
+ <div class="meta" id="meta"></div>
+</header>
+<div class="row" id="floors"><span class="cap">ПОВЕРХ</span></div>
+<div class="row" id="rooms"><span class="cap">ПРИМІЩЕННЯ</span></div>
+<div class="row" id="layers"><span class="cap">ШАРИ</span></div>
+<div id="stage"><div class="hint">Один палець — крутити (у «Вид зверху» — рухати) · два пальці — рухати й масштаб · ПКМ/Shift — рухати · тисни на точку</div></div>
+<div id="card"><div class="r">Обери поверх, далі приміщення (або «Усі»), потім увімкни потрібні шари: розетки, вимикачі, світло, воду, розміри. Спочатку всі шари вимкнені. Натисни на точку в моделі або на рядок у відомості, і з'явиться її висота, прив'язки та склад рамки. Стіни зрізані на висоті 1,7 м.</div></div>
+<h2>Питання до креслень</h2>
+<div class="flag" style="background:var(--panel);color:var(--fg);border:1px solid var(--line)"><ol class="qs" id="qs"></ol></div>
+<h2>Відомість точок</h2>
+<div class="tw"><table><thead><tr><th>Марка</th><th>Приміщення</th><th>Що</th><th>Висота центру</th><th>Низ</th><th>Від стін</th></tr></thead><tbody id="tbl"></tbody></table></div>
+<div class="note">Висоти від рівня свого поверху в моделі (1 пов. ±0,000; 2 пов. +3,270). Для рамок висота центру: так ставить точку вставки бібліотечний елемент. Сантехніку й світильники взято з моделі ArchiCAD, каналізацію й прилади — з аркушів 15–16 PDF (відмітки від чистої підлоги, до центру виводу; стояків і трас на аркушах немає). Опалення в отриманих файлах немає.</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+fetch('data.json').then(r=>r.json()).then(D=>{
+const cs=getComputedStyle(document.documentElement),cv=n=>cs.getPropertyValue(n).trim();
+const L={socket:{n:'Розетки'},switch:{n:'Вимикачі'},light:{n:'Світло'},water:{n:'Вода'},sewer:{n:'Каналізація'},san:{n:'Сантехніка'},grp:{n:'Групи світла'},led:{n:'Підсвітка'},mont:{n:'Монтаж'},demo:{n:'Демонтаж'},dm:{n:'Розміри'}};
+Object.keys(L).forEach(k=>L[k].c=k==='dm'?cv('--accent'):cv('--'+k));
+const on={socket:false,switch:false,light:false,water:false,sewer:false,san:false,grp:false,led:false,mont:false,demo:false,dm:false};
+const PFX={socket:'Р',switch:'В',light:'С',water:'ВД',sewer:'К'};
+const FLOORS=D.storeys.map((s,i)=>({i,name:(i+1)+' поверх',elev:s.elev})).filter(f=>D.points.some(p=>p.s===f.i)||Object.keys(D.meshes).some(k=>k.endsWith('|'+f.i)&&!k.startsWith('roof')));
+let FL=0,ROOM=null;
+document.getElementById('meta').innerHTML='З моделі ArchiCAD (IFC) і аркушів PDF · '+D.points.length+' точок<br>ред. 2 · '+new Date().toLocaleDateString('uk-UA');
+const m=v=>v/1000;
+const W2=(x,y,z)=>new THREE.Vector3(m(x),m(z),-m(y));
+const st=document.getElementById('stage'),SW=()=>st.clientWidth,SH=()=>st.clientHeight;
+const r=new THREE.WebGLRenderer({antialias:true,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio,2));r.setSize(SW(),SH());r.localClippingEnabled=true;st.prepend(r.domElement);
+const sc=new THREE.Scene(),pcam=new THREE.PerspectiveCamera(45,SW()/SH(),.05,200),ocam=new THREE.OrthographicCamera(-1,1,1,-1,-200,400);let ORTHO=true,cam=ocam;
+sc.add(new THREE.AmbientLight(0xffffff,.75));const dl=new THREE.DirectionalLight(0xffffff,.5);dl.position.set(5,9,4);sc.add(dl);
+const clip=new THREE.Plane(new THREE.Vector3(0,-1,0),1.7);
+const mat=(c,op=1,cl=false)=>new THREE.MeshLambertMaterial({color:c,transparent:op<1,opacity:op,depthWrite:op>=1,side:THREE.DoubleSide,clippingPlanes:cl?[clip]:null});
+const CTX={wall:[0xF4F2EE,1,true],wallnew:[0xF4F2EE,1,true],demo:[0xE03C31,.4,true],slab:[0xD9CBB4,1,true],slabup:[0xD9CBB4,1,true],door:[0xA89A8A,1,true],win:[0xBFD8E8,.5,true],stair:[0xCFC3B2,1,true],san:[0xE4E9EC,1,false],roof:[0xD9CBB4,.3,false]};
+const MG={},CAPS=[];let ORD=1;
+// заливка зрізу стін (stencil): як переріз у SketchUp
+function addCap(geo,s,g){const base={depthWrite:false,depthTest:false,colorWrite:false,stencilWrite:true,stencilFunc:THREE.AlwaysStencilFunc,clippingPlanes:[clip]};
+ const b=new THREE.MeshBasicMaterial(Object.assign({side:THREE.BackSide,stencilFail:THREE.IncrementWrapStencilOp,stencilZFail:THREE.IncrementWrapStencilOp,stencilZPass:THREE.IncrementWrapStencilOp},base));
+ const fr=new THREE.MeshBasicMaterial(Object.assign({side:THREE.FrontSide,stencilFail:THREE.DecrementWrapStencilOp,stencilZFail:THREE.DecrementWrapStencilOp,stencilZPass:THREE.DecrementWrapStencilOp},base));
+ const o=ORD;ORD+=1;[b,fr].forEach(mt=>{const x=new THREE.Mesh(geo,mt);x.renderOrder=o;x.userData={g:'capS',cg:g,s:+s};sc.add(x);MG[s].push(x)});
+ const pl=new THREE.Mesh(new THREE.PlaneGeometry(80,80),new THREE.MeshBasicMaterial({color:0x4A4540,stencilWrite:true,stencilRef:0,stencilFunc:THREE.NotEqualStencilFunc,stencilFail:THREE.ReplaceStencilOp,stencilZFail:THREE.ReplaceStencilOp,stencilZPass:THREE.ReplaceStencilOp}));
+ pl.rotation.x=-Math.PI/2;pl.renderOrder=o+.5;pl.onAfterRender=rr=>rr.clearStencil();pl.userData={g:'cap',cg:g,s:+s};sc.add(pl);MG[s].push(pl);CAPS.push(pl)}
+// перекриття між поверхами належить верхньому поверху, щоб на 2-му не було видно плит 1-го
+Object.keys(D.meshes).filter(k=>k.startsWith('slab|')).forEach(k=>{const s=+k.split('|')[1],o=D.meshes[k],lim=(D.storeys[s+1]?D.storeys[s+1].elev:1e9)-500,lo=[],hi=[];
+ for(let i=0;i<o.i.length;i+=3){const tr=[o.i[i],o.i[i+1],o.i[i+2]];(tr.every(j=>o.v[j*3+2]>=lim)?hi:lo).push(...tr)}
+ o.i=lo;if(hi.length)D.meshes['slabup|'+(s+1)]={v:o.v,i:hi}});
+Object.entries(D.meshes).forEach(([key,o])=>{const [g,s]=key.split('|');if(g==='roof'||!CTX[g])return;const v=o.v,a=new Float32Array(v.length);
+ for(let i=0;i<v.length;i+=3){a[i]=m(v[i]);a[i+1]=m(v[i+2]);a[i+2]=-m(v[i+1])}
+ let geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.BufferAttribute(a,3));geo.setIndex(o.i);geo=geo.toNonIndexed();geo.computeVertexNormals();
+ const c=CTX[g];const mesh=new THREE.Mesh(geo,mat(c[0],c[1],c[2]));mesh.userData={g,s:+s};sc.add(mesh);(MG[s]=MG[s]||[]).push(mesh);
+ if(g==='wall'||g==='wallnew'||g==='demo'||g==='san'){const e=new THREE.LineSegments(new THREE.EdgesGeometry(geo,g==='san'?35:20),new THREE.LineBasicMaterial({color:g==='demo'?0xB02A20:g==='san'?0x7D8A94:0x8F857A,clippingPlanes:g==='san'?null:[clip]}));e.userData={g:g==='demo'||g==='san'?g:'edge',s:+s};sc.add(e);MG[s].push(e)}
+ if(g==='wall'||g==='wallnew')addCap(geo,s,g)});
+// points
+const pick=[],labels=[],P=[],DIMS=[];
+const PAL=['#D7263D','#1B6CA8','#2A9D3F','#E07A00','#7B3FA0','#0097A7','#C2185B','#6D4C41','#3F51B5','#7CB342','#F4511E','#00897B','#8E24AA','#9E9D24'];const GC={};const fi={};(D.groups||[]).forEach(g=>{fi[g.s]=(fi[g.s]||0)+1;g.num=fi[g.s];g.c=PAL[(g.num-1)%PAL.length];GC[g.id]=g});const cnt={};
+D.points.sort((a,b)=>a.s-b.s||a.k.localeCompare(b.k)||a.room.localeCompare(b.room)||a.x-b.x);
+const PG=new THREE.Group();sc.add(PG);
+function lab(t,p,k,cls,pid,s){const d=document.createElement('div');d.className=cls;d.textContent=t;d.style.color=L[k].c;d.style.borderColor=L[k].c;st.appendChild(d);labels.push({d,p,k,dim:cls==='lbl',pid,s});return d}
+function desc(p){if(p.k==='sewer')return (p.fx?p.fx+' · ':'')+'каналізація '+p.dia;
+ if(p.k==='water'){const a=[];if(p.cold)a.push('холодна');if(p.hot)a.push('гаряча');return (p.fx?p.fx+' · ':'')+(a.join(' + ')||'лише злив')}
+ if(p.k==='light')return p.name||'Світильник';
+ const it=(p.items||[]).filter(x=>x[0]&&x[0]!=='-').map(x=>x[1]||x[0]);const g={};it.forEach(x=>g[x]=(g[x]||0)+1);
+ return (p.frame?p.frame.replace('Рамка х','Рамка ×')+' · ':'')+Object.entries(g).map(([n,c])=>(c>1?c+'× ':'')+n.replace(/\s+/g,' ')).join(', ')}
+D.points.forEach(p=>{const pre=(p.s+1)+PFX[p.k];cnt[pre]=(cnt[pre]||0)+1;p.id=pre+'-'+String(cnt[pre]).padStart(2,'0');p.t=desc(p);
+ const c=p.k==='light'&&(p.grp||[]).length&&GC[p.grp[0]]?GC[p.grp[0]].c:L[p.k].c;let g;
+ if(p.k==='light'){g=new THREE.Mesh(new THREE.CylinderGeometry(.06,.06,.03,20),mat(c))}
+ else if(p.k==='sewer'){g=new THREE.Mesh(new THREE.CylinderGeometry(/100/.test(p.dia)?.055:.035,/100/.test(p.dia)?.055:.035,.06,20),mat(c))}
+ else if(p.k==='water'){g=new THREE.Mesh(new THREE.SphereGeometry(.045,16,12),mat(p.hot&&!p.cold?0xD8453F:(p.cold||p.hot)?c:0x5F5E5A))}
+ else{g=new THREE.Mesh(new THREE.BoxGeometry(Math.max(m(p.dx),.03),Math.max(m(p.zt-p.zb),.03),Math.max(m(p.dy),.03)),mat(c))}
+ g.position.copy(W2(p.x,p.y,p.z));g.userData={id:p.id};PG.add(g);pick.push(g);p.mesh=g;p.pos=g.position.clone();
+ p.flag=[];if((p.k==='socket'||p.k==='switch')&&(p.h<0))p.flag.push('Висота нижче рівня поверху ('+p.h+'). Перевірити відмітку в моделі.');
+ if(p.k==='water'&&p.pz!=null&&Math.abs(p.h-p.pz)>50)p.flag.push('Висота: у моделі центр '+p.h+', на аркуші PDF '+p.pz+' ('+p.ps+'). Яку брати?');
+ if(p.k==='socket'&&p.h>=0&&p.h<150)p.flag.push('Дуже низько (центр '+p.h+'). Це навмисно (плінтус, меблі)?');
+ const md=lab(p.id,p.pos,p.k,'mk',p.id,p.s);const gg=(p.grp||[]).map(i=>GC[i]).filter(Boolean);
+ if(gg.length){if(p.k==='light'){md.style.color=md.style.borderColor=gg[0].c}md.innerHTML=p.id+gg.map(g=>'<span class="gchip" style="background:'+g.c+'">Г'+g.num+'</span>').join('')}
+ const fy=D.storeys[p.s].elev,base=W2(p.x,p.y,fy);if(p.h>=20)DIMS.push({pid:p.id,a:base,b:p.pos.clone(),t:String(p.h),v:true});P.push(p)});
+const byId={};P.forEach(p=>byId[p.id]=p);
+// групи освітлення (арк. 28–29 PDF): кожна група свого кольору — вимикач, траса й світильники
+const ST=(D.strips||[]).map(x=>{const z=D.storeys[x.s].elev+2250;const a=W2(x.seg[0],x.seg[1],z),b=W2(x.seg[2],x.seg[3],z);return Object.assign({},x,{a,b,mid:a.clone().lerp(b,.5),vis:false})});
+const GS=(D.groups||[]).map(g=>{const mem=P.filter(p=>(p.grp||[]).includes(g.id));const lt=mem.filter(p=>p.k==='light');const led=ST.filter(x=>x.grp===g.id);
+ const ps=[...lt.map(p=>p.pos),...led.map(x=>x.mid)];const tag=ps.length?ps.reduce((v,q)=>v.add(q),new THREE.Vector3()).multiplyScalar(1/ps.length):null;
+ return Object.assign({},g,{tag,sw:mem.filter(p=>p.k==='switch'),lt,led,vis:false})});
+const GB={};GS.forEach(g=>GB[g.id]=g);
+const gName=g=>'Г'+g.num;
+function grpHtml(p){if(!(p.grp||[]).length){return p.k==='light'?'<div class="flag">Вимикач для цього світильника на аркуші не знайдено.</div>':''}
+ return p.grp.map(i=>{const g=GB[i];if(!g)return '';const chip='<span class="gchip" style="background:'+g.c+'">'+gName(g)+'</span> ';
+  if(p.k==='switch')return '<div class="r">'+chip+'<b style="color:var(--fg)">'+g.key+' клавіша</b> вмикає: '+([g.lt.map(x=>x.id).join(', '),g.led.length?'підсвітку ('+g.led.length+' діл.)':''].filter(Boolean).join(' + ')||'світло, якого немає в моделі (лінія є на аркуші '+(28+g.s)+')')+'</div>';
+  return '<div class="r">'+chip+'вмикається вимикачем <b style="color:var(--fg)">'+(g.sw.map(x=>x.id).join(', ')||'—')+'</b>, '+g.key+' клавіша'+(p.grp.length>1?' · <span style="color:var(--warn)">у двох групах — перевірити</span>':'')+'</div>'}).join('')}
+function hiGroups(){P.forEach(p=>p.mesh.material.emissive.setHex(0));const cur=selId?byId[selId]:null,act=new Set(cur?(cur.grp||[]):[]);
+ GS.forEach(g=>{if(act.has(g.id))[...g.sw,...g.lt].forEach(p=>p.mesh.material.emissive.setHex(0x3A2A10))});if(cur)cur.mesh.material.emissive.setHex(0x553322)}
+const GV=document.createElementNS('http://www.w3.org/2000/svg','svg');GV.setAttribute('class','dims gsv');st.appendChild(GV);
+function drawGroups(placed,w,h){const cur=selId?byId[selId]:null,act=new Set(cur?(cur.grp||[]):[]);let o='',tg='';
+ const pr=v=>{const q=v.clone().project(cam);return q.z<1?[(q.x+1)/2*w,(1-q.y)/2*h]:null};
+ ST.forEach(x=>{if(!x.vis)return;const g=GB[x.grp],A=pr(x.a),B=pr(x.b);if(!A||!B)return;const op=act.size?(g&&act.has(g.id)?1:.2):1;
+  o+='<line x1="'+A[0]+'" y1="'+A[1]+'" x2="'+B[0]+'" y2="'+B[1]+'" style="stroke:#FFE14D;stroke-width:9;stroke-linecap:round;opacity:'+op+'"/><line x1="'+A[0]+'" y1="'+A[1]+'" x2="'+B[0]+'" y2="'+B[1]+'" style="stroke:'+(g?g.c:'#B89A00')+';stroke-width:4;stroke-linecap:round;opacity:'+op+'"/>'});
+ GS.forEach(g=>{if(!g.vis||!g.tag)return;const op=act.size?(act.has(g.id)?1:.15):.9;
+  const T=pr(g.tag);if(T&&op>.5){const lw=26,lh=16;tg+='<g opacity="'+op+'"><rect x="'+(T[0]-lw/2)+'" y="'+(T[1]-lh/2)+'" width="'+lw+'" height="'+lh+'" rx="8" style="fill:'+g.c+';stroke:#fff;stroke-width:1.5"/><text x="'+T[0]+'" y="'+(T[1]+4)+'" style="fill:#fff;font:700 11px var(--f);text-anchor:middle">'+gName(g)+'</text></g>';placed.push({x:T[0],y:T[1],w:lw,h:lh})}});
+ GV.innerHTML=o+tg}
+// прив'язки в плані: промені від точки вздовж осей до найближчих стін/дверей свого поверху
+sc.updateMatrixWorld(true);const WM={};Object.values(MG).flat().forEach(o=>{if(o.isMesh&&(o.userData.g==='wall'||o.userData.g==='wallnew'))(WM[o.userData.s]=WM[o.userData.s]||[]).push(o)});
+const rc=new THREE.Raycaster(),AX=[new THREE.Vector3(1,0,0),new THREE.Vector3(0,0,1)];
+const rayD=(o,d,ms)=>{rc.set(o,d);rc.far=15;const h=rc.intersectObjects(ms,false);return h.length?h[0].distance:Infinity};
+const r5=v=>Math.round(v*200)*5;
+const DIR16=[...Array(16)].map((_,k)=>new THREE.Vector3(Math.cos(k*Math.PI/8),0,Math.sin(k*Math.PI/8)));
+const rayH=(o,d,ms)=>{rc.set(o,d);rc.far=15;const h=rc.intersectObjects(ms,false);return h[0]||null};
+const unitU=a=>{const u=a.clone();if(u.x<-1e-6||(Math.abs(u.x)<1e-6&&u.z<0))u.negate();return u};
+P.forEach(p=>{p.ties=[];p.tl=[];const ms=WM[p.s];if(!ms)return;
+ // стіна, на якій стоїть точка: найближча грань і її нормаль (працює і для скошених стін еркера)
+ let best=null;if(p.k!=='light')DIR16.forEach(d=>{const h=rayH(p.pos,d,ms);if(h&&h.face&&(!best||h.distance<best.distance))best=h});
+ let o=p.pos.clone(),side=null,wo=null,axes=AX,onWall=false;
+ if(best&&best.distance<.2){const nf=best.face.normal.clone().setY(0);
+  if(nf.lengthSq()>1e-4){nf.normalize();onWall=true;const c=[p.pos.clone().addScaledVector(nf,.1),p.pos.clone().addScaledVector(nf,-.1)];
+   const open=c.map(q=>Math.max(rayD(q,nf,ms),rayD(q,nf.clone().negate(),ms)));side=open[0]>=open[1]?nf.clone():nf.clone().negate();o=open[0]>=open[1]?c[0]:c[1];
+   const ds=rayD(o,side.clone().negate(),ms);if(isFinite(ds)&&ds<.35){const surf=o.clone().addScaledVector(side,-ds);o=surf.clone().addScaledVector(side,.02);wo=surf.clone().addScaledVector(side,-.03)}
+   axes=[new THREE.Vector3(side.z,0,-side.x)]}}
+ // до найближчого кута або відкосу прорізу: промінь у тілі стіни ловить відкос, перевіряємо, що за ним справді проріз
+ // відкіс шукаємо і на висоті точки, і на 1,3 м (вікно над розеткою теж дає відкіс, як на аркуші 22)
+ const tieD=dir=>{const dr=rayD(o,dir,ms);if(!wo)return dr;let best=dr;
+  [wo,wo.clone().setY(m(D.storeys[p.s].elev+1300))].forEach(w=>{const dw=rayD(w,dir,ms);
+   if(dw>.05&&dw<best-.05){const pr=w.clone().addScaledVector(dir,dw+.06).addScaledVector(side,.23);if(rayD(pr,side.clone().negate(),ms)>.4)best=dw}});return best};
+ axes.forEach((a,i)=>{const n=a.clone().negate(),d1=tieD(a),d2=tieD(n);const d=Math.min(d1,d2);if(!isFinite(d)||d>8)return;
+  const dir=d1<=d2?a:n,s=p.pos.clone(),e=p.pos.clone().addScaledVector(dir,d);p.ties.push(r5(d));
+  const off=onWall?side.clone():AX[1-i].clone(),u=unitU(a);
+  const fw=u.dot(a)>0;DIMS.push({pid:p.id,a:s,b:e,t:String(r5(d)),off,u,wall:onWall,cp:s.dot(u),dP:fw?d1:d2,dM:fw?d2:d1,key:p.s+'|'+Math.round(Math.atan2(u.z,u.x)*20)+'|'+Math.round(s.dot(off)*20)+'|'+Math.round(off.x*2)+'|'+Math.round(off.z*2)})})});
+// ланцюжки, як на аркуші 22: точки на одній ділянці стіни між кутами/відкосами — кут → точка → точка
+{const BY={};DIMS.forEach(d=>{if(!d.wall||!isFinite(d.dP)||!isFinite(d.dM))return;const k=byId[d.pid].k+'|'+d.key+'|'+Math.round((d.cp+d.dP)*20)+'|'+Math.round((d.cp-d.dM)*20);(BY[k]=BY[k]||[]).push(d)});
+ Object.values(BY).forEach(g=>{if(g.length<2)return;g.sort((x,y)=>x.cp-y.cp);const lo=g[0].cp-g[0].dM,hi=g[g.length-1].cp+g[g.length-1].dP;
+  const u=g[0].u;g.forEach(d=>d.drop=true);
+  // як на аркуші 22: кут/відкіс → розетка → розетка → … → кут/відкіс, усі на одній лінії
+  const y0=g[0].a.y,at=c=>g[0].a.clone().addScaledVector(u,c-g[0].cp).setY(y0);
+  const stops=[lo,...g.map(d=>d.cp),hi],own=[g[0].pid,...g.map(d=>d.pid)];
+  for(let k=1;k<stops.length;k++){const len=stops[k]-stops[k-1];if(len>.02)DIMS.push({pid:own[Math.min(k,own.length-1)],a:at(stops[k-1]),b:at(stops[k]),t:String(r5(len)),off:g[0].off,u,key:g[0].key+'|ch'})}});
+ for(let i=DIMS.length-1;i>=0;i--)if(DIMS[i].drop)DIMS.splice(i,1)}
+// яруси: розміри на одній лінії зсуваються від стіни, щоб не накладались
+const GR={};DIMS.filter(d=>d.off).forEach(d=>(GR[d.key]=GR[d.key]||[]).push(d));
+Object.values(GR).forEach(g=>{g.sort((x,y)=>x.a.distanceTo(x.b)-y.a.distanceTo(y.b));const lv=[];g.forEach(d=>{const lo=Math.min(d.a.dot(d.u),d.b.dot(d.u)),hi=Math.max(d.a.dot(d.u),d.b.dot(d.u));let k=0;while((lv[k]||[]).some(q=>lo<q[1]-.01&&hi>q[0]+.01))k++;(lv[k]=lv[k]||[]).push([lo,hi]);d.lvl=k})});
+DIMS.forEach(d=>{if(!d.off)return;const k=.15+.15*(d.lvl||0);d.a2=d.a.clone().addScaledVector(d.off,k);d.b2=d.b.clone().addScaledVector(d.off,k)});
+const SV=document.createElementNS('http://www.w3.org/2000/svg','svg');SV.setAttribute('class','dims');st.appendChild(SV);
+const XS=(p1,p2,p3,p4)=>{const d=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);return d(p1,p2,p3)*d(p1,p2,p4)<0&&d(p3,p4,p1)*d(p3,p4,p2)<0};
+function drawDims(placed,w,h){let o='';const segs=[];
+ const pr=v=>{const q=v.clone().project(cam);return q.z<1&&Math.abs(q.x)<1.2&&Math.abs(q.y)<1.2?[(q.x+1)/2*w,(1-q.y)/2*h]:null};
+ const list=DIMS.filter(d=>showDims(byId[d.pid])&&!(d.v&&MODE==='top')).sort((x,y)=>(y.pid===selId)-(x.pid===selId)||x.a.distanceTo(x.b)-y.a.distanceTo(y.b));
+ list.forEach(d=>{const A=pr(d.a2||d.a),B=pr(d.b2||d.b);if(!A||!B)return;const len=Math.hypot(B[0]-A[0],B[1]-A[1]);if(len<1)return;const me=d.pid===selId;
+  const lw=d.t.length*6.6+8,lh=15,free=(x,y)=>!placed.some(q=>Math.abs(q.x-x)<(q.w+lw)/2+2&&Math.abs(q.y-y)<(q.h+lh)/2+1);let mx=(A[0]+B[0])/2,my=(A[1]+B[1])/2;
+  if(!me){if(len<lw+12)return;if(segs.some(s=>XS(A,B,s[0],s[1])))return;const f=[.5,.35,.65,.22,.78].find(k=>free(A[0]+(B[0]-A[0])*k,A[1]+(B[1]-A[1])*k));if(f===undefined)return;mx=A[0]+(B[0]-A[0])*f;my=A[1]+(B[1]-A[1])*f}
+  segs.push([A,B]);placed.push({x:mx,y:my,w:lw,h:lh});
+  const ux=(B[0]-A[0])/len,uy=(B[1]-A[1])/len,tx=(ux-uy)*4,ty=(uy+ux)*4;
+  if(d.a2){const a0=pr(d.a),b0=pr(d.b);if(a0)o+=`<line class="ex" x1="${a0[0]}" y1="${a0[1]}" x2="${A[0]}" y2="${A[1]}"/>`;if(b0)o+=`<line class="ex" x1="${b0[0]}" y1="${b0[1]}" x2="${B[0]}" y2="${B[1]}"/>`}
+  o+=`<line x1="${A[0]}" y1="${A[1]}" x2="${B[0]}" y2="${B[1]}"/><line class="tk" x1="${A[0]-tx}" y1="${A[1]-ty}" x2="${A[0]+tx}" y2="${A[1]+ty}"/><line class="tk" x1="${B[0]-tx}" y1="${B[1]-ty}" x2="${B[0]+tx}" y2="${B[1]+ty}"/>`;
+  o+=`<rect x="${mx-lw/2}" y="${my-lh/2}" width="${lw}" height="${lh}" rx="3"/><text x="${mx}" y="${my+4}">${d.t}</text>`});
+ SV.innerHTML=o}
+const showDims=p=>vis(p)&&(on.dm||selId===p.id);
+// floors / layers / rooms UI
+const flE=document.getElementById('floors');FLOORS.forEach(f=>{const b=document.createElement('button');b.textContent=f.name;b.dataset.f=f.i;b.onclick=()=>{FL=f.i;ROOM=null;sel=null;selId=null;fit();buildRooms();apply()};flE.appendChild(b)});
+const lyE=document.getElementById('layers');Object.keys(L).forEach(k=>{const b=document.createElement('button');b.id='ly-'+k;b.innerHTML='<span class="dot" style="background:'+L[k].c+'"></span>'+L[k].n+(!['dm','san','mont','demo','grp','led'].includes(k)?' <span class="k" style="color:var(--muted)">'+P.filter(p=>p.k===k).length+'</span>':'');b.onclick=()=>{on[k]=!on[k];apply()};lyE.appendChild(b)});
+const VW=[['iso','Ізометрія'],['top','Вид зверху'],['persp','Перспектива']];let MODE='iso';const vbs={};
+function setMode(md){MODE=md;ORTHO=md!=='persp';if(md==='top'){ph=1e-4;th=0}else if(md==='iso'){ph=.955;th=Math.PI/4}else{ph=.85;th=.6}VW.forEach(([k])=>vbs[k].classList.toggle('sel',k===md));draw()}
+VW.forEach(([k,n])=>{const b=document.createElement('button');b.textContent=n;b.id=k==='top'?'topv':'v-'+k;b.onclick=()=>setMode(k);vbs[k]=b;flE.appendChild(b)});vbs.iso.classList.add('sel');
+const rmE=document.getElementById('rooms');
+function buildRooms(){rmE.querySelectorAll('button').forEach(b=>b.remove());const rs=[...new Set(P.filter(p=>p.s===FL&&p.room).map(p=>p.room))].sort();
+ ['Усі',...rs].forEach(n=>{const b=document.createElement('button');b.textContent=n;b.classList.toggle('sel',(n==='Усі'&&!ROOM)||n===ROOM);b.onclick=()=>{ROOM=n==='Усі'?null:n;buildRooms();focusRoom();apply()};rmE.appendChild(b)})}
+const vis=p=>p.s===FL&&on[p.k]&&(!ROOM||p.room===ROOM);
+function apply(){Object.entries(MG).forEach(([s,a])=>a.forEach(o=>o.visible=+s===FL||(o.userData.g==='san'&&+s===FL&&on.san)));Object.values(MG).flat().forEach(o=>{if(o.userData.g==='san')o.visible=o.userData.s===FL&&on.san});
+ clip.constant=m(D.storeys[FL].elev+1700);CAPS.forEach(p=>{p.position.y=clip.constant;if(p.userData.cg==='wallnew')p.material.color.setHex(on.mont?0x2E9E4F:0x4A4540)});
+ Object.values(MG).flat().forEach(o=>{if(o.userData.g==='demo')o.visible=o.userData.s===FL&&on.demo;if(o.userData.g==='wallnew')o.material.color.setHex(on.mont?0x9ED9AE:0xF4F2EE)});
+ P.forEach(p=>{p.mesh.visible=vis(p)});GS.forEach(g=>g.vis=on.grp&&g.s===FL&&(!ROOM||[...g.sw,...g.lt].some(p=>p.room===ROOM)));ST.forEach(x=>x.vis=on.led&&x.s===FL&&(!ROOM||!x.grp||(GB[x.grp]&&GB[x.grp].vis)));hiGroups();
+ flE.querySelectorAll('button').forEach(b=>b.classList.toggle('sel',+b.dataset.f===FL));Object.keys(L).forEach(k=>document.getElementById('ly-'+k).classList.toggle('off',!on[k]));buildTable();draw()}
+// camera
+let th=Math.PI/4,ph=.955,rad=16;const tgt=new THREE.Vector3();let sel=null,selId=null;
+function bbox(ps){const b=new THREE.Box3();ps.forEach(p=>b.expandByPoint(p.pos));return b}
+function fit(){const ps=P.filter(p=>p.s===FL);const b=bbox(ps.length?ps:P);b.getCenter(tgt);tgt.y=m(D.storeys[FL].elev+800);const s=b.getSize(new THREE.Vector3());rad=Math.max(6,Math.max(s.x,s.z)*.95)}
+function focusRoom(){if(!ROOM){fit();return}const b=bbox(P.filter(p=>p.s===FL&&p.room===ROOM));b.getCenter(tgt);const s=b.getSize(new THREE.Vector3());rad=Math.max(3.5,Math.max(s.x,s.z)*1.8)}
+function draw(){const cp=new THREE.Vector3(tgt.x+rad*Math.sin(ph)*Math.sin(th),tgt.y+rad*Math.cos(ph),tgt.z+rad*Math.sin(ph)*Math.cos(th));cam=ORTHO?ocam:pcam;if(ORTHO){const hh=rad*Math.tan(Math.PI/8),as=SW()/SH();ocam.left=-hh*as;ocam.right=hh*as;ocam.top=hh;ocam.bottom=-hh;ocam.updateProjectionMatrix()}cam.position.copy(cp);cam.lookAt(tgt);r.render(sc,cam);
+ const w=SW(),h=SH(),placed=[];const order=[...labels.filter(l=>l.pid===selId),...labels.filter(l=>!l.dim&&l.pid!==selId),...labels.filter(l=>l.dim&&l.pid!==selId)];
+ order.forEach(l=>{const p=byId[l.pid];const v=l.p.clone().project(cam);l.d.hidden=!(vis(p)&&(l.dim?showDims(p):(ROOM||rad<9||l.pid===selId||p.k!=='light'))&&v.z<1&&Math.abs(v.x)<1.1&&Math.abs(v.y)<1.1);if(l.d.hidden)return;
+  const lw=l.d.offsetWidth,lh=l.d.offsetHeight,x=(v.x+1)/2*w,y=(1-v.y)/2*h;let best=null;
+  for(const dy of [0,-1,1,-2,2,-3,3]){const yy=y+dy*(lh+2);if(!placed.some(q=>Math.abs(q.x-x)<(q.w+lw)/2+2&&Math.abs(q.y-yy)<(q.h+lh)/2+1)){best=yy;break}}
+  if(best===null){if(l.pid!==selId){l.d.hidden=true;return}best=y}
+  placed.push({x,y:best,w:lw,h:lh});l.d.style.left=x+'px';l.d.style.top=best+'px'});drawGroups(placed,w,h);drawDims(placed,w,h)}
+function show(id,fly){const p=byId[id];if(!p)return;selId=id;if(p.s!==FL){FL=p.s;buildRooms()}on[p.k]=true;
+ sel=p.mesh;
+ if(fly){tgt.copy(p.pos);rad=3.2}
+ const fl=(p.s+1)+' поверх';const hb=p.k==='light'?'':p.k==='sewer'?'<div class="r">Відмітка центру виводу від чистої підлоги · '+p.src+'</div>':p.k==='water'&&p.ps?'<div class="r">Низ '+p.hb+' · верх '+p.ht+' від рівня поверху</div><div class="r">Аркуш PDF: '+p.ps+'</div>':'<div class="r">Низ '+p.hb+' · верх '+p.ht+' від рівня поверху</div>';
+ const items=(p.items||[]).filter(x=>x[0]&&x[0]!=='-').map((x,i)=>'<div class="r">'+(i+1)+'. '+(x[1]||x[0]).replace(/\s+/g,' ')+'</div>').join('');
+ document.getElementById('card').innerHTML='<div class="t"><span class="dot" style="background:'+L[p.k].c+'"></span>'+p.id+' · '+(p.k==='light'||p.k==='water'||p.k==='sewer'?p.t:(p.frame||'Рамка').replace('Рамка х','Рамка ×')+(p.ori?', '+p.ori.toLowerCase():''))+'<span class="k">'+L[p.k].n+' · '+fl+(p.room?' · '+p.room:'')+'</span></div><div class="r"><b style="color:var(--fg)">Висота центру: '+p.h+'</b></div>'+(p.ties.length?'<div class="r"><b style="color:var(--fg)">Від стін (до центру): '+p.ties.join(' · ')+'</b> — розмірні лінії на 3D</div>':'')+hb+grpHtml(p)+items+p.flag.map(f=>'<div class="flag">'+f+'</div>').join('');apply()}
+const tb=document.getElementById('tbl');
+function buildTable(){tb.innerHTML='';P.filter(vis).forEach(p=>{const tr=document.createElement('tr');tr.innerHTML='<td><span style="color:'+L[p.k].c+';font-weight:700">'+p.id+'</span></td><td>'+(p.room||'—')+'</td><td class="n">'+p.t+((p.grp||[]).length?' '+p.grp.map(i=>GC[i]?'<span class="gchip" style="background:'+GC[i].c+'">Г'+GC[i].num+'</span>':'').join(''):'')+(p.flag.length?' <span style="color:var(--warn)">· уточнити</span>':'')+'</td><td>'+p.h+'</td><td>'+(p.k==='light'||p.k==='sewer'?'—':p.hb)+'</td><td>'+(p.ties.join(' · ')||'—')+'</td>';
+ tr.onclick=()=>{show(p.id,true);st.scrollIntoView({behavior:'smooth',block:'center'})};tb.appendChild(tr)})}
+const qs=[];P.filter(p=>p.flag.length).forEach(p=>qs.push('<b>'+p.id+'</b> ('+(p.room||'—')+', '+(p.s+1)+' пов.): '+p.flag.join(' ')));
+["Виводи води 2-го поверху (6 шт.) у моделі прив'язані до зони «Спальня 1», а за аркушем 16 це ванна. Тут показано як «Ванна»; у ArchiCAD виправити зону.", "Висоти виводів води в моделі й на аркушах 15–16 PDF здебільшого не збігаються (у моделі часто 705 — схоже на типову висоту об'єкта). Для майстрів брати PDF? Тоді оновити модель.", "Опалення (котел, колектори, радіатори, тепла підлога) немає ні в IFC, ні в PDF: в альбомі бракує аркушів 1–4, 13–14, 17–21. Чи є окремий проєкт опалення? Є лише терморегулятори теплої підлоги в умовних позначеннях аркушів 22–23.", "Каналізація: на аркушах лише виводи з Ø і відмітками, стояків і трас немає. Де стояки й ухил — потрібна схема або вирішує майстер на місці?", "Нуль PDF — «чиста» підлога. У моделі 1-й поверх має рівні перекриття 0 і +170. Перевірити, що рівень поверху в моделі = чиста підлога, інакше висоти розійдуться.", "Біде й унітаз 2-го поверху: на аркуші обидва лише з холодною водою, у моделі біде має й гарячу. Як правильно?", "Висоти рамок у моделі — до центру. На аркушах для майстрів підписувати центр чи низ підрозетника? Зараз у відомості обидва."].forEach(q=>qs.push(q));
+document.getElementById('qs').innerHTML=qs.map(q=>'<li>'+q+'</li>').join('');
+// input
+const pts=new Map();let moved=0,pinch=0,mid=null;
+// зсув у площині екрана (два пальці, права кнопка, Shift): план їде за пальцями
+const panBy=(dx,dy)=>{const s=2*rad*Math.tan(Math.PI/8)/SH();cam.updateMatrixWorld();const e=cam.matrixWorld.elements;
+ const rt=new THREE.Vector3(e[0],e[1],e[2]),up=new THREE.Vector3(e[4],e[5],e[6]);tgt.addScaledVector(rt,-dx*s).addScaledVector(up,dy*s)};
+st.addEventListener('pointerdown',e=>{pts.set(e.pointerId,{x:e.clientX,y:e.clientY});moved=0;try{st.setPointerCapture(e.pointerId)}catch(_){}});
+st.addEventListener('pointermove',e=>{if(!pts.has(e.pointerId))return;const p=pts.get(e.pointerId);
+ if(pts.size===2){pts.set(e.pointerId,{x:e.clientX,y:e.clientY});const [a,b]=[...pts.values()];const d=Math.hypot(a.x-b.x,a.y-b.y),c={x:(a.x+b.x)/2,y:(a.y+b.y)/2};if(pinch)rad=Math.min(40,Math.max(1.2,rad*pinch/d));if(mid)panBy(c.x-mid.x,c.y-mid.y);pinch=d;mid=c;moved=99;draw();return}
+ const dx=e.clientX-p.x,dy=e.clientY-p.y;moved+=Math.abs(dx)+Math.abs(dy);
+ if(e.shiftKey||e.buttons===2)panBy(dx,dy)
+ else if(MODE==='top'){const s=2*rad*Math.tan(Math.PI/8)/SH();tgt.x-=dx*s;tgt.z-=dy*s}
+ else{th-=dx*.006;ph=Math.min(1.5,Math.max(.03,ph-dy*.006))}
+ pts.set(e.pointerId,{x:e.clientX,y:e.clientY});draw()});
+st.addEventListener('contextmenu',e=>e.preventDefault());
+const upf=e=>{pts.delete(e.pointerId);pinch=0;mid=null;if(moved<6&&e.type==='pointerup')hit(e)};
+st.addEventListener('pointerup',upf);st.addEventListener('pointercancel',upf);
+st.addEventListener('wheel',e=>{e.preventDefault();rad=Math.min(40,Math.max(1.2,rad*(1+e.deltaY*.001)));draw()},{passive:false});
+const ray=new THREE.Raycaster();
+function hit(e){const b=st.getBoundingClientRect();ray.setFromCamera(new THREE.Vector2((e.clientX-b.left)/b.width*2-1,-((e.clientY-b.top)/b.height)*2+1),cam);
+ const hs=ray.intersectObjects(pick.filter(x=>x.visible));if(hs.length)show(hs[0].object.userData.id)}
+new ResizeObserver(()=>{r.setSize(SW(),SH());pcam.aspect=SW()/SH();pcam.updateProjectionMatrix();draw()}).observe(st);
+fit();buildRooms();apply();
+}).catch(e=>{document.getElementById('card').textContent='Не вдалося завантажити модель: '+e.message});
+</script>
