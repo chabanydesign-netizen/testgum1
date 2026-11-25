@@ -59,7 +59,7 @@ td.n{white-space:normal;min-width:200px}
 <div class="row" id="rooms"><span class="cap">ПРИМІЩЕННЯ</span></div>
 <div class="row" id="layers"><span class="cap">ШАРИ</span></div>
 <div id="stage"><div class="hint">Один палець — крутити (у «Вид зверху» — рухати) · два пальці — рухати й масштаб · ПКМ/Shift — рухати · тисни на точку</div></div>
-<div id="card"><div class="r">Обери поверх, далі приміщення (або «Усі»), потім увімкни потрібні шари: розетки, вимикачі, світло, воду, розміри. Спочатку всі шари вимкнені. Натисни на точку в моделі або на рядок у відомості, і з'явиться її висота, прив'язки та склад рамки. Стіни зрізані на висоті 1,7 м.</div></div>
+<div id="card"><div class="r">Обери поверх, далі приміщення (або «Усі»), потім увімкни потрібні шари: розетки, вимикачі, світло, воду, розміри. Спочатку всі шари вимкнені. Натисни на точку в моделі або на рядок у відомості, і з'явиться її висота, прив'язки та склад рамки. Стіни зрізані під стелею, перекриття зняте.</div></div>
 <h2>Питання до креслень</h2>
 <div class="flag" style="background:var(--panel);color:var(--fg);border:1px solid var(--line)"><ol class="qs" id="qs"></ol></div>
 <h2>Відомість точок</h2>
@@ -94,10 +94,12 @@ function addCap(geo,s,g){const base={depthWrite:false,depthTest:false,colorWrite
  const o=ORD;ORD+=1;[b,fr].forEach(mt=>{const x=new THREE.Mesh(geo,mt);x.renderOrder=o;x.userData={g:'capS',cg:g,s:+s};sc.add(x);MG[s].push(x)});
  const pl=new THREE.Mesh(new THREE.PlaneGeometry(80,80),new THREE.MeshBasicMaterial({color:0x4A4540,stencilWrite:true,stencilRef:0,stencilFunc:THREE.NotEqualStencilFunc,stencilFail:THREE.ReplaceStencilOp,stencilZFail:THREE.ReplaceStencilOp,stencilZPass:THREE.ReplaceStencilOp}));
  pl.rotation.x=-Math.PI/2;pl.renderOrder=o+.5;pl.onAfterRender=rr=>rr.clearStencil();pl.userData={g:'cap',cg:g,s:+s};sc.add(pl);MG[s].push(pl);CAPS.push(pl)}
+const CEIL={};// низ перекриття над поверхом = стеля, там і ріжемо
 // перекриття між поверхами належить верхньому поверху, щоб на 2-му не було видно плит 1-го
 Object.keys(D.meshes).filter(k=>k.startsWith('slab|')).forEach(k=>{const s=+k.split('|')[1],o=D.meshes[k],lim=(D.storeys[s+1]?D.storeys[s+1].elev:1e9)-500,lo=[],hi=[];
- for(let i=0;i<o.i.length;i+=3){const tr=[o.i[i],o.i[i+1],o.i[i+2]];(tr.every(j=>o.v[j*3+2]>=lim)?hi:lo).push(...tr)}
- o.i=lo;if(hi.length)D.meshes['slabup|'+(s+1)]={v:o.v,i:hi}});
+ const ce=D.storeys[s].elev+1500;let cmin=1e9;// усі стелі поверху (і підвісні, і крила) знімаємо; ріжемо під основним перекриттям
+ for(let i=0;i<o.i.length;i+=3){const tr=[o.i[i],o.i[i+1],o.i[i+2]],z=tr.map(j=>o.v[j*3+2]);(Math.min(...z)>=ce?hi:lo).push(...tr);if(Math.min(...z)>=lim)cmin=Math.min(cmin,...z)}
+ o.i=lo;if(hi.length)D.meshes['slabup|'+(s+1)]={v:o.v,i:hi};if(cmin<1e9)CEIL[s]=cmin});
 Object.entries(D.meshes).forEach(([key,o])=>{const [g,s]=key.split('|');if(g==='roof'||!CTX[g])return;const v=o.v,a=new Float32Array(v.length);
  for(let i=0;i<v.length;i+=3){a[i]=m(v[i]);a[i+1]=m(v[i+2]);a[i+2]=-m(v[i+1])}
  let geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.BufferAttribute(a,3));geo.setIndex(o.i);geo=geo.toNonIndexed();geo.computeVertexNormals();
@@ -215,7 +217,7 @@ function buildRooms(){rmE.querySelectorAll('button').forEach(b=>b.remove());cons
  ['Усі',...rs].forEach(n=>{const b=document.createElement('button');b.textContent=n;b.classList.toggle('sel',(n==='Усі'&&!ROOM)||n===ROOM);b.onclick=()=>{ROOM=n==='Усі'?null:n;buildRooms();focusRoom();apply()};rmE.appendChild(b)})}
 const vis=p=>p.s===FL&&on[p.k]&&(!ROOM||p.room===ROOM);
 function apply(){Object.entries(MG).forEach(([s,a])=>a.forEach(o=>o.visible=+s===FL||(o.userData.g==='san'&&+s===FL&&on.san)));Object.values(MG).flat().forEach(o=>{const g=o.userData.g;if(g==='san'||g==='furn')o.visible=o.userData.s===FL&&on[g]});
- clip.constant=m(D.storeys[FL].elev+1700);CAPS.forEach(p=>{p.position.y=clip.constant;if(p.userData.cg==='wallnew')p.material.color.setHex(on.mont?0x2E9E4F:0x4A4540)});
+ clip.constant=m((CEIL[FL]||D.storeys[FL].elev+2700)-15);CAPS.forEach(p=>{p.position.y=clip.constant;if(p.userData.cg==='wallnew')p.material.color.setHex(on.mont?0x2E9E4F:0x4A4540)});
  Object.values(MG).flat().forEach(o=>{if(o.userData.g==='demo')o.visible=o.userData.s===FL&&on.demo;if(o.userData.g==='wallnew')o.material.color.setHex(on.mont?0x9ED9AE:0xF4F2EE)});
  P.forEach(p=>{p.mesh.visible=vis(p)});GS.forEach(g=>g.vis=on.grp&&g.s===FL&&(!ROOM||[...g.sw,...g.lt].some(p=>p.room===ROOM)));ST.forEach(x=>x.vis=on.led&&x.s===FL&&(!ROOM||!x.grp||(GB[x.grp]&&GB[x.grp].vis)));hiGroups();
  flE.querySelectorAll('button').forEach(b=>b.classList.toggle('sel',+b.dataset.f===FL));Object.keys(L).forEach(k=>document.getElementById('ly-'+k).classList.toggle('off',!on[k]));buildTable();draw()}
