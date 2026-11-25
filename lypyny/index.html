@@ -15,7 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
     <style>
         /* --- ОСНОВНИЙ ФОН --- */
@@ -163,12 +162,8 @@
             <i class="fas fa-cube"></i> Відкрити 3D Тур
         </a>
 
-        <button class="btn btn-doc" id="open-tech-btn">
-            <i class="fas fa-layer-group"></i> 3D Технагляд
-        </button>
-
         <a href="docs/" class="btn btn-doc">
-            <i class="fas fa-lock"></i> Креслення (за кодом)
+            <i class="fas fa-lock"></i> 3D Технагляд і креслення (за кодом)
         </a>
 
         <a href="https://t.me/+380770133119" class="btn btn-cta" target="_blank" rel="noopener">
@@ -188,78 +183,6 @@
 
         <a href="../index.html" class="back">← На головну</a>
     </div>
-
-    <div class="modal-overlay" id="tech-modal">
-        <button class="close-modal" id="close-tech-btn"><i class="fas fa-times"></i></button>
-        
-        <div class="tech-viewer-container">
-            <model-viewer 
-                id="tech-viewer" 
-                src="models/base-room.glb" 
-                camera-controls 
-                min-camera-orbit="auto auto 0m"
-                environment-image="neutral"
-                shadow-intensity="1">
-                
-                <button class="hotspot layer-base" slot="hotspot-1" data-position="-0.5m 1.2m 0.8m" data-normal="1m 0m 0m">
-                    Профіль тіньового шва
-                </button>
-
-                <button class="hotspot layer-electro" slot="hotspot-2" data-position="1.2m 0.3m -1m" data-normal="0m 0m 1m" style="display: none;">
-                    Блок розеток h=300
-                </button>
-                <button class="hotspot layer-electro" slot="hotspot-3" data-position="-1m 1.5m 1m" data-normal="1m 0m 0m" style="display: none;">
-                    Вивід під бра
-                </button>
-
-                <button class="hotspot layer-plumbing" slot="hotspot-4" data-position="0.5m 0.1m 1m" data-normal="0m 1m 0m" style="display: none;">
-                    Трап душової
-                </button>
-
-            </model-viewer>
-            
-            <div class="layer-controls">
-                <button class="layer-btn active" onclick="switchLayer('models/base-room.glb', this, 'layer-base')">Каркас</button>
-                <button class="layer-btn" onclick="switchLayer('models/electro.glb', this, 'layer-electro')">Електрика</button>
-                <button class="layer-btn" onclick="switchLayer('models/plumbing.glb', this, 'layer-plumbing')">Сантехніка</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Робота з модальним вікном
-        const modal = document.getElementById('tech-modal');
-        const openBtn = document.getElementById('open-tech-btn');
-        const closeBtn = document.getElementById('close-tech-btn');
-
-        openBtn.addEventListener('click', () => { modal.classList.add('active'); });
-        closeBtn.addEventListener('click', () => { modal.classList.remove('active'); });
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) { modal.classList.remove('active'); }
-        });
-
-        // Робота з шарами та анотаціями
-        function switchLayer(newModelSrc, clickedButton, activeLayerClass) {
-            
-            // 1. Міняємо файл 3D моделі
-            document.getElementById('tech-viewer').src = newModelSrc;
-            
-            // 2. Перемикаємо стиль активної кнопки
-            let buttons = document.querySelectorAll('.layer-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            clickedButton.classList.add('active');
-            
-            // 3. Ховаємо зайві точки, показуємо потрібні
-            let allHotspots = document.querySelectorAll('.hotspot');
-            allHotspots.forEach(spot => {
-                if (spot.classList.contains(activeLayerClass)) {
-                    spot.style.display = 'block';
-                } else {
-                    spot.style.display = 'none';
-                }
-            });
-        }
-    </script>
 
 </body>
 </html>
