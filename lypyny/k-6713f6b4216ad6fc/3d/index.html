@@ -10,7 +10,7 @@
 <style>
 /* Layout: brand header, floor + layer chips, 3D stage (walls cut at 1.7 m), element card, schedule table. One column, phone first. */
 :root{--bg:#EFE9E1;--panel:#FBF8F4;--fg:#2B2622;--muted:#6E655D;--line:#D8CFC4;--accent:#C07B5A;--stage:#E6DED3;--warn:#B4561F;--warnbg:#F6E3D6;
---socket:#B8781A;--switch:#7F5FD0;--light:#D4A017;--water:#2F7FD0;--sewer:#7A5A44;--san:#8A8178;--grp:#2F5FD0;--led:#E8B800;--mont:#2E9E4F;--demo:#E03C31;
+--socket:#B8781A;--switch:#7F5FD0;--light:#D4A017;--water:#2F7FD0;--sewer:#7A5A44;--san:#8A8178;--furn:#B08A5C;--grp:#2F5FD0;--led:#E8B800;--mont:#2E9E4F;--demo:#E03C31;
 --f:'Manrope',system-ui,sans-serif}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1E1B18;--panel:#282420;--fg:#F1EBE3;--muted:#A99F95;--line:#3D3731;--stage:#2C2723;--warn:#F0A070;--warnbg:#3A2A20;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#1E1B18;--panel:#282420;--fg:#F1EBE3;--muted:#A99F95;--line:#3D3731;--stage:#2C2723;--warn:#F0A070;--warnbg:#3A2A20;color-scheme:dark}
@@ -70,7 +70,7 @@ td.n{white-space:normal;min-width:200px}
 <script>
 fetch('data.json').then(r=>r.json()).then(D=>{
 const cs=getComputedStyle(document.documentElement),cv=n=>cs.getPropertyValue(n).trim();
-const L={socket:{n:'Розетки'},switch:{n:'Вимикачі'},light:{n:'Світло'},water:{n:'Вода'},sewer:{n:'Каналізація'},san:{n:'Сантехніка'},grp:{n:'Групи світла'},led:{n:'Підсвітка'},mont:{n:'Монтаж'},demo:{n:'Демонтаж'},dm:{n:'Розміри'}};
+const L={socket:{n:'Розетки'},switch:{n:'Вимикачі'},light:{n:'Світло'},water:{n:'Вода'},sewer:{n:'Каналізація'},san:{n:'Сантехніка'},furn:{n:'Меблі'},grp:{n:'Групи світла'},led:{n:'Підсвітка'},mont:{n:'Монтаж'},demo:{n:'Демонтаж'},dm:{n:'Розміри'}};
 Object.keys(L).forEach(k=>L[k].c=k==='dm'?cv('--accent'):cv('--'+k));
 const on={socket:false,switch:false,light:false,water:false,sewer:false,san:false,grp:false,led:false,mont:false,demo:false,dm:false};
 const PFX={socket:'Р',switch:'В',light:'С',water:'ВД',sewer:'К'};
@@ -85,7 +85,7 @@ const sc=new THREE.Scene(),pcam=new THREE.PerspectiveCamera(45,SW()/SH(),.05,200
 sc.add(new THREE.AmbientLight(0xffffff,.75));const dl=new THREE.DirectionalLight(0xffffff,.5);dl.position.set(5,9,4);sc.add(dl);
 const clip=new THREE.Plane(new THREE.Vector3(0,-1,0),1.7);
 const mat=(c,op=1,cl=false)=>new THREE.MeshLambertMaterial({color:c,transparent:op<1,opacity:op,depthWrite:op>=1,side:THREE.DoubleSide,clippingPlanes:cl?[clip]:null});
-const CTX={wall:[0xF4F2EE,1,true],wallnew:[0xF4F2EE,1,true],demo:[0xE03C31,.4,true],slab:[0xD9CBB4,1,true],slabup:[0xD9CBB4,1,true],door:[0xA89A8A,1,true],win:[0xBFD8E8,.5,true],stair:[0xCFC3B2,1,true],san:[0xE4E9EC,1,false],roof:[0xD9CBB4,.3,false]};
+const CTX={wall:[0xF4F2EE,1,true],wallnew:[0xF4F2EE,1,true],demo:[0xE03C31,.4,true],slab:[0xD9CBB4,1,true],slabup:[0xD9CBB4,1,true],door:[0xA89A8A,1,true],win:[0xBFD8E8,.5,true],stair:[0xCFC3B2,1,true],san:[0xE4E9EC,1,false],furn:[0xE6D9C6,1,true],roof:[0xD9CBB4,.3,false]};
 const MG={},CAPS=[];let ORD=1;
 // заливка зрізу стін (stencil): як переріз у SketchUp
 function addCap(geo,s,g){const base={depthWrite:false,depthTest:false,colorWrite:false,stencilWrite:true,stencilFunc:THREE.AlwaysStencilFunc,clippingPlanes:[clip]};
@@ -102,7 +102,7 @@ Object.entries(D.meshes).forEach(([key,o])=>{const [g,s]=key.split('|');if(g==='
  for(let i=0;i<v.length;i+=3){a[i]=m(v[i]);a[i+1]=m(v[i+2]);a[i+2]=-m(v[i+1])}
  let geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.BufferAttribute(a,3));geo.setIndex(o.i);geo=geo.toNonIndexed();geo.computeVertexNormals();
  const c=CTX[g];const mesh=new THREE.Mesh(geo,mat(c[0],c[1],c[2]));mesh.userData={g,s:+s};sc.add(mesh);(MG[s]=MG[s]||[]).push(mesh);
- if(g==='wall'||g==='wallnew'||g==='demo'||g==='san'){const e=new THREE.LineSegments(new THREE.EdgesGeometry(geo,g==='san'?35:20),new THREE.LineBasicMaterial({color:g==='demo'?0xB02A20:g==='san'?0x7D8A94:0x8F857A,clippingPlanes:g==='san'?null:[clip]}));e.userData={g:g==='demo'||g==='san'?g:'edge',s:+s};sc.add(e);MG[s].push(e)}
+ if(g==='wall'||g==='wallnew'||g==='demo'||g==='san'||g==='furn'){const e=new THREE.LineSegments(new THREE.EdgesGeometry(geo,g==='san'||g==='furn'?35:20),new THREE.LineBasicMaterial({color:g==='demo'?0xB02A20:g==='san'?0x7D8A94:g==='furn'?0x9C8468:0x8F857A,clippingPlanes:g==='san'?null:[clip]}));e.userData={g:g==='demo'||g==='san'||g==='furn'?g:'edge',s:+s};sc.add(e);MG[s].push(e)}
  if(g==='wall'||g==='wallnew')addCap(geo,s,g)});
 // points
 const pick=[],labels=[],P=[],DIMS=[];
@@ -206,7 +206,7 @@ function drawDims(placed,w,h){let o='';const segs=[];
 const showDims=p=>vis(p)&&(on.dm||selId===p.id);
 // floors / layers / rooms UI
 const flE=document.getElementById('floors');FLOORS.forEach(f=>{const b=document.createElement('button');b.textContent=f.name;b.dataset.f=f.i;b.onclick=()=>{FL=f.i;ROOM=null;sel=null;selId=null;fit();buildRooms();apply()};flE.appendChild(b)});
-const lyE=document.getElementById('layers');Object.keys(L).forEach(k=>{const b=document.createElement('button');b.id='ly-'+k;b.innerHTML='<span class="dot" style="background:'+L[k].c+'"></span>'+L[k].n+(!['dm','san','mont','demo','grp','led'].includes(k)?' <span class="k" style="color:var(--muted)">'+P.filter(p=>p.k===k).length+'</span>':'');b.onclick=()=>{on[k]=!on[k];apply()};lyE.appendChild(b)});
+const lyE=document.getElementById('layers');Object.keys(L).forEach(k=>{const b=document.createElement('button');b.id='ly-'+k;b.innerHTML='<span class="dot" style="background:'+L[k].c+'"></span>'+L[k].n+(!['dm','san','furn','mont','demo','grp','led'].includes(k)?' <span class="k" style="color:var(--muted)">'+P.filter(p=>p.k===k).length+'</span>':'');b.onclick=()=>{on[k]=!on[k];apply()};lyE.appendChild(b)});
 const VW=[['iso','Ізометрія'],['top','Вид зверху'],['persp','Перспектива']];let MODE='iso';const vbs={};
 function setMode(md){MODE=md;ORTHO=md!=='persp';if(md==='top'){ph=1e-4;th=0}else if(md==='iso'){ph=.955;th=Math.PI/4}else{ph=.85;th=.6}VW.forEach(([k])=>vbs[k].classList.toggle('sel',k===md));draw()}
 VW.forEach(([k,n])=>{const b=document.createElement('button');b.textContent=n;b.id=k==='top'?'topv':'v-'+k;b.onclick=()=>setMode(k);vbs[k]=b;flE.appendChild(b)});vbs.iso.classList.add('sel');
@@ -214,7 +214,7 @@ const rmE=document.getElementById('rooms');
 function buildRooms(){rmE.querySelectorAll('button').forEach(b=>b.remove());const rs=[...new Set(P.filter(p=>p.s===FL&&p.room).map(p=>p.room))].sort();
  ['Усі',...rs].forEach(n=>{const b=document.createElement('button');b.textContent=n;b.classList.toggle('sel',(n==='Усі'&&!ROOM)||n===ROOM);b.onclick=()=>{ROOM=n==='Усі'?null:n;buildRooms();focusRoom();apply()};rmE.appendChild(b)})}
 const vis=p=>p.s===FL&&on[p.k]&&(!ROOM||p.room===ROOM);
-function apply(){Object.entries(MG).forEach(([s,a])=>a.forEach(o=>o.visible=+s===FL||(o.userData.g==='san'&&+s===FL&&on.san)));Object.values(MG).flat().forEach(o=>{if(o.userData.g==='san')o.visible=o.userData.s===FL&&on.san});
+function apply(){Object.entries(MG).forEach(([s,a])=>a.forEach(o=>o.visible=+s===FL||(o.userData.g==='san'&&+s===FL&&on.san)));Object.values(MG).flat().forEach(o=>{const g=o.userData.g;if(g==='san'||g==='furn')o.visible=o.userData.s===FL&&on[g]});
  clip.constant=m(D.storeys[FL].elev+1700);CAPS.forEach(p=>{p.position.y=clip.constant;if(p.userData.cg==='wallnew')p.material.color.setHex(on.mont?0x2E9E4F:0x4A4540)});
  Object.values(MG).flat().forEach(o=>{if(o.userData.g==='demo')o.visible=o.userData.s===FL&&on.demo;if(o.userData.g==='wallnew')o.material.color.setHex(on.mont?0x9ED9AE:0xF4F2EE)});
  P.forEach(p=>{p.mesh.visible=vis(p)});GS.forEach(g=>g.vis=on.grp&&g.s===FL&&(!ROOM||[...g.sw,...g.lt].some(p=>p.room===ROOM)));ST.forEach(x=>x.vis=on.led&&x.s===FL&&(!ROOM||!x.grp||(GB[x.grp]&&GB[x.grp].vis)));hiGroups();
